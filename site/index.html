@@ -222,12 +222,12 @@
       <h2>Verification funnel</h2>
       <div class="grid five">
         <div class="metric"><strong>100</strong><span>apps researched and assigned a confidence label</span></div>
-        <div class="metric"><strong>100</strong><span>evidence URLs returned an HTTP status</span></div>
+        <div class="metric"><strong>99</strong><span>evidence URLs returned an HTTP status</span></div>
         <div class="metric"><strong>84</strong><span>agent-supported by second-pass fetched-page signals</span></div>
         <div class="metric"><strong>12</strong><span>apps manually sampled across easy, gated, ambiguous, and no-public-API cases</span></div>
         <div class="metric"><strong>12/12</strong><span>final manual sample matched checked evidence after corrections</span></div>
       </div>
-      <p>The fetcher only marks rows agent-supported when the evidence page text contains enough matching auth/API or blocker signals. The remaining rows are still covered: 8 are curated-docs reviewed and 7 are explicit follow-up/outreach cases.</p>
+      <p>The fetcher only marks rows agent-supported when the evidence page text contains enough matching auth/API or blocker signals. The remaining rows are still covered: 7 are curated-docs reviewed and 8 are explicit follow-up/outreach cases.</p>
     </section>
 
     <section>
@@ -262,20 +262,13 @@
                   <td><strong>Pumble</strong></td>
                   <td><span class="pill blocked_or_missing">blocked_or_missing</span></td>
                   <td>HTTP 404</td>
-                  <td>and Style Messages Sharing Files Search &amp; Navigation Calls and Meetings Profile Account Management Profile Settings &amp; Preferences Personal Notifications Administration Workspace Settings Manage Team Members Billing Page Not Found The page you’re requesting see<span><a href="https://pumble.com/help/integrations/webhooks/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
-                </tr>
-                
-                <tr>
-                  <td><strong>GoHighLevel</strong></td>
-                  <td><span class="pill needs_human_review">needs_human_review</span></td>
-                  <td>missing_auth_signal, missing_surface_signal, missing_access_signal</td>
-                  <td>Evidence URL: https://highlevel.stoplight.io/docs/integrations/ | Auth finding: OAuth2; API key/private integration tokens | API surface finding: Broad REST API | Buildability blocker: Agency/location model and marketplace review<span><a href="https://highlevel.stoplight.io/docs/integrations/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
+                  <td>en today off. We’ll look into it. Go to Home Communication and collaboration software for businesses Book a demo Log in Sign up Product Overview Apps Integrations What&#x27;s new Roadmap API Plans Free Pro Business Enterprise See pricing Features Channels Messages <span><a href="https://pumble.com/help/integrations/webhooks/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Threads (Meta)</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
-                  <td>missing_auth_signal</td>
+                  <td>missing_auth_signal, missing_access_signal</td>
                   <td>in the App Dashboard. ### [Reference](https://developers.facebook.com/documentation/threads/reference) The Threads API endpoints and their parameters. ### Guides Learn how to make posts, retrieve media, and troubleshoot issues. * [Single Thread Posts](https://<span><a href="https://developers.facebook.com/docs/threads/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
@@ -287,10 +280,10 @@
                 </tr>
                 
                 <tr>
-                  <td><strong>Ecwid</strong></td>
+                  <td><strong>Squarespace</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Build with Ecwid apps | Ecwid Documentation ⌘ Ctrl k Ask Contact API support More Build apps Site Themes REST API Reference Storefronts (JS API) Webhook automations Discounts Guides Changelog AI Assistant Good morning I&#x27;m here to help you with the docs. What i<span><a href="https://api-docs.ecwid.com/reference/rest-api" target="_blank" rel="noreferrer">Open evidence</a></span></td>
+                  <td>ding What can you build on Squarespace? Integration, customization, or extension. Our docs can get you started, and the rest is up to you. 01 App creation Use our APIs to connect your business to Squarespace and reach more customers. 02 Advanced commerce manag<span><a href="https://developers.squarespace.com/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
@@ -304,14 +297,14 @@
                   <td><strong>Clay</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>ructured data from any website, instantly and code-free. View docs topic View docs topic ​ Transform Clean, format, and restructure data to fit your workflow perfectly. View docs topic View docs topic ​ Enrich Add missing details using powerful enrichment sour<span><a href="https://docs.clay.com/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
+                  <td>ted Inbound ​ How to Use HG Insights in Clay ​ TAM Sourcing ​ Clay in ChatGPT ​ Clay Ads ​ Audiences ​ Functions ​ Clay MCP for Reps ​ Clay MCP for Ops Course index ​ Log in Sign up ​ Overview ​ Courses ​ Docs ​ Use case templates ​ Certifications ​ Cohorts ​ <span><a href="https://docs.clay.com/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
-                  <td><strong>Coda</strong></td>
+                  <td><strong>Neo4j</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Superhuman Docs API (v1) Reference Documentation<span><a href="https://coda.io/developers/apis/v1" target="_blank" rel="noreferrer">Open evidence</a></span></td>
+                  <td>trieve query statistics Profile queries Coordinate transactions and enforce causal consistency Error handling Reference Endpoints Headers Result formats Is this page helpful? HTTP API Introduction Raise an issue Introduction Not available on Aura Deprecated in<span><a href="https://neo4j.com/docs/http-api/current/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
@@ -340,6 +333,13 @@
                   <td><span class="pill blocked_or_missing">blocked_or_missing</span></td>
                   <td>HTTP 403</td>
                   <td>Evidence URL: https://help.otter.ai/ | Auth finding: MCP/OAuth depending connector | API surface finding: API not broadly public; MCP server noted | Buildability blocker: Public API surface limited; MCP may be connector path | Fetch note: HTTP 403<span><a href="https://help.otter.ai/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Fathom</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_auth_signal</td>
+                  <td>omer success For marketing For sales For teams Integrations Asana ChatGPT Claude Hubspot Salesforce Zapier Public API &amp; MCP See All Integrations → Resources What&#x27;s New Resource Hub Partner with Fathom Developer Hub Help Center Pricing Sign Up sign up free Book<span><a href="https://fathom.video/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
@@ -852,7 +852,7 @@
               <td><a href="https://learn.microsoft.com/en-us/linkedin/marketing/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>34</td>
               <td><strong>GoHighLevel</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Agency CRM/marketing automation platform.</td>
@@ -860,8 +860,8 @@
               <td>Self-serve for accounts, marketplace approval for distribution</td>
               <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Agency/location model and marketplace review</span></td>
-              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; second-pass extraction did not confirm every field automatically.</span></td>
-              <td><a href="https://highlevel.stoplight.io/docs/integrations/" target="_blank" rel="noreferrer">Evidence</a></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
+              <td><a href="https://marketplace.gohighlevel.com/docs/Authorization/authorization_doc/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
             <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Agent-supported">
@@ -996,7 +996,7 @@
               <td><a href="https://developer.adobe.com/commerce/webapi/get-started/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Agent-supported">
+            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>46</td>
               <td><strong>Squarespace</strong><span>Ecommerce</span></td>
               <td>Website/ecommerce platform for orders, products, inventory, and profiles.</td>
@@ -1004,11 +1004,11 @@
               <td>Self-serve developer platform, commerce plan needs account</td>
               <td>REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Endpoint coverage narrower than Shopify</span></td>
-              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; second-pass extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.squarespace.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
+            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>47</td>
               <td><strong>Ecwid</strong><span>Ecommerce</span></td>
               <td>Lightweight ecommerce store platform.</td>
@@ -1016,8 +1016,8 @@
               <td>Self-serve developer app</td>
               <td>Broad REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Store-specific app install flow</span></td>
-              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; second-pass extraction did not confirm every field automatically.</span></td>
-              <td><a href="https://api-docs.ecwid.com/reference/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
+              <td><a href="https://docs.ecwid.com/get-started/make-your-first-api-request" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
             <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
@@ -1047,11 +1047,11 @@
             <tr data-category="Ecommerce" data-verdict="Not yet" data-confidence="Agent-supported">
               <td>50</td>
               <td><strong>fanbasis</strong><span>Ecommerce</span></td>
-              <td>Creator monetization and fan engagement marketplace.</td>
-              <td>No clear public auth docs found</td>
-              <td>Gated/unknown</td>
-              <td>No broad public API found<span>Public MCP not found</span></td>
-              <td><span class="pill not-yet">Not yet</span><span>No documented public developer surface found</span></td>
+              <td>Creator monetization/fan engagement platform with payment and AI commerce tooling.</td>
+              <td>Public auth docs not found</td>
+              <td>Gated/unknown; docs not public</td>
+              <td>Marketing page mentions APIs/SDKs and MCP beta; public developer docs not found<span>Public MCP not found</span></td>
+              <td><span class="pill not-yet">Not yet</span><span>No stable public developer docs or credential path found despite API/MCP marketing signals</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://www.fanbasis.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
@@ -1236,7 +1236,7 @@
               <td><a href="https://supabase.com/docs/guides/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>66</td>
               <td><strong>Neo4j</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Graph database platform and Aura cloud service.</td>
@@ -1244,7 +1244,7 @@
               <td>Self-serve Aura trial and local</td>
               <td>REST admin APIs plus Bolt/GraphQL options<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Database query safety and schema discovery</span></td>
-              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; second-pass extraction did not confirm every field automatically.</span></td>
               <td><a href="https://neo4j.com/docs/http-api/current/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1380,7 +1380,7 @@
               <td><a href="https://clickup.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>78</td>
               <td><strong>Coda</strong><span>Productivity and Project Management</span></td>
               <td>Docs platform with tables, packs, and automation.</td>
@@ -1388,7 +1388,7 @@
               <td>Self-serve account</td>
               <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Document/table schema discovery</span></td>
-              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; second-pass extraction did not confirm every field automatically.</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://coda.io/developers/apis/v1" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1560,15 +1560,15 @@
               <td><a href="https://help.otter.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable" data-confidence="Agent-supported">
+            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable" data-confidence="Needs follow-up">
               <td>93</td>
               <td><strong>Fathom</strong><span>AI, Research and Media-native</span></td>
               <td>AI meeting recorder and summary tool.</td>
               <td>OAuth/API access unclear</td>
               <td>Gated/unclear</td>
-              <td>Limited public API docs<span>Public MCP not found</span></td>
-              <td><span class="pill partially-buildable">Partially buildable</span><span>Developer docs/API access unclear</span></td>
-              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
+              <td>Public API and MCP are mentioned; detailed API docs/access unclear<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Public API/MCP signal exists, but developer access and auth details are unclear</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://fathom.video/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -2288,7 +2288,7 @@ npm run build</pre>
     "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Agency/location model and marketplace review",
-    "evidence": "https://highlevel.stoplight.io/docs/integrations/"
+    "evidence": "https://marketplace.gohighlevel.com/docs/Authorization/authorization_doc/"
   },
   {
     "id": "35",
@@ -2457,7 +2457,7 @@ npm run build</pre>
     "mcp": "None found",
     "verdict": "Buildable",
     "blocker": "Store-specific app install flow",
-    "evidence": "https://api-docs.ecwid.com/reference/rest-api"
+    "evidence": "https://docs.ecwid.com/get-started/make-your-first-api-request"
   },
   {
     "id": "48",
@@ -2489,13 +2489,13 @@ npm run build</pre>
     "id": "50",
     "category": "Ecommerce",
     "app": "fanbasis",
-    "one_line": "Creator monetization and fan engagement marketplace.",
-    "auth": "No clear public auth docs found",
-    "access": "Gated/unknown",
-    "surface": "No broad public API found",
+    "one_line": "Creator monetization/fan engagement platform with payment and AI commerce tooling.",
+    "auth": "Public auth docs not found",
+    "access": "Gated/unknown; docs not public",
+    "surface": "Marketing page mentions APIs/SDKs and MCP beta; public developer docs not found",
     "mcp": "Public MCP not found",
     "verdict": "Not yet",
-    "blocker": "No documented public developer surface found",
+    "blocker": "No stable public developer docs or credential path found despite API/MCP marketing signals",
     "evidence": "https://www.fanbasis.com/"
   },
   {
@@ -3051,10 +3051,10 @@ npm run build</pre>
     "one_line": "AI meeting recorder and summary tool.",
     "auth": "OAuth/API access unclear",
     "access": "Gated/unclear",
-    "surface": "Limited public API docs",
+    "surface": "Public API and MCP are mentioned; detailed API docs/access unclear",
     "mcp": "Public MCP not found",
     "verdict": "Partially buildable",
-    "blocker": "Developer docs/API access unclear",
+    "blocker": "Public API/MCP signal exists, but developer access and auth details are unclear",
     "evidence": "https://fathom.video/"
   },
   {

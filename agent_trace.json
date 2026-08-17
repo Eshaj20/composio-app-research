@@ -154,7 +154,7 @@
   },
   "evidence_report": {
     "apps_checked": 100,
-    "pages_fetched_or_returned_status": 100,
+    "pages_fetched_or_returned_status": 99,
     "supported_by_agent": 84,
     "needs_human_review": 12,
     "blocked_or_failed_fetch": 4,
@@ -166,8 +166,8 @@
     },
     "confidence_counts": {
       "Agent-supported": 84,
-      "Curated-docs reviewed": 8,
-      "Needs follow-up": 7,
+      "Curated-docs reviewed": 7,
+      "Needs follow-up": 8,
       "Human-reviewed": 1
     },
     "verified_or_triaged_coverage": 100,

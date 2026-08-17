@@ -1,0 +1,359 @@
+{
+  "findings": [
+    {
+      "id": "7",
+      "app": "Zoho CRM",
+      "verdict": "Buildable",
+      "auth": "OAuth2",
+      "access": "Self-serve developer console, org scopes/admin needed",
+      "surface": "Broad REST API",
+      "confidence": "Agent-supported",
+      "status": "supported",
+      "issues": [
+        "surface_expected_but_no_surface_signal"
+      ],
+      "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/oauth-overview.html",
+      "snippet": "OAuth 2.0 Authentication | Zoho CRM API | V8 OAuth 2.0 for V8 APIs - An Overview The Zoho CRM API uses the OAuth 2.0 protocol for authentication. OAuth 2.0 is an ind"
+    },
+    {
+      "id": "9",
+      "app": "Copper",
+      "verdict": "Buildable",
+      "auth": "API key; OAuth2",
+      "access": "Gated by account/admin for API keys",
+      "surface": "REST API",
+      "confidence": "Agent-supported",
+      "status": "supported",
+      "issues": [
+        "buildable_verdict_has_gated_or_unclear_access"
+      ],
+      "evidence_url": "https://developer.copper.com/",
+      "snippet": "ge Policy Postman Resources Import the Collection Import and Use the Environment Authentication Authentication Overview OAuth2.0 OAuth2.0 Overview Quickstart Guide Documentation Requests Responses Search Paginating search results Best practices Embedded Apps Appendix Getting Support Ch"
+    },
+    {
+      "id": "16",
+      "app": "LiveAgent",
+      "verdict": "Buildable",
+      "auth": "API key",
+      "access": "Self-serve trial",
+      "surface": "Broad REST API",
+      "confidence": "Curated-docs reviewed",
+      "status": "needs_human_review",
+      "issues": [
+        "auth_expected_but_no_auth_signal",
+        "surface_expected_but_no_surface_signal"
+      ],
+      "evidence_url": "https://support.liveagent.com/docs/api/v3/",
+      "snippet": "Evidence URL: https://support.liveagent.com/docs/api/v3/ | Auth finding: API key | API surface finding: Broad REST API | Buildability blocker: Older docs and account-specific endpoints"
+    },
+    {
+      "id": "20",
+      "app": "Gladly",
+      "verdict": "Partially buildable",
+      "auth": "OAuth2; API token",
+      "access": "Gated/customer access",
+      "surface": "REST API",
+      "confidence": "Needs follow-up",
+      "status": "needs_human_review",
+      "issues": [
+        "auth_expected_but_no_auth_signal"
+      ],
+      "evidence_url": "https://developer.gladly.com/",
+      "snippet": "Main Home - Gladly Developer Gladly Developer Developer Gladly.com Toggle Menu Home Developer API REST API Chat Web SDK Chat iOS SDK Chat Android SDK Help Center Tutorials Help and Support A platform with people at the heart of it Looking to extend Gladly, use Gladl"
+    },
+    {
+      "id": "24",
+      "app": "Lark (Larksuite)",
+      "verdict": "Buildable",
+      "auth": "OAuth2; app access tokens",
+      "access": "Self-serve app console, org approval for installs",
+      "surface": "Broad Open Platform APIs",
+      "confidence": "Curated-docs reviewed",
+      "status": "needs_human_review",
+      "issues": [
+        "auth_expected_but_no_auth_signal",
+        "surface_expected_but_no_surface_signal",
+        "gated_or_review_claim_lacks_access_signal"
+      ],
+      "evidence_url": "https://open.larksuite.com/document/",
+      "snippet": "Evidence URL: https://open.larksuite.com/document/ | Auth finding: OAuth2; app access tokens | API surface finding: Broad Open Platform APIs | Buildability blocker: Region/product naming and tenant approval"
+    },
+    {
+      "id": "31",
+      "app": "Google Ads",
+      "verdict": "Buildable",
+      "auth": "OAuth2 plus developer token",
+      "access": "Self-serve test token; production access reviewed",
+      "surface": "Broad Google Ads API",
+      "confidence": "Agent-supported",
+      "status": "supported",
+      "issues": [
+        "auth_mentions_oauth_but_evidence_lacks_oauth_signal"
+      ],
+      "evidence_url": "https://developers.google.com/google-ads/api/docs/api-policy/developer-token",
+      "snippet": "Developer Token | Google Ads API | Google for Developers Skip to main content Ads API / English Deutsch Espa\u00f1ol Espa\u00f1ol \u2013 Am\u00e9rica Latina Fran\u00e7ais Indonesia Italiano Polski Por"
+    },
+    {
+      "id": "33",
+      "app": "LinkedIn Ads",
+      "verdict": "Partially buildable",
+      "auth": "OAuth2",
+      "access": "Partner/developer access gated",
+      "surface": "Broad REST APIs",
+      "confidence": "Agent-supported",
+      "status": "supported",
+      "issues": [
+        "surface_expected_but_no_surface_signal"
+      ],
+      "evidence_url": "https://learn.microsoft.com/en-us/linkedin/marketing/",
+      "snippet": "rformance, to manage leads, and to grow a company Page. Quickstart Quick Start Overview Getting API Access How-To Guide Authentication How-To Guide API Versioning Overview Data Storage Requirements What's new What's New LinkedIn Marketing APIs Advertising With Advertising APIs, streamline your"
+    },
+    {
+      "id": "39",
+      "app": "Threads (Meta)",
+      "verdict": "Buildable",
+      "auth": "OAuth2",
+      "access": "Self-serve app, Meta review for advanced use",
+      "surface": "Graph-based Threads API",
+      "confidence": "Curated-docs reviewed",
+      "status": "needs_human_review",
+      "issues": [
+        "gated_or_review_claim_lacks_access_signal"
+      ],
+      "evidence_url": "https://developers.facebook.com/docs/threads/",
+      "snippet": "in the App Dashboard. ### [Reference](https://developers.facebook.com/documentation/threads/reference) The Threads API endpoints and their parameters. ### Guides Learn how to make posts, retrieve media, and troubleshoot issues. * [Single Thread Posts](https://developers.facebook.com/docu"
+    },
+    {
+      "id": "41",
+      "app": "Shopify",
+      "verdict": "Buildable",
+      "auth": "OAuth2; access tokens",
+      "access": "Self-serve partner/dev store",
+      "surface": "Broad REST and GraphQL Admin APIs",
+      "confidence": "Agent-supported",
+      "status": "supported",
+      "issues": [
+        "buildable_verdict_has_gated_or_unclear_access"
+      ],
+      "evidence_url": "https://shopify.dev/docs/api",
+      "snippet": "tomer Privacy API Customer Account API Web MCP Tools App management Partner API App Events API Additional APIs Customer authentication Web pixel Shop API Shop Minis Shop Pay Wallet API Full index Shopify APIs, libraries, and tools Turn your idea into a working integration. Find everything you"
+    },
+    {
+      "id": "44",
+      "app": "Salesforce Commerce Cloud",
+      "verdict": "Partially buildable",
+      "auth": "OAuth2; SLAS/client credentials",
+      "access": "Gated/customer access",
+      "surface": "Broad Commerce APIs",
+      "confidence": "Needs follow-up",
+      "status": "needs_human_review",
+      "issues": [
+        "surface_expected_but_no_surface_signal"
+      ],
+      "evidence_url": "https://developer.salesforce.com/docs/commerce",
+      "snippet": "Commerce Cloud | Salesforce Developer Center Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Re"
+    },
+    {
+      "id": "46",
+      "app": "Squarespace",
+      "verdict": "Buildable",
+      "auth": "OAuth2; API key",
+      "access": "Self-serve developer platform, commerce plan needs account",
+      "surface": "REST APIs",
+      "confidence": "Curated-docs reviewed",
+      "status": "needs_human_review",
+      "issues": [
+        "auth_expected_but_no_auth_signal"
+      ],
+      "evidence_url": "https://developers.squarespace.com/",
+      "snippet": "ding What can you build on Squarespace? Integration, customization, or extension. Our docs can get you started, and the rest is up to you. 01 App creation Use our APIs to connect your business to Squarespace and reach more customers. 02 Advanced commerce management Manage your storef"
+    },
+    {
+      "id": "48",
+      "app": "Gumroad",
+      "verdict": "Buildable",
+      "auth": "OAuth2",
+      "access": "Self-serve app registration",
+      "surface": "REST API moderate",
+      "confidence": "Curated-docs reviewed",
+      "status": "needs_human_review",
+      "issues": [
+        "surface_expected_but_no_surface_signal"
+      ],
+      "evidence_url": "https://gumroad.com/api",
+      "snippet": "Evidence URL: https://gumroad.com/api | Auth finding: OAuth2 | API surface finding: REST API moderate | Buildability blocker: API surface smaller and product-specific"
+    },
+    {
+      "id": "60",
+      "app": "Clay",
+      "verdict": "Partially buildable",
+      "auth": "API key; webhooks",
+      "access": "Self-serve product, API details account-gated",
+      "surface": "HTTP API/webhooks narrower",
+      "confidence": "Needs follow-up",
+      "status": "needs_human_review",
+      "issues": [
+        "auth_expected_but_no_auth_signal"
+      ],
+      "evidence_url": "https://docs.clay.com/",
+      "snippet": "ted Inbound \u200b How to Use HG Insights in Clay \u200b TAM Sourcing \u200b Clay in ChatGPT \u200b Clay Ads \u200b Audiences \u200b Functions \u200b Clay MCP for Reps \u200b Clay MCP for Ops Course index \u200b Log in Sign up \u200b Overview \u200b Courses \u200b Docs \u200b Use case templates \u200b Certifications \u200b Cohorts \u200b Clay.com Sign up to Cla"
+    },
+    {
+      "id": "66",
+      "app": "Neo4j",
+      "verdict": "Buildable",
+      "auth": "Basic auth; bearer tokens; API keys for Aura",
+      "access": "Self-serve Aura trial and local",
+      "surface": "REST admin APIs plus Bolt/GraphQL options",
+      "confidence": "Curated-docs reviewed",
+      "status": "needs_human_review",
+      "issues": [
+        "auth_expected_but_no_auth_signal"
+      ],
+      "evidence_url": "https://neo4j.com/docs/http-api/current/",
+      "snippet": "trieve query statistics Profile queries Coordinate transactions and enforce causal consistency Error handling Reference Endpoints Headers Result formats Is this page helpful? HTTP API Introduction Raise an issue Introduction Not available on Aura Deprecated in 5.26 The transactional HTTP"
+    },
+    {
+      "id": "72",
+      "app": "Airtable",
+      "verdict": "Buildable",
+      "auth": "OAuth2; personal access tokens",
+      "access": "Self-serve developer hub",
+      "surface": "Broad Web API",
+      "confidence": "Agent-supported",
+      "status": "supported",
+      "issues": [
+        "surface_expected_but_no_surface_signal"
+      ],
+      "evidence_url": "https://airtable.com/developers/web/api/authentication",
+      "snippet": "Evidence URL: https://airtable.com/developers/web/api/authentication | Auth finding: OAuth2; personal access tokens | API surface finding: Broad Web API | Buildability blocker: Base-level permissions and schema variance"
+    },
+    {
+      "id": "83",
+      "app": "Binance",
+      "verdict": "Buildable",
+      "auth": "API key/secret; HMAC",
+      "access": "Self-serve account/API keys",
+      "surface": "Broad REST and WebSocket APIs",
+      "confidence": "Curated-docs reviewed",
+      "status": "needs_human_review",
+      "issues": [
+        "auth_expected_but_no_auth_signal"
+      ],
+      "evidence_url": "https://developers.binance.com/en/docs/products/spot/rest-api",
+      "snippet": "Evidence URL: https://developers.binance.com/en/docs/products/spot/rest-api | Auth finding: API key/secret; HMAC | API surface finding: Broad REST and WebSocket APIs | Buildability blocker: Trading safety, regional restrictions, KYC"
+    },
+    {
+      "id": "85",
+      "app": "iPayX",
+      "verdict": "Partially buildable",
+      "auth": "API key likely",
+      "access": "Gated/unclear",
+      "surface": "Docs site exists, surface unclear",
+      "confidence": "Needs follow-up",
+      "status": "needs_human_review",
+      "issues": [
+        "auth_expected_but_no_auth_signal",
+        "gated_or_review_claim_lacks_access_signal"
+      ],
+      "evidence_url": "https://ipayx.ai/docs",
+      "snippet": "iPayX Protocol \u2014 FINTRAC-registered FX forensic audit layer"
+    },
+    {
+      "id": "86",
+      "app": "QuickBooks",
+      "verdict": "Buildable",
+      "auth": "OAuth2",
+      "access": "Self-serve sandbox/dev app, production review possible",
+      "surface": "Broad REST API",
+      "confidence": "Agent-supported",
+      "status": "supported",
+      "issues": [
+        "surface_expected_but_no_surface_signal"
+      ],
+      "evidence_url": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization",
+      "snippet": "Evidence URL: https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization | Auth finding: OAuth2 | API surface finding: Broad REST API | Buildability blocker: Accounting data permissions and app review | Fetch note: TimeoutError: The read operation timed out"
+    },
+    {
+      "id": "87",
+      "app": "Xero",
+      "verdict": "Buildable",
+      "auth": "OAuth2",
+      "access": "Self-serve developer app",
+      "surface": "Broad REST API",
+      "confidence": "Agent-supported",
+      "status": "supported",
+      "issues": [
+        "surface_expected_but_no_surface_signal"
+      ],
+      "evidence_url": "https://developer.xero.com/documentation/guides/oauth2/overview/",
+      "snippet": "Evidence URL: https://developer.xero.com/documentation/guides/oauth2/overview/ | Auth finding: OAuth2 | API surface finding: Broad REST API | Buildability blocker: Tenant connections and accounting permissions"
+    },
+    {
+      "id": "90",
+      "app": "PitchBook",
+      "verdict": "Partially buildable",
+      "auth": "API token/license",
+      "access": "Gated/contract only",
+      "surface": "Data/API products",
+      "confidence": "Needs follow-up",
+      "status": "blocked_or_missing",
+      "issues": [
+        "auth_expected_but_no_auth_signal",
+        "surface_expected_but_no_surface_signal",
+        "gated_or_review_claim_lacks_access_signal"
+      ],
+      "evidence_url": "https://pitchbook.com/data",
+      "snippet": "Evidence URL: https://pitchbook.com/data | Auth finding: API token/license | API surface finding: Data/API products | Buildability blocker: Commercial data license and sales access | Fetch note: HTTP 403"
+    },
+    {
+      "id": "91",
+      "app": "NotebookLM",
+      "verdict": "Not yet",
+      "auth": "Google OAuth/service account for related APIs",
+      "access": "Gated/no standalone public NotebookLM API",
+      "surface": "No standalone public NotebookLM developer API found",
+      "confidence": "Agent-supported",
+      "status": "supports_blocker",
+      "issues": [
+        "auth_mentions_oauth_but_evidence_lacks_oauth_signal",
+        "surface_expected_but_no_surface_signal"
+      ],
+      "evidence_url": "https://cloud.google.com/gemini",
+      "snippet": "Google AI Studio vs. Gemini Enterprise Agent Platform vs. Gemini Enterprise app | Google Cloud"
+    },
+    {
+      "id": "92",
+      "app": "Otter AI",
+      "verdict": "Partially buildable",
+      "auth": "MCP/OAuth depending connector",
+      "access": "Gated for API; MCP docs available",
+      "surface": "API not broadly public; MCP server noted",
+      "confidence": "Needs follow-up",
+      "status": "blocked_or_missing",
+      "issues": [
+        "surface_expected_but_no_surface_signal",
+        "gated_or_review_claim_lacks_access_signal"
+      ],
+      "evidence_url": "https://help.otter.ai/",
+      "snippet": "Evidence URL: https://help.otter.ai/ | Auth finding: MCP/OAuth depending connector | API surface finding: API not broadly public; MCP server noted | Buildability blocker: Public API surface limited; MCP may be connector path | Fetch note: HTTP 403"
+    },
+    {
+      "id": "94",
+      "app": "Consensus",
+      "verdict": "Not yet",
+      "auth": "OAuth requested per assignment; public API unclear",
+      "access": "Gated/unclear",
+      "surface": "Public API not clearly documented",
+      "confidence": "Needs follow-up",
+      "status": "blocked_or_missing",
+      "issues": [
+        "surface_expected_but_no_surface_signal",
+        "gated_or_review_claim_lacks_access_signal"
+      ],
+      "evidence_url": "https://consensus.app/",
+      "snippet": "Evidence URL: https://consensus.app/ | Auth finding: OAuth requested per assignment; public API unclear | API surface finding: Public API not clearly documented | Buildability blocker: OAuth/API access requested but not public | Fetch note: HTTP 403"
+    }
+  ],
+  "count": 23
+}

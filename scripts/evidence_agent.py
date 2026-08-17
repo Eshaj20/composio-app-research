@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import gzip
 import html.parser
 import json
 import re
@@ -21,7 +22,7 @@ REPORT = ROOT / "data" / "verification_report.json"
 
 USER_AGENT = "composio-app-research-agent/1.0 (+https://github.com/Eshaj20/composio-app-research)"
 MAX_BYTES = 650_000
-TIMEOUT_SECONDS = 8
+TIMEOUT_SECONDS = 12
 MAX_WORKERS = 12
 
 
@@ -113,6 +114,7 @@ def fetch(url: str) -> tuple[int | None, str, str | None]:
         headers={
             "User-Agent": USER_AGENT,
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Encoding": "gzip, identity",
         },
     )
     context = ssl.create_default_context()
@@ -120,17 +122,23 @@ def fetch(url: str) -> tuple[int | None, str, str | None]:
         with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS, context=context) as response:
             status = getattr(response, "status", None)
             body = response.read(MAX_BYTES)
+            if response.headers.get("Content-Encoding", "").lower() == "gzip" or body.startswith(b"\x1f\x8b"):
+                body = gzip.decompress(body)
             charset = response.headers.get_content_charset() or "utf-8"
             return status, body.decode(charset, errors="replace"), None
     except urllib.error.HTTPError as exc:
-        body = exc.read(min(MAX_BYTES, 80_000)).decode("utf-8", errors="replace")
-        return exc.code, body, f"HTTP {exc.code}"
+        body = exc.read(min(MAX_BYTES, 80_000))
+        if exc.headers.get("Content-Encoding", "").lower() == "gzip" or body.startswith(b"\x1f\x8b"):
+            body = gzip.decompress(body)
+        return exc.code, body.decode("utf-8", errors="replace"), f"HTTP {exc.code}"
     except Exception as exc:  # network blocks and TLS oddities are evidence too
         if "CERTIFICATE_VERIFY_FAILED" in str(exc):
             try:
                 with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS, context=ssl._create_unverified_context()) as response:
                     status = getattr(response, "status", None)
                     body = response.read(MAX_BYTES)
+                    if response.headers.get("Content-Encoding", "").lower() == "gzip" or body.startswith(b"\x1f\x8b"):
+                        body = gzip.decompress(body)
                     charset = response.headers.get_content_charset() or "utf-8"
                     return status, body.decode(charset, errors="replace"), "TLS verification failed; fetched with unverified context"
             except Exception as fallback_exc:
@@ -146,11 +154,18 @@ def normalize_text(markup: str) -> str:
     return text[:90_000]
 
 
+def term_matches(lowered: str, term: str) -> bool:
+    needle = term.lower()
+    if needle.replace("-", "").replace("_", "").isalnum():
+        return re.search(rf"(?<![a-z0-9]){re.escape(needle)}(?![a-z0-9])", lowered) is not None
+    return needle in lowered
+
+
 def find_signals(text: str, groups: dict[str, list[str]]) -> dict[str, list[str]]:
     lowered = text.lower()
     found: dict[str, list[str]] = {}
     for group, terms in groups.items():
-        hits = [term for term in terms if term in lowered]
+        hits = [term for term in terms if term_matches(lowered, term)]
         if hits:
             found[group] = hits
     return found
