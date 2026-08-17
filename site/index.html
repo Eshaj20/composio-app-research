@@ -38,7 +38,7 @@
     input, select { border:1px solid var(--line); border-radius:6px; padding:9px 10px; background:white; min-height:40px; }
     input { min-width:260px; flex:1; }
     .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:8px; background:white; }
-    table { width:100%; border-collapse:collapse; min-width:1180px; }
+    table { width:100%; border-collapse:collapse; min-width:1320px; }
     th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; font-size:.9rem; }
     th { position:sticky; top:0; background:#eef3f7; z-index:1; }
     td span { display:block; color:var(--muted); margin-top:4px; font-size:.82rem; }
@@ -232,93 +232,121 @@
 
     <section>
       <h2>Agent-routed review queue</h2>
-      <p>These are examples the evidence agent routed out of full auto-confirmation. That is useful operationally: they become manual checks, outreach targets, paid-plan checks, or admin-validation tasks.</p>
+      <p>This is the full set of rows the evidence agent routed out of full auto-confirmation. That is useful operationally: they become manual checks, outreach targets, paid-plan checks, or admin-validation tasks.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>App</th><th>Agent status</th><th>Reason</th><th>Evidence snippet</th></tr></thead>
+          <thead><tr><th>App</th><th>Agent status</th><th>Reason</th><th>Evidence snippet / link</th></tr></thead>
           <tbody>
                 <tr>
                   <td><strong>LiveAgent</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Evidence URL: https://support.liveagent.com/docs/api/v3/ | Auth finding: API key | API surface finding: Broad REST API | Buildability blocker: Older docs and account-specific endpoints</td>
+                  <td>Evidence URL: https://support.liveagent.com/docs/api/v3/ | Auth finding: API key | API surface finding: Broad REST API | Buildability blocker: Older docs and account-specific endpoints<span><a href="https://support.liveagent.com/docs/api/v3/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Gladly</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Main Home - Gladly Developer Gladly Developer Developer Gladly.com Toggle Menu Home Developer API REST API Chat Web SDK Chat iOS SDK Chat Android SDK Help Center Tutorials Help and Support A platform with people at the heart of it Looking to extend Gladly, use</td>
+                  <td>Main Home - Gladly Developer Gladly Developer Developer Gladly.com Toggle Menu Home Developer API REST API Chat Web SDK Chat iOS SDK Chat Android SDK Help Center Tutorials Help and Support A platform with people at the heart of it Looking to extend Gladly, use<span><a href="https://developer.gladly.com/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Lark (Larksuite)</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal, missing_surface_signal, missing_access_signal</td>
-                  <td>Evidence URL: https://open.larksuite.com/document/ | Auth finding: OAuth2; app access tokens | API surface finding: Broad Open Platform APIs | Buildability blocker: Region/product naming and tenant approval</td>
+                  <td>Evidence URL: https://open.larksuite.com/document/ | Auth finding: OAuth2; app access tokens | API surface finding: Broad Open Platform APIs | Buildability blocker: Region/product naming and tenant approval<span><a href="https://open.larksuite.com/document/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Pumble</strong></td>
                   <td><span class="pill blocked_or_missing">blocked_or_missing</span></td>
                   <td>HTTP 404</td>
-                  <td>and Style Messages Sharing Files Search &amp; Navigation Calls and Meetings Profile Account Management Profile Settings &amp; Preferences Personal Notifications Administration Workspace Settings Manage Team Members Billing Page Not Found The page you’re requesting see</td>
+                  <td>and Style Messages Sharing Files Search &amp; Navigation Calls and Meetings Profile Account Management Profile Settings &amp; Preferences Personal Notifications Administration Workspace Settings Manage Team Members Billing Page Not Found The page you’re requesting see<span><a href="https://pumble.com/help/integrations/webhooks/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>GoHighLevel</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal, missing_surface_signal, missing_access_signal</td>
-                  <td>Evidence URL: https://highlevel.stoplight.io/docs/integrations/ | Auth finding: OAuth2; API key/private integration tokens | API surface finding: Broad REST API | Buildability blocker: Agency/location model and marketplace review</td>
+                  <td>Evidence URL: https://highlevel.stoplight.io/docs/integrations/ | Auth finding: OAuth2; API key/private integration tokens | API surface finding: Broad REST API | Buildability blocker: Agency/location model and marketplace review<span><a href="https://highlevel.stoplight.io/docs/integrations/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Threads (Meta)</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>in the App Dashboard. ### [Reference](https://developers.facebook.com/documentation/threads/reference) The Threads API endpoints and their parameters. ### Guides Learn how to make posts, retrieve media, and troubleshoot issues. * [Single Thread Posts](https://</td>
+                  <td>in the App Dashboard. ### [Reference](https://developers.facebook.com/documentation/threads/reference) The Threads API endpoints and their parameters. ### Guides Learn how to make posts, retrieve media, and troubleshoot issues. * [Single Thread Posts](https://<span><a href="https://developers.facebook.com/docs/threads/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Salesforce Commerce Cloud</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Commerce Cloud | Salesforce Developer Center Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Re</td>
+                  <td>Commerce Cloud | Salesforce Developer Center Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Re<span><a href="https://developer.salesforce.com/docs/commerce" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Ecwid</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Build with Ecwid apps | Ecwid Documentation ⌘ Ctrl k Ask Contact API support More Build apps Site Themes REST API Reference Storefronts (JS API) Webhook automations Discounts Guides Changelog AI Assistant Good morning I&#x27;m here to help you with the docs. What i</td>
+                  <td>Build with Ecwid apps | Ecwid Documentation ⌘ Ctrl k Ask Contact API support More Build apps Site Themes REST API Reference Storefronts (JS API) Webhook automations Discounts Guides Changelog AI Assistant Good morning I&#x27;m here to help you with the docs. What i<span><a href="https://api-docs.ecwid.com/reference/rest-api" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Gumroad</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Evidence URL: https://gumroad.com/api | Auth finding: OAuth2 | API surface finding: REST API moderate | Buildability blocker: API surface smaller and product-specific</td>
+                  <td>Evidence URL: https://gumroad.com/api | Auth finding: OAuth2 | API surface finding: REST API moderate | Buildability blocker: API surface smaller and product-specific<span><a href="https://gumroad.com/api" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Clay</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>ructured data from any website, instantly and code-free. View docs topic View docs topic ​ Transform Clean, format, and restructure data to fit your workflow perfectly. View docs topic View docs topic ​ Enrich Add missing details using powerful enrichment sour</td>
+                  <td>ructured data from any website, instantly and code-free. View docs topic View docs topic ​ Transform Clean, format, and restructure data to fit your workflow perfectly. View docs topic View docs topic ​ Enrich Add missing details using powerful enrichment sour<span><a href="https://docs.clay.com/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Coda</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Superhuman Docs API (v1) Reference Documentation</td>
+                  <td>Superhuman Docs API (v1) Reference Documentation<span><a href="https://coda.io/developers/apis/v1" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 
                 <tr>
                   <td><strong>Binance</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Evidence URL: https://developers.binance.com/en/docs/products/spot/rest-api | Auth finding: API key/secret; HMAC | API surface finding: Broad REST and WebSocket APIs | Buildability blocker: Trading safety, regional restrictions, KYC</td>
+                  <td>Evidence URL: https://developers.binance.com/en/docs/products/spot/rest-api | Auth finding: API key/secret; HMAC | API surface finding: Broad REST and WebSocket APIs | Buildability blocker: Trading safety, regional restrictions, KYC<span><a href="https://developers.binance.com/en/docs/products/spot/rest-api" target="_blank" rel="noreferrer">Open evidence</a></span></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>iPayX</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_auth_signal, missing_surface_signal, missing_access_signal</td>
+                  <td>iPayX Protocol — FINTRAC-registered FX forensic audit layer<span><a href="https://ipayx.ai/docs" target="_blank" rel="noreferrer">Open evidence</a></span></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>PitchBook</strong></td>
+                  <td><span class="pill blocked_or_missing">blocked_or_missing</span></td>
+                  <td>HTTP 403</td>
+                  <td>Evidence URL: https://pitchbook.com/data | Auth finding: API token/license | API surface finding: Data/API products | Buildability blocker: Commercial data license and sales access | Fetch note: HTTP 403<span><a href="https://pitchbook.com/data" target="_blank" rel="noreferrer">Open evidence</a></span></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Otter AI</strong></td>
+                  <td><span class="pill blocked_or_missing">blocked_or_missing</span></td>
+                  <td>HTTP 403</td>
+                  <td>Evidence URL: https://help.otter.ai/ | Auth finding: MCP/OAuth depending connector | API surface finding: API not broadly public; MCP server noted | Buildability blocker: Public API surface limited; MCP may be connector path | Fetch note: HTTP 403<span><a href="https://help.otter.ai/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Consensus</strong></td>
+                  <td><span class="pill blocked_or_missing">blocked_or_missing</span></td>
+                  <td>HTTP 403</td>
+                  <td>Evidence URL: https://consensus.app/ | Auth finding: OAuth requested per assignment; public API unclear | API surface finding: Public API not clearly documented | Buildability blocker: OAuth/API access requested but not public | Fetch note: HTTP 403<span><a href="https://consensus.app/" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 </tbody>
         </table>
@@ -406,7 +434,7 @@
     <section>
       <h2>Clean table</h2>
       <div class="toolbar">
-        <input id="q" placeholder="Search app, auth, blocker, or category" aria-label="Search table">
+        <input id="q" placeholder="Search any column: app, auth, blocker, confidence, or category" aria-label="Search table">
         <select id="verdict" aria-label="Filter verdict">
           <option value="">All verdicts</option>
           <option>Buildable</option>

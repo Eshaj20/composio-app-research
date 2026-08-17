@@ -211,19 +211,19 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
             c
             for c in evidence_checks
             if c.get("status") in {"needs_human_review", "blocked_or_missing", "fetch_failed"}
-        ][:12]
+        ]
         for item in review_items:
             notes = ", ".join(str(n) for n in item.get("notes", [])) or str(item.get("fetch_error") or "Needs review")
-            snippet_text = str(item.get("snippet", "")).strip()
-            if not snippet_text:
-                snippet_text = f"Evidence URL: {item.get('evidence_url', '')}; fetch/status note: {item.get('fetch_error') or item.get('status', 'needs review')}"
+            raw_snippet = str(item.get("snippet", "")).strip()
+            fallback = str(item.get("confidence_reason") or item.get("fetch_error") or item.get("evidence_url") or "No page text extracted; use the evidence link for manual review.")
+            snippet_text = raw_snippet if len(raw_snippet) >= 40 else fallback
             agent_review_rows.append(
                 f"""
                 <tr>
                   <td><strong>{html.escape(str(item.get('app', '')))}</strong></td>
                   <td>{pill(str(item.get('status', 'review')))}</td>
                   <td>{html.escape(notes)}</td>
-                  <td>{html.escape(snippet_text[:260])}</td>
+                  <td>{html.escape(snippet_text[:260])}<span><a href="{html.escape(str(item.get('evidence_url', '#')))}" target="_blank" rel="noreferrer">Open evidence</a></span></td>
                 </tr>
                 """
             )
@@ -274,7 +274,7 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     input, select {{ border:1px solid var(--line); border-radius:6px; padding:9px 10px; background:white; min-height:40px; }}
     input {{ min-width:260px; flex:1; }}
     .table-wrap {{ overflow:auto; border:1px solid var(--line); border-radius:8px; background:white; }}
-    table {{ width:100%; border-collapse:collapse; min-width:1180px; }}
+    table {{ width:100%; border-collapse:collapse; min-width:1320px; }}
     th, td {{ padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; font-size:.9rem; }}
     th {{ position:sticky; top:0; background:#eef3f7; z-index:1; }}
     td span {{ display:block; color:var(--muted); margin-top:4px; font-size:.82rem; }}
@@ -368,10 +368,10 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
 
     <section>
       <h2>Agent-routed review queue</h2>
-      <p>These are examples the evidence agent routed out of full auto-confirmation. That is useful operationally: they become manual checks, outreach targets, paid-plan checks, or admin-validation tasks.</p>
+      <p>This is the full set of rows the evidence agent routed out of full auto-confirmation. That is useful operationally: they become manual checks, outreach targets, paid-plan checks, or admin-validation tasks.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>App</th><th>Agent status</th><th>Reason</th><th>Evidence snippet</th></tr></thead>
+          <thead><tr><th>App</th><th>Agent status</th><th>Reason</th><th>Evidence snippet / link</th></tr></thead>
           <tbody>{''.join(agent_review_rows) or '<tr><td colspan="4">Run <code>python scripts/evidence_agent.py</code> to generate the review queue.</td></tr>'}</tbody>
         </table>
       </div>
@@ -386,7 +386,7 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     <section>
       <h2>Clean table</h2>
       <div class="toolbar">
-        <input id="q" placeholder="Search app, auth, blocker, or category" aria-label="Search table">
+        <input id="q" placeholder="Search any column: app, auth, blocker, confidence, or category" aria-label="Search table">
         <select id="verdict" aria-label="Filter verdict">
           <option value="">All verdicts</option>
           <option>Buildable</option>
