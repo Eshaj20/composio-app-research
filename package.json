@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "node scripts/build-static-site.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^7.1.0",
+    "typescript": "^5.9.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {}
+}
