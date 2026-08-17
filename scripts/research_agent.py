@@ -312,7 +312,7 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
           <li><strong>OAuth dominates distribution, but tokens dominate first-party use.</strong> CRM, support, productivity, ads, and commerce often need OAuth for multi-tenant installs; infra, data, email, and scraping tools commonly start with API keys.</li>
           <li><strong>The easiest wins are already agent-shaped.</strong> Developer platforms, productivity tools, support desks, and ecommerce platforms have broad public APIs, clear docs, and MCP/community integration precedent, treated as a discovery signal rather than production proof.</li>
           <li><strong>The hardest blockers are not technical endpoints.</strong> Ads, fintech, Amazon SP-API, and enterprise commerce are mostly blocked by review, compliance, tenant admin approval, or paid data licenses.</li>
-          <li><strong>Not-yet apps are mostly missing a public developer surface.</strong> Pumble, fanbasis, Paygent Connect, NotebookLM, and Consensus should go to outreach or partner-discovery before engineering starts.</li>
+          <li><strong>Outreach-first apps are mostly missing a product-specific developer surface.</strong> Pumble, fanbasis, Paygent Connect, NotebookLM, and Consensus should go to outreach or partner-discovery before engineering starts.</li>
         </ul>
       </div>
       <div class="metric">

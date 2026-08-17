@@ -69,8 +69,8 @@
   <main>
     <section class="grid five" aria-label="headline metrics">
       <div class="metric"><strong>78</strong><span>apps buildable today (78%)</span></div>
-      <div class="metric"><strong>17</strong><span>partial or gated (17%)</span></div>
-      <div class="metric"><strong>5</strong><span>not yet buildable (5%)</span></div>
+      <div class="metric"><strong>18</strong><span>partial or gated (18%)</span></div>
+      <div class="metric"><strong>4</strong><span>not yet buildable (4%)</span></div>
       <div class="metric"><strong>68</strong><span>have OAuth somewhere in the auth model</span></div>
       <div class="metric"><strong>100</strong><span>apps assigned a verification or triage label</span></div>
     </section>
@@ -82,7 +82,7 @@
           <li><strong>OAuth dominates distribution, but tokens dominate first-party use.</strong> CRM, support, productivity, ads, and commerce often need OAuth for multi-tenant installs; infra, data, email, and scraping tools commonly start with API keys.</li>
           <li><strong>The easiest wins are already agent-shaped.</strong> Developer platforms, productivity tools, support desks, and ecommerce platforms have broad public APIs, clear docs, and MCP/community integration precedent, treated as a discovery signal rather than production proof.</li>
           <li><strong>The hardest blockers are not technical endpoints.</strong> Ads, fintech, Amazon SP-API, and enterprise commerce are mostly blocked by review, compliance, tenant admin approval, or paid data licenses.</li>
-          <li><strong>Not-yet apps are mostly missing a public developer surface.</strong> Pumble, fanbasis, Paygent Connect, NotebookLM, and Consensus should go to outreach or partner-discovery before engineering starts.</li>
+          <li><strong>Outreach-first apps are mostly missing a product-specific developer surface.</strong> Pumble, fanbasis, Paygent Connect, NotebookLM, and Consensus should go to outreach or partner-discovery before engineering starts.</li>
         </ul>
       </div>
       <div class="metric">
@@ -189,10 +189,10 @@
               <h3>Finance and Fintech</h3>
               <div class="bar" aria-label="Finance and Fintech verdict split">
                 <span style="width:50%" class="ok"></span>
-                <span style="width:40%" class="mid"></span>
-                <span style="width:10%" class="bad"></span>
+                <span style="width:50%" class="mid"></span>
+                <span style="width:0%" class="bad"></span>
               </div>
-              <p>5/10 buildable, 4/10 partial, 1/10 not yet</p>
+              <p>5/10 buildable, 5/10 partial, 0/10 not yet</p>
             </article>
             
             <article class="category-card">
@@ -222,12 +222,12 @@
       <h2>Verification funnel</h2>
       <div class="grid five">
         <div class="metric"><strong>100</strong><span>apps researched and assigned a confidence label</span></div>
-        <div class="metric"><strong>99</strong><span>evidence URLs returned an HTTP status</span></div>
-        <div class="metric"><strong>58</strong><span>agent-supported by second-pass fetched-page signals</span></div>
+        <div class="metric"><strong>100</strong><span>evidence URLs returned an HTTP status</span></div>
+        <div class="metric"><strong>60</strong><span>agent-supported by second-pass fetched-page signals</span></div>
         <div class="metric"><strong>12</strong><span>apps manually sampled across easy, gated, ambiguous, and no-public-API cases</span></div>
         <div class="metric"><strong>12/12</strong><span>final manual sample matched checked evidence after corrections</span></div>
       </div>
-      <p>The fetcher only marks rows agent-supported when the evidence page text contains enough matching auth/API or blocker signals. The remaining rows are still covered: 24 are curated-docs reviewed and 15 are explicit follow-up/outreach cases.</p>
+      <p>The fetcher only marks rows agent-supported when the evidence page text contains enough matching auth/API or blocker signals. The remaining rows are still covered: 23 are curated-docs reviewed and 14 are explicit follow-up/outreach cases.</p>
     </section>
 
     <section>
@@ -315,10 +315,10 @@
                 </tr>
                 
                 <tr>
-                  <td><strong>Meta Ads</strong></td>
+                  <td><strong>LinkedIn Ads</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
-                  <td>missing_auth_signal, missing_access_signal</td>
-                  <td>Marketing API | Meta</td>
+                  <td>missing_auth_signal</td>
+                  <td>lp optimize your advertising efforts. Overview Conversions API Getting Access to Conversions API Deduplication Enabling Click IDs Google Tag Manager Server-Side Tagging Conversions API Payload Builder Use Cases - Conversions API Integration</td>
                 </tr>
                 </tbody>
         </table>
@@ -804,7 +804,7 @@
               <td>Self-serve app, advanced access reviewed</td>
               <td>Broad Graph/Marketing API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review and business verification for advanced scopes</span></td>
-              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; second-pass extraction did not confirm every field automatically.</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developers.facebook.com/docs/marketing-apis/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1420,16 +1420,16 @@
               <td><a href="https://developers.binance.com/docs/binance-spot-api-docs" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Not yet">
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
               <td>84</td>
               <td><strong>Paygent Connect</strong><span>Finance and Fintech</span></td>
-              <td>Payment gateway/merchant services stack, described as NMI-powered.</td>
-              <td>API key/token likely</td>
-              <td>Gated/contact merchant provider</td>
-              <td>Public docs unclear<span>Public MCP not found</span></td>
-              <td><span class="pill not-yet">Not yet</span><span>No stable public developer docs found</span></td>
-              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
-              <td><a href="https://www.paygent.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+              <td>NMI-powered merchant payment gateway/connectivity path for payment processing.</td>
+              <td>API key/token likely via merchant gateway credentials</td>
+              <td>Gated/merchant-provider access</td>
+              <td>NMI payment APIs/SDKs public docs; Paygent-specific docs unclear<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Paygent-specific public docs timed out; NMI merchant/API access is provider-gated</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
+              <td><a href="https://www.nmi.com/developers/sdks-apis/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
             <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
@@ -1653,8 +1653,8 @@ npm run build</pre>
   },
   &quot;verdict&quot;: {
     &quot;Buildable&quot;: 78,
-    &quot;Partially buildable&quot;: 17,
-    &quot;Not yet&quot;: 5
+    &quot;Partially buildable&quot;: 18,
+    &quot;Not yet&quot;: 4
   },
   &quot;category_verdicts&quot;: {
     &quot;CRM and Sales&quot;: {
@@ -1690,8 +1690,7 @@ npm run build</pre>
     },
     &quot;Finance and Fintech&quot;: {
       &quot;Buildable&quot;: 5,
-      &quot;Not yet&quot;: 1,
-      &quot;Partially buildable&quot;: 4
+      &quot;Partially buildable&quot;: 5
     },
     &quot;AI, Research and Media-native&quot;: {
       &quot;Not yet&quot;: 2,
@@ -2897,14 +2896,14 @@ npm run build</pre>
     "id": "84",
     "category": "Finance and Fintech",
     "app": "Paygent Connect",
-    "one_line": "Payment gateway/merchant services stack, described as NMI-powered.",
-    "auth": "API key/token likely",
-    "access": "Gated/contact merchant provider",
-    "surface": "Public docs unclear",
+    "one_line": "NMI-powered merchant payment gateway/connectivity path for payment processing.",
+    "auth": "API key/token likely via merchant gateway credentials",
+    "access": "Gated/merchant-provider access",
+    "surface": "NMI payment APIs/SDKs public docs; Paygent-specific docs unclear",
     "mcp": "Public MCP not found",
-    "verdict": "Not yet",
-    "blocker": "No stable public developer docs found",
-    "evidence": "https://www.paygent.com/"
+    "verdict": "Partially buildable",
+    "blocker": "Paygent-specific public docs timed out; NMI merchant/API access is provider-gated",
+    "evidence": "https://www.nmi.com/developers/sdks-apis/"
   },
   {
     "id": "85",
