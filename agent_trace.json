@@ -155,21 +155,21 @@
   },
   "evidence_report": {
     "apps_checked": 100,
-    "pages_fetched_or_returned_status": 87,
-    "supported_by_agent": 21,
+    "pages_fetched_or_returned_status": 89,
+    "supported_by_agent": 22,
     "needs_human_review": 60,
-    "blocked_or_failed_fetch": 19,
+    "blocked_or_failed_fetch": 18,
     "status_counts": {
       "needs_human_review": 60,
-      "supported": 20,
-      "fetch_failed": 13,
-      "blocked_or_missing": 6,
+      "supported": 21,
+      "fetch_failed": 11,
+      "blocked_or_missing": 7,
       "supports_blocker": 1
     },
     "confidence_counts": {
       "Human-reviewed": 9,
-      "Agent-supported": 21,
-      "Curated-docs reviewed": 49,
+      "Agent-supported": 22,
+      "Curated-docs reviewed": 48,
       "Needs follow-up": 21
     },
     "verified_or_triaged_coverage": 100,

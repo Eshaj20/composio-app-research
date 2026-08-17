@@ -80,7 +80,7 @@
         <h2>What matters</h2>
         <ul>
           <li><strong>OAuth dominates distribution, but tokens dominate first-party use.</strong> CRM, support, productivity, ads, and commerce often need OAuth for multi-tenant installs; infra, data, email, and scraping tools commonly start with API keys.</li>
-          <li><strong>The easiest wins are already agent-shaped.</strong> Developer platforms, productivity tools, support desks, and ecommerce platforms have broad public APIs, clear docs, and existing MCP/community precedent.</li>
+          <li><strong>The easiest wins are already agent-shaped.</strong> Developer platforms, productivity tools, support desks, and ecommerce platforms have broad public APIs, clear docs, and MCP/community integration precedent, treated as a discovery signal rather than production proof.</li>
           <li><strong>The hardest blockers are not technical endpoints.</strong> Ads, fintech, Amazon SP-API, and enterprise commerce are mostly blocked by review, compliance, tenant admin approval, or paid data licenses.</li>
           <li><strong>Not-yet apps are mostly missing a public developer surface.</strong> Pumble, fanbasis, Paygent Connect, NotebookLM, and Consensus should go to outreach or partner-discovery before engineering starts.</li>
         </ul>
@@ -222,12 +222,12 @@
       <h2>Verification funnel</h2>
       <div class="grid five">
         <div class="metric"><strong>100</strong><span>apps researched and assigned a confidence label</span></div>
-        <div class="metric"><strong>87</strong><span>evidence URLs returned an HTTP status</span></div>
-        <div class="metric"><strong>21</strong><span>strictly agent-supported from fetched page signals</span></div>
+        <div class="metric"><strong>89</strong><span>evidence URLs returned an HTTP status</span></div>
+        <div class="metric"><strong>22</strong><span>strictly agent-supported from fetched page signals</span></div>
         <div class="metric"><strong>12</strong><span>apps manually sampled across easy, gated, ambiguous, and no-public-API cases</span></div>
         <div class="metric"><strong>12/12</strong><span>final manual sample matched checked evidence after corrections</span></div>
       </div>
-      <p>The strict fetcher only auto-confirms rows when the evidence page text contains enough matching signals. The remaining rows are still covered: 49 are curated-docs reviewed and 21 are explicit follow-up/outreach cases.</p>
+      <p>The strict fetcher only auto-confirms rows when the evidence page text contains enough matching signals. The remaining rows are still covered: 48 are curated-docs reviewed and 21 are explicit follow-up/outreach cases.</p>
     </section>
 
     <section>
@@ -430,7 +430,7 @@
               <td>Enterprise CRM with sales, service, and platform objects.</td>
               <td>OAuth2; JWT bearer; username-password legacy</td>
               <td>Self-serve dev org, production needs org/admin setup</td>
-              <td>Broad REST, Bulk, Streaming, Metadata, GraphQL APIs<span>Community and ecosystem MCPs</span></td>
+              <td>Broad REST, Bulk, Streaming, Metadata, GraphQL APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Admin scopes and object model complexity</span></td>
               <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developer.salesforce.com/docs/apis" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -442,7 +442,7 @@
               <td>CRM and marketing platform for contacts, companies, deals, and engagement data.</td>
               <td>OAuth2; private app bearer token</td>
               <td>Self-serve free developer account and private apps</td>
-              <td>Broad REST APIs across CRM, marketing, files, conversations<span>Community MCPs</span></td>
+              <td>Broad REST APIs across CRM, marketing, files, conversations<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Marketplace OAuth review for public distribution</span></td>
               <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developers.hubspot.com/docs/apps/legacy-apps/authentication/intro-to-auth" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -478,7 +478,7 @@
               <td>Open-source CRM with configurable companies, people, and opportunities.</td>
               <td>API key; bearer token</td>
               <td>Self-serve open source and cloud</td>
-              <td>REST and GraphQL surfaces<span>Community potential</span></td>
+              <td>REST and GraphQL surfaces<span>MCP wrapper potential, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Open-source deployments vary by version</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://twenty.com/developers" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -502,7 +502,7 @@
               <td>CRM for leads, contacts, deals, campaigns, and workflows.</td>
               <td>OAuth2</td>
               <td>Self-serve developer console, org scopes/admin needed</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Regional domains and scope granularity</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://www.zoho.com/crm/developer/docs/api/v8/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -550,7 +550,7 @@
               <td>Support platform for tickets, users, help center, chat, and messaging.</td>
               <td>OAuth2; API token; basic plus token</td>
               <td>Self-serve trial, admin setup</td>
-              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td>Broad REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Tenant subdomains and admin scopes</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.zendesk.com/api-reference/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -562,7 +562,7 @@
               <td>Customer messaging and support platform.</td>
               <td>OAuth2; access token</td>
               <td>Self-serve developer workspace</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review for public apps</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://developers.intercom.com/docs/references/rest-api/api.intercom.io" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -634,7 +634,7 @@
               <td>Helpdesk mailbox, docs, customers, and conversations.</td>
               <td>OAuth2</td>
               <td>Self-serve app registration</td>
-              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td>Broad REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>OAuth scopes and mailbox permissions</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.helpscout.com/mailbox-api/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -670,7 +670,7 @@
               <td>Team messaging platform with channels, users, files, and workflow APIs.</td>
               <td>OAuth2; bot/user tokens</td>
               <td>Self-serve app creation, workspace install</td>
-              <td>Broad Web API, Events, Socket Mode<span>Official/community MCPs</span></td>
+              <td>Broad Web API, Events, Socket Mode<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Workspace admin approval for installs/scopes</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://api.slack.com/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -682,7 +682,7 @@
               <td>Communications APIs for SMS, voice, WhatsApp, email, and verification.</td>
               <td>API key/secret; account SID auth; OAuth beta areas</td>
               <td>Self-serve trial</td>
-              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td>Broad REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Phone number compliance and paid usage</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://www.twilio.com/docs/iam/api-keys" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -706,7 +706,7 @@
               <td>Collaboration suite with messaging, docs, calendar, and approval APIs.</td>
               <td>OAuth2; app access tokens</td>
               <td>Self-serve app console, org approval for installs</td>
-              <td>Broad Open Platform APIs<span>Community MCPs</span></td>
+              <td>Broad Open Platform APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Region/product naming and tenant approval</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://open.larksuite.com/document/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -730,7 +730,7 @@
               <td>Community chat, voice, and bot platform.</td>
               <td>OAuth2; bot token</td>
               <td>Self-serve developer portal</td>
-              <td>Broad REST/Gateway APIs<span>Community MCPs</span></td>
+              <td>Broad REST/Gateway APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Gateway/event handling and bot permissions</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://discord.com/developers/docs/intro" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -742,7 +742,7 @@
               <td>Messaging platform with bot and client APIs.</td>
               <td>Bot token; MTProto auth</td>
               <td>Self-serve BotFather</td>
-              <td>Broad Bot API and MTProto<span>Community MCPs</span></td>
+              <td>Broad Bot API and MTProto<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Bot API limits versus full user-client API</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://core.telegram.org/bots/api" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -754,7 +754,7 @@
               <td>Meta WhatsApp messaging for business conversations.</td>
               <td>OAuth2; system user tokens</td>
               <td>Self-serve Cloud API, business verification for scale</td>
-              <td>Graph API endpoints for messaging and templates<span>Community MCPs</span></td>
+              <td>Graph API endpoints for messaging and templates<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Business verification, templates, phone compliance</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.facebook.com/docs/whatsapp/cloud-api" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -778,7 +778,7 @@
               <td>Communications APIs for SMS, voice, verify, video, and number insights.</td>
               <td>API key/secret; JWT; OAuth in some products</td>
               <td>Self-serve developer account</td>
-              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td>Broad REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Product-specific auth differences</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developer.vonage.com/en/getting-started/concepts/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -790,7 +790,7 @@
               <td>Google advertising platform for campaign management and reporting.</td>
               <td>OAuth2 plus developer token</td>
               <td>Self-serve test token; production access reviewed</td>
-              <td>Broad Google Ads API<span>Community MCPs</span></td>
+              <td>Broad Google Ads API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Developer token access level and policy review</span></td>
               <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developers.google.com/google-ads/api/docs/api-policy/developer-token" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -802,7 +802,7 @@
               <td>Meta marketing APIs for ads, audiences, campaigns, and insights.</td>
               <td>OAuth2; system user tokens</td>
               <td>Self-serve app, advanced access reviewed</td>
-              <td>Broad Graph/Marketing API<span>Community MCPs</span></td>
+              <td>Broad Graph/Marketing API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review and business verification for advanced scopes</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.facebook.com/docs/marketing-apis/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -826,7 +826,7 @@
               <td>Agency CRM/marketing automation platform.</td>
               <td>OAuth2; API key/private integration tokens</td>
               <td>Self-serve for accounts, marketplace approval for distribution</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Agency/location model and marketplace review</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://highlevel.stoplight.io/docs/integrations/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -838,7 +838,7 @@
               <td>Email marketing and audience automation platform.</td>
               <td>OAuth2; API key</td>
               <td>Self-serve account and developer apps</td>
-              <td>Broad REST Marketing API<span>Community MCPs</span></td>
+              <td>Broad REST Marketing API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Account plan limits and data-center specific base URLs</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://mailchimp.com/developer/marketing/docs/fundamentals/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -850,7 +850,7 @@
               <td>Marketing automation for ecommerce email/SMS and profiles/events.</td>
               <td>API key; OAuth2</td>
               <td>Self-serve developer account and private keys</td>
-              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td>Broad REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>API revision headers and scope planning</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developers.klaviyo.com/en/docs/authenticate_" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -874,7 +874,7 @@
               <td>Pinterest content and ads platform.</td>
               <td>OAuth2</td>
               <td>Self-serve developer app, access reviewed for some scopes</td>
-              <td>REST API<span>Community MCPs</span></td>
+              <td>REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review for protected endpoints</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.pinterest.com/docs/api/v5/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -886,7 +886,7 @@
               <td>Meta social publishing and insights API for Threads.</td>
               <td>OAuth2</td>
               <td>Self-serve app, Meta review for advanced use</td>
-              <td>Graph-based Threads API<span>Community MCPs</span></td>
+              <td>Graph-based Threads API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review and feature maturity</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.facebook.com/docs/threads/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -898,7 +898,7 @@
               <td>Transactional and marketing email API.</td>
               <td>API key</td>
               <td>Self-serve trial/account</td>
-              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td>Broad REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Email sender verification and compliance</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://docs.sendgrid.com/api-reference/how-to-use-the-sendgrid-v3-api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -910,7 +910,7 @@
               <td>Commerce platform for stores, products, orders, customers, and admin workflows.</td>
               <td>OAuth2; access tokens</td>
               <td>Self-serve partner/dev store</td>
-              <td>Broad REST and GraphQL Admin APIs<span>Official/community MCPs</span></td>
+              <td>Broad REST and GraphQL Admin APIs<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review for public apps and protected data</span></td>
               <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://shopify.dev/docs/api" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -922,7 +922,7 @@
               <td>WordPress ecommerce plugin for stores and orders.</td>
               <td>Consumer key/secret; Basic/OAuth1</td>
               <td>Self-serve if site owner/admin</td>
-              <td>REST API<span>Community MCPs</span></td>
+              <td>REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Site-specific auth and plugin/version variance</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://woocommerce.github.io/woocommerce-rest-api-docs/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -934,7 +934,7 @@
               <td>SaaS ecommerce platform for catalogs, carts, orders, and storefronts.</td>
               <td>OAuth2; access tokens</td>
               <td>Self-serve sandbox/trial</td>
-              <td>Broad REST and GraphQL APIs<span>Community MCPs</span></td>
+              <td>Broad REST and GraphQL APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>App marketplace review for distribution</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developer.bigcommerce.com/docs/start/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -958,7 +958,7 @@
               <td>Adobe ecommerce platform for catalogs, carts, orders, and customers.</td>
               <td>OAuth1/integration tokens; bearer tokens</td>
               <td>Self-serve open source, Adobe Commerce paid</td>
-              <td>REST and GraphQL APIs<span>Community MCPs</span></td>
+              <td>REST and GraphQL APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Deployment-specific modules and admin setup</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developer.adobe.com/commerce/webapi/get-started/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -970,7 +970,7 @@
               <td>Website/ecommerce platform for orders, products, inventory, and profiles.</td>
               <td>OAuth2; API key</td>
               <td>Self-serve developer platform, commerce plan needs account</td>
-              <td>REST APIs<span>Community MCPs</span></td>
+              <td>REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Endpoint coverage narrower than Shopify</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.squarespace.com/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -994,7 +994,7 @@
               <td>Creator commerce platform for products, sales, and subscribers.</td>
               <td>OAuth2</td>
               <td>Self-serve app registration</td>
-              <td>REST API moderate<span>Community MCPs</span></td>
+              <td>REST API moderate<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>API surface smaller and product-specific</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://gumroad.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1006,7 +1006,7 @@
               <td>Seller/vendor commerce APIs for listings, orders, reports, and fulfillment.</td>
               <td>Login with Amazon OAuth; AWS SigV4</td>
               <td>Sandbox self-serve; production gated/reviewed</td>
-              <td>Broad SP-API<span>Community MCPs</span></td>
+              <td>Broad SP-API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Seller/vendor role approval and security review</span></td>
               <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developer-docs.amazon.com/sp-api/docs" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1030,7 +1030,7 @@
               <td>SEO and SERP data APIs for rankings, keywords, backlinks, and ads.</td>
               <td>Basic auth</td>
               <td>Self-serve paid/trial API account</td>
-              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td>Broad REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Usage is paid and quota-driven</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://docs.dataforseo.com/v3/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1078,7 +1078,7 @@
               <td>Cloud platform for actors, scraping, and browser automation.</td>
               <td>API token</td>
               <td>Self-serve free tier</td>
-              <td>Broad REST API and SDKs<span>Official/community MCPs</span></td>
+              <td>Broad REST API and SDKs<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Actor-specific input/output schemas</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://docs.apify.com/api/v2" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1090,7 +1090,7 @@
               <td>Web crawling/scraping API for LLM-ready extraction.</td>
               <td>API key</td>
               <td>Self-serve free/paid API</td>
-              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td>Broad REST API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Extraction quality varies by site</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://docs.firecrawl.dev/api-reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1102,7 +1102,7 @@
               <td>Proxy, scraping, and web data platform.</td>
               <td>API key; bearer token</td>
               <td>Self-serve account, some products compliance reviewed</td>
-              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td>Broad REST APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>KYC/compliance for proxy and scraping use</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://docs.brightdata.com/api-reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1114,7 +1114,7 @@
               <td>Open-source OSINT tool for checking usernames across sites.</td>
               <td>No hosted auth; CLI</td>
               <td>GitHub self-serve</td>
-              <td>CLI/library, not SaaS API<span>Community MCP potential</span></td>
+              <td>CLI/library, not SaaS API<span>MCP wrapper potential, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Toolkit wraps CLI rather than remote app API</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://github.com/sherlock-project/sherlock" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1138,7 +1138,7 @@
               <td>Data enrichment and outbound workflow platform.</td>
               <td>API key; webhooks</td>
               <td>Self-serve product, API details account-gated</td>
-              <td>HTTP API/webhooks narrower<span>Community MCPs</span></td>
+              <td>HTTP API/webhooks narrower<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>API docs and keys tied to account/plan</span></td>
               <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://docs.clay.com/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1150,7 +1150,7 @@
               <td>Developer platform for repos, issues, pull requests, actions, and users.</td>
               <td>OAuth2; GitHub App tokens; PATs</td>
               <td>Self-serve developer apps</td>
-              <td>Broad REST and GraphQL APIs<span>Official/community MCPs</span></td>
+              <td>Broad REST and GraphQL APIs<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Installation permissions and org approval</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1162,7 +1162,7 @@
               <td>Frontend cloud platform for deployments, projects, domains, and teams.</td>
               <td>OAuth2; bearer tokens</td>
               <td>Self-serve account/team</td>
-              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td>Broad REST API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Team scopes and deployment side effects</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://vercel.com/docs/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1174,7 +1174,7 @@
               <td>Web hosting platform for sites, deploys, forms, and functions.</td>
               <td>OAuth2; personal access token</td>
               <td>Self-serve account</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Site/team permission modeling</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://docs.netlify.com/api/get-started/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1186,7 +1186,7 @@
               <td>Internet infrastructure for DNS, CDN, Workers, security, and storage.</td>
               <td>API token; API key</td>
               <td>Self-serve account</td>
-              <td>Broad REST APIs<span>Official/community MCPs</span></td>
+              <td>Broad REST APIs<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Dangerous write scopes need careful guardrails</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.cloudflare.com/api/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1198,7 +1198,7 @@
               <td>Postgres backend platform with auth, storage, edge functions, and database APIs.</td>
               <td>API keys; JWT; Postgres auth</td>
               <td>Self-serve free tier</td>
-              <td>Broad platform APIs and direct Postgres<span>Official/community MCPs</span></td>
+              <td>Broad platform APIs and direct Postgres<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Project-level secrets and database safety</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://supabase.com/docs/guides/api" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1210,7 +1210,7 @@
               <td>Graph database platform and Aura cloud service.</td>
               <td>Basic auth; bearer tokens; API keys for Aura</td>
               <td>Self-serve Aura trial and local</td>
-              <td>REST admin APIs plus Bolt/GraphQL options<span>Community MCPs</span></td>
+              <td>REST admin APIs plus Bolt/GraphQL options<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Database query safety and schema discovery</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://neo4j.com/docs/http-api/current/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1222,7 +1222,7 @@
               <td>Cloud data warehouse and data platform.</td>
               <td>Key-pair JWT; OAuth; username/password; PATs</td>
               <td>Self-serve trial, enterprise admin for prod</td>
-              <td>SQL API, REST APIs, drivers<span>Community MCPs</span></td>
+              <td>SQL API, REST APIs, drivers<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Account/admin network policies and warehouse cost</span></td>
               <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://docs.snowflake.com/en/developer-guide/sql-api/authenticating" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1234,7 +1234,7 @@
               <td>Managed MongoDB platform for clusters, projects, users, and data APIs.</td>
               <td>API keys; OAuth/service accounts</td>
               <td>Self-serve free tier</td>
-              <td>Broad Admin API and Data API<span>Official/community MCPs</span></td>
+              <td>Broad Admin API and Data API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Project-level permissions and data safety</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://www.mongodb.com/docs/atlas/api/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1246,7 +1246,7 @@
               <td>Observability platform for metrics, logs, traces, monitors, and incidents.</td>
               <td>API key plus application key</td>
               <td>Self-serve trial/account</td>
-              <td>Broad REST APIs<span>Official/community MCPs</span></td>
+              <td>Broad REST APIs<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Write actions can affect alerts/incidents</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://docs.datadoghq.com/api/latest/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1258,7 +1258,7 @@
               <td>Error monitoring and performance platform.</td>
               <td>Auth token; OAuth2</td>
               <td>Self-serve account</td>
-              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td>Broad REST API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Org/project scopes and issue mutation safety</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://docs.sentry.io/api/auth/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1270,7 +1270,7 @@
               <td>Workspace docs, databases, pages, users, and comments.</td>
               <td>OAuth2; internal integration token</td>
               <td>Self-serve integrations</td>
-              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td>Broad REST API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Per-page sharing required for internal integrations</span></td>
               <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developers.notion.com/docs/authorization" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1282,7 +1282,7 @@
               <td>Database/spreadsheet collaboration platform.</td>
               <td>OAuth2; personal access tokens</td>
               <td>Self-serve developer hub</td>
-              <td>Broad Web API<span>Official/community MCPs</span></td>
+              <td>Broad Web API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Base-level permissions and schema variance</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://airtable.com/developers/web/api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1294,7 +1294,7 @@
               <td>Issue tracking and product planning tool.</td>
               <td>OAuth2; API key</td>
               <td>Self-serve developer settings</td>
-              <td>Broad GraphQL API<span>Official/community MCPs</span></td>
+              <td>Broad GraphQL API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>GraphQL schema and workspace permissions</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://developers.linear.app/docs/graphql/working-with-the-graphql-api" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1306,7 +1306,7 @@
               <td>Atlassian issue/project management platform.</td>
               <td>OAuth2; API token; Forge app auth</td>
               <td>Self-serve dev, org/admin approval often needed</td>
-              <td>Broad REST APIs<span>Official/community MCPs</span></td>
+              <td>Broad REST APIs<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Cloud/server differences and admin app approval</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1318,7 +1318,7 @@
               <td>Work management for tasks, projects, teams, goals, and portfolios.</td>
               <td>OAuth2; personal access token</td>
               <td>Self-serve developer app</td>
-              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td>Broad REST API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Workspace permissions and app approval</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developers.asana.com/docs/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1330,7 +1330,7 @@
               <td>Work OS for boards, items, automations, and workflows.</td>
               <td>OAuth2; API token</td>
               <td>Self-serve developer/apps</td>
-              <td>Broad GraphQL API<span>Official/community MCPs</span></td>
+              <td>Broad GraphQL API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>GraphQL complexity/rate budgets</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://developer.monday.com/api-reference/docs/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1342,7 +1342,7 @@
               <td>Project management and docs platform.</td>
               <td>OAuth2; personal token</td>
               <td>Self-serve developer app</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Workspace/team hierarchy complexity</span></td>
               <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://clickup.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1354,7 +1354,7 @@
               <td>Docs platform with tables, packs, and automation.</td>
               <td>API token; OAuth for Packs</td>
               <td>Self-serve account</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Document/table schema discovery</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://coda.io/developers/apis/v1" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1366,7 +1366,7 @@
               <td>Work management and spreadsheet-like project platform.</td>
               <td>OAuth2; access token</td>
               <td>Self-serve developer account</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Enterprise admin controls and rate limits</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://smartsheet.redoc.ly/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1390,7 +1390,7 @@
               <td>Payments and financial infrastructure for charges, customers, invoices, and accounts.</td>
               <td>API key; OAuth for Connect</td>
               <td>Self-serve test mode, live activation needed</td>
-              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td>Broad REST API<span>Official or community MCP signal</span></td>
               <td><span class="pill buildable">Buildable</span><span>Payment compliance and live account activation</span></td>
               <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://docs.stripe.com/api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1402,7 +1402,7 @@
               <td>Financial data connectivity for bank accounts, transactions, identity, and payments.</td>
               <td>API keys; link tokens</td>
               <td>Self-serve sandbox, production access reviewed</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Production review and regulated data handling</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://plaid.com/docs/api/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1414,7 +1414,7 @@
               <td>Crypto exchange APIs for market data, trading, wallets, and accounts.</td>
               <td>API key/secret; HMAC</td>
               <td>Self-serve account/API keys</td>
-              <td>Broad REST and WebSocket APIs<span>Community MCPs</span></td>
+              <td>Broad REST and WebSocket APIs<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Trading safety, regional restrictions, KYC</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.binance.com/docs/binance-spot-api-docs" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1450,7 +1450,7 @@
               <td>Intuit accounting platform for companies, invoices, customers, and reports.</td>
               <td>OAuth2</td>
               <td>Self-serve sandbox/dev app, production review possible</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Accounting data permissions and app review</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1462,7 +1462,7 @@
               <td>Accounting platform for invoices, contacts, bank transactions, and reports.</td>
               <td>OAuth2</td>
               <td>Self-serve developer app</td>
-              <td>Broad REST API<span>Community MCPs</span></td>
+              <td>Broad REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Tenant connections and accounting permissions</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.xero.com/documentation/guides/oauth2/overview/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1558,7 +1558,7 @@
               <td>Document parsing API for complex PDFs and unstructured files.</td>
               <td>API key</td>
               <td>Self-serve/contact depending tier</td>
-              <td>REST API<span>Community MCPs</span></td>
+              <td>REST API<span>MCP/community signal, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Paid usage and document privacy</span></td>
               <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://docs.reducto.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1594,9 +1594,9 @@
               <td>Command-line renderer for Mermaid diagrams.</td>
               <td>No remote auth; local CLI</td>
               <td>Open source self-serve</td>
-              <td>CLI, npm package<span>Community MCP potential</span></td>
+              <td>CLI, npm package<span>MCP wrapper potential, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Wrap CLI, not app API</span></td>
-              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://github.com/mermaid-js/mermaid-cli" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1606,7 +1606,7 @@
               <td>Transcript extraction API/service.</td>
               <td>API key</td>
               <td>Self-serve paid/free API</td>
-              <td>REST API narrow<span>Community MCP potential</span></td>
+              <td>REST API narrow<span>MCP wrapper potential, not independently verified</span></td>
               <td><span class="pill buildable">Buildable</span><span>Narrow surface and YouTube policy dependence</span></td>
               <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://www.transcriptapi.com/docs" target="_blank" rel="noreferrer">Evidence</a></td>
@@ -1629,8 +1629,16 @@
     </section>
 
     <section>
+      <h2>Runnable proof</h2>
+      <p>Source repo: <a href="https://github.com/Eshaj20/composio-app-research" target="_blank" rel="noreferrer">github.com/Eshaj20/composio-app-research</a>. Reproduce the agent run with:</p>
+      <pre class="data-note">python scripts/evidence_agent.py
+python scripts/research_agent.py
+npm run build</pre>
+    </section>
+
+    <section>
       <h2>Machine-readable output</h2>
-      <p>Generated from <code>data/apps.tsv</code> by <code>python scripts/evidence_agent.py</code> and <code>python scripts/research_agent.py</code>. The runs write <code>data/evidence_checks.json</code>, <code>data/verification_report.json</code>, and <code>agent_trace.json</code>.</p>
+      <p>Generated from <code>data/apps.tsv</code> by the evidence agent and report generator. The runs write <code>data/evidence_checks.json</code>, <code>data/verification_report.json</code>, and <code>agent_trace.json</code>.</p>
       <pre class="data-note">{
   &quot;auth&quot;: {
     &quot;OAuth present&quot;: 68,
@@ -1785,7 +1793,7 @@
     </section>
   </main>
   <footer>
-    Source and runnable trigger: <code>python scripts/evidence_agent.py</code> then <code>python scripts/research_agent.py</code>. Evidence links are intentionally official docs or product developer pages wherever available; unclear apps are marked as gated/unknown rather than inferred.
+    Source repo: <a href="https://github.com/Eshaj20/composio-app-research" target="_blank" rel="noreferrer">github.com/Eshaj20/composio-app-research</a>. Evidence links are intentionally official docs or product developer pages wherever available; unclear apps are marked as gated/unknown rather than inferred. MCP/community references are discovery signals unless marked official.
   </footer>
   <script>
     const rows = Array.from(document.querySelectorAll("#apps tbody tr"));
@@ -1814,7 +1822,7 @@
     "auth": "OAuth2; JWT bearer; username-password legacy",
     "access": "Self-serve dev org, production needs org/admin setup",
     "surface": "Broad REST, Bulk, Streaming, Metadata, GraphQL APIs",
-    "mcp": "Community and ecosystem MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Admin scopes and object model complexity",
     "evidence": "https://developer.salesforce.com/docs/apis"
@@ -1827,7 +1835,7 @@
     "auth": "OAuth2; private app bearer token",
     "access": "Self-serve free developer account and private apps",
     "surface": "Broad REST APIs across CRM, marketing, files, conversations",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Marketplace OAuth review for public distribution",
     "evidence": "https://developers.hubspot.com/docs/apps/legacy-apps/authentication/intro-to-auth"
@@ -1866,7 +1874,7 @@
     "auth": "API key; bearer token",
     "access": "Self-serve open source and cloud",
     "surface": "REST and GraphQL surfaces",
-    "mcp": "Community potential",
+    "mcp": "MCP wrapper potential, not independently verified",
     "verdict": "Buildable",
     "blocker": "Open-source deployments vary by version",
     "evidence": "https://twenty.com/developers"
@@ -1892,7 +1900,7 @@
     "auth": "OAuth2",
     "access": "Self-serve developer console, org scopes/admin needed",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Regional domains and scope granularity",
     "evidence": "https://www.zoho.com/crm/developer/docs/api/v8/"
@@ -1944,7 +1952,7 @@
     "auth": "OAuth2; API token; basic plus token",
     "access": "Self-serve trial, admin setup",
     "surface": "Broad REST APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Tenant subdomains and admin scopes",
     "evidence": "https://developer.zendesk.com/api-reference/"
@@ -1957,7 +1965,7 @@
     "auth": "OAuth2; access token",
     "access": "Self-serve developer workspace",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "App review for public apps",
     "evidence": "https://developers.intercom.com/docs/references/rest-api/api.intercom.io"
@@ -2035,7 +2043,7 @@
     "auth": "OAuth2",
     "access": "Self-serve app registration",
     "surface": "Broad REST APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "OAuth scopes and mailbox permissions",
     "evidence": "https://developer.helpscout.com/mailbox-api/"
@@ -2074,7 +2082,7 @@
     "auth": "OAuth2; bot/user tokens",
     "access": "Self-serve app creation, workspace install",
     "surface": "Broad Web API, Events, Socket Mode",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Workspace admin approval for installs/scopes",
     "evidence": "https://api.slack.com/authentication"
@@ -2087,7 +2095,7 @@
     "auth": "API key/secret; account SID auth; OAuth beta areas",
     "access": "Self-serve trial",
     "surface": "Broad REST APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Phone number compliance and paid usage",
     "evidence": "https://www.twilio.com/docs/iam/api-keys"
@@ -2113,7 +2121,7 @@
     "auth": "OAuth2; app access tokens",
     "access": "Self-serve app console, org approval for installs",
     "surface": "Broad Open Platform APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Region/product naming and tenant approval",
     "evidence": "https://open.larksuite.com/document/"
@@ -2139,7 +2147,7 @@
     "auth": "OAuth2; bot token",
     "access": "Self-serve developer portal",
     "surface": "Broad REST/Gateway APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Gateway/event handling and bot permissions",
     "evidence": "https://discord.com/developers/docs/intro"
@@ -2152,7 +2160,7 @@
     "auth": "Bot token; MTProto auth",
     "access": "Self-serve BotFather",
     "surface": "Broad Bot API and MTProto",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Bot API limits versus full user-client API",
     "evidence": "https://core.telegram.org/bots/api"
@@ -2165,7 +2173,7 @@
     "auth": "OAuth2; system user tokens",
     "access": "Self-serve Cloud API, business verification for scale",
     "surface": "Graph API endpoints for messaging and templates",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Business verification, templates, phone compliance",
     "evidence": "https://developers.facebook.com/docs/whatsapp/cloud-api"
@@ -2191,7 +2199,7 @@
     "auth": "API key/secret; JWT; OAuth in some products",
     "access": "Self-serve developer account",
     "surface": "Broad REST APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Product-specific auth differences",
     "evidence": "https://developer.vonage.com/en/getting-started/concepts/authentication"
@@ -2204,7 +2212,7 @@
     "auth": "OAuth2 plus developer token",
     "access": "Self-serve test token; production access reviewed",
     "surface": "Broad Google Ads API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Developer token access level and policy review",
     "evidence": "https://developers.google.com/google-ads/api/docs/api-policy/developer-token"
@@ -2217,7 +2225,7 @@
     "auth": "OAuth2; system user tokens",
     "access": "Self-serve app, advanced access reviewed",
     "surface": "Broad Graph/Marketing API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "App review and business verification for advanced scopes",
     "evidence": "https://developers.facebook.com/docs/marketing-apis/"
@@ -2243,7 +2251,7 @@
     "auth": "OAuth2; API key/private integration tokens",
     "access": "Self-serve for accounts, marketplace approval for distribution",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Agency/location model and marketplace review",
     "evidence": "https://highlevel.stoplight.io/docs/integrations/"
@@ -2256,7 +2264,7 @@
     "auth": "OAuth2; API key",
     "access": "Self-serve account and developer apps",
     "surface": "Broad REST Marketing API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Account plan limits and data-center specific base URLs",
     "evidence": "https://mailchimp.com/developer/marketing/docs/fundamentals/"
@@ -2269,7 +2277,7 @@
     "auth": "API key; OAuth2",
     "access": "Self-serve developer account and private keys",
     "surface": "Broad REST APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "API revision headers and scope planning",
     "evidence": "https://developers.klaviyo.com/en/docs/authenticate_"
@@ -2295,7 +2303,7 @@
     "auth": "OAuth2",
     "access": "Self-serve developer app, access reviewed for some scopes",
     "surface": "REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "App review for protected endpoints",
     "evidence": "https://developers.pinterest.com/docs/api/v5/"
@@ -2308,7 +2316,7 @@
     "auth": "OAuth2",
     "access": "Self-serve app, Meta review for advanced use",
     "surface": "Graph-based Threads API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "App review and feature maturity",
     "evidence": "https://developers.facebook.com/docs/threads/"
@@ -2321,7 +2329,7 @@
     "auth": "API key",
     "access": "Self-serve trial/account",
     "surface": "Broad REST APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Email sender verification and compliance",
     "evidence": "https://docs.sendgrid.com/api-reference/how-to-use-the-sendgrid-v3-api/authentication"
@@ -2334,7 +2342,7 @@
     "auth": "OAuth2; access tokens",
     "access": "Self-serve partner/dev store",
     "surface": "Broad REST and GraphQL Admin APIs",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "App review for public apps and protected data",
     "evidence": "https://shopify.dev/docs/api"
@@ -2347,7 +2355,7 @@
     "auth": "Consumer key/secret; Basic/OAuth1",
     "access": "Self-serve if site owner/admin",
     "surface": "REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Site-specific auth and plugin/version variance",
     "evidence": "https://woocommerce.github.io/woocommerce-rest-api-docs/"
@@ -2360,7 +2368,7 @@
     "auth": "OAuth2; access tokens",
     "access": "Self-serve sandbox/trial",
     "surface": "Broad REST and GraphQL APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "App marketplace review for distribution",
     "evidence": "https://developer.bigcommerce.com/docs/start/authentication"
@@ -2386,7 +2394,7 @@
     "auth": "OAuth1/integration tokens; bearer tokens",
     "access": "Self-serve open source, Adobe Commerce paid",
     "surface": "REST and GraphQL APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Deployment-specific modules and admin setup",
     "evidence": "https://developer.adobe.com/commerce/webapi/get-started/authentication/"
@@ -2399,7 +2407,7 @@
     "auth": "OAuth2; API key",
     "access": "Self-serve developer platform, commerce plan needs account",
     "surface": "REST APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Endpoint coverage narrower than Shopify",
     "evidence": "https://developers.squarespace.com/"
@@ -2425,7 +2433,7 @@
     "auth": "OAuth2",
     "access": "Self-serve app registration",
     "surface": "REST API moderate",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "API surface smaller and product-specific",
     "evidence": "https://gumroad.com/api"
@@ -2438,7 +2446,7 @@
     "auth": "Login with Amazon OAuth; AWS SigV4",
     "access": "Sandbox self-serve; production gated/reviewed",
     "surface": "Broad SP-API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Partially buildable",
     "blocker": "Seller/vendor role approval and security review",
     "evidence": "https://developer-docs.amazon.com/sp-api/docs"
@@ -2464,7 +2472,7 @@
     "auth": "Basic auth",
     "access": "Self-serve paid/trial API account",
     "surface": "Broad REST APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Usage is paid and quota-driven",
     "evidence": "https://docs.dataforseo.com/v3/authentication/"
@@ -2516,7 +2524,7 @@
     "auth": "API token",
     "access": "Self-serve free tier",
     "surface": "Broad REST API and SDKs",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Actor-specific input/output schemas",
     "evidence": "https://docs.apify.com/api/v2"
@@ -2529,7 +2537,7 @@
     "auth": "API key",
     "access": "Self-serve free/paid API",
     "surface": "Broad REST API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Extraction quality varies by site",
     "evidence": "https://docs.firecrawl.dev/api-reference/introduction"
@@ -2542,7 +2550,7 @@
     "auth": "API key; bearer token",
     "access": "Self-serve account, some products compliance reviewed",
     "surface": "Broad REST APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "KYC/compliance for proxy and scraping use",
     "evidence": "https://docs.brightdata.com/api-reference/introduction"
@@ -2555,7 +2563,7 @@
     "auth": "No hosted auth; CLI",
     "access": "GitHub self-serve",
     "surface": "CLI/library, not SaaS API",
-    "mcp": "Community MCP potential",
+    "mcp": "MCP wrapper potential, not independently verified",
     "verdict": "Buildable",
     "blocker": "Toolkit wraps CLI rather than remote app API",
     "evidence": "https://github.com/sherlock-project/sherlock"
@@ -2581,7 +2589,7 @@
     "auth": "API key; webhooks",
     "access": "Self-serve product, API details account-gated",
     "surface": "HTTP API/webhooks narrower",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Partially buildable",
     "blocker": "API docs and keys tied to account/plan",
     "evidence": "https://docs.clay.com/"
@@ -2594,7 +2602,7 @@
     "auth": "OAuth2; GitHub App tokens; PATs",
     "access": "Self-serve developer apps",
     "surface": "Broad REST and GraphQL APIs",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Installation permissions and org approval",
     "evidence": "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api"
@@ -2607,7 +2615,7 @@
     "auth": "OAuth2; bearer tokens",
     "access": "Self-serve account/team",
     "surface": "Broad REST API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Team scopes and deployment side effects",
     "evidence": "https://vercel.com/docs/rest-api"
@@ -2620,7 +2628,7 @@
     "auth": "OAuth2; personal access token",
     "access": "Self-serve account",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Site/team permission modeling",
     "evidence": "https://docs.netlify.com/api/get-started/"
@@ -2633,7 +2641,7 @@
     "auth": "API token; API key",
     "access": "Self-serve account",
     "surface": "Broad REST APIs",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Dangerous write scopes need careful guardrails",
     "evidence": "https://developers.cloudflare.com/api/"
@@ -2646,7 +2654,7 @@
     "auth": "API keys; JWT; Postgres auth",
     "access": "Self-serve free tier",
     "surface": "Broad platform APIs and direct Postgres",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Project-level secrets and database safety",
     "evidence": "https://supabase.com/docs/guides/api"
@@ -2659,7 +2667,7 @@
     "auth": "Basic auth; bearer tokens; API keys for Aura",
     "access": "Self-serve Aura trial and local",
     "surface": "REST admin APIs plus Bolt/GraphQL options",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Database query safety and schema discovery",
     "evidence": "https://neo4j.com/docs/http-api/current/"
@@ -2672,7 +2680,7 @@
     "auth": "Key-pair JWT; OAuth; username/password; PATs",
     "access": "Self-serve trial, enterprise admin for prod",
     "surface": "SQL API, REST APIs, drivers",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Account/admin network policies and warehouse cost",
     "evidence": "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating"
@@ -2685,7 +2693,7 @@
     "auth": "API keys; OAuth/service accounts",
     "access": "Self-serve free tier",
     "surface": "Broad Admin API and Data API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Project-level permissions and data safety",
     "evidence": "https://www.mongodb.com/docs/atlas/api/"
@@ -2698,7 +2706,7 @@
     "auth": "API key plus application key",
     "access": "Self-serve trial/account",
     "surface": "Broad REST APIs",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Write actions can affect alerts/incidents",
     "evidence": "https://docs.datadoghq.com/api/latest/authentication/"
@@ -2711,7 +2719,7 @@
     "auth": "Auth token; OAuth2",
     "access": "Self-serve account",
     "surface": "Broad REST API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Org/project scopes and issue mutation safety",
     "evidence": "https://docs.sentry.io/api/auth/"
@@ -2724,7 +2732,7 @@
     "auth": "OAuth2; internal integration token",
     "access": "Self-serve integrations",
     "surface": "Broad REST API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Per-page sharing required for internal integrations",
     "evidence": "https://developers.notion.com/docs/authorization"
@@ -2737,7 +2745,7 @@
     "auth": "OAuth2; personal access tokens",
     "access": "Self-serve developer hub",
     "surface": "Broad Web API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Base-level permissions and schema variance",
     "evidence": "https://airtable.com/developers/web/api/authentication"
@@ -2750,7 +2758,7 @@
     "auth": "OAuth2; API key",
     "access": "Self-serve developer settings",
     "surface": "Broad GraphQL API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "GraphQL schema and workspace permissions",
     "evidence": "https://developers.linear.app/docs/graphql/working-with-the-graphql-api"
@@ -2763,7 +2771,7 @@
     "auth": "OAuth2; API token; Forge app auth",
     "access": "Self-serve dev, org/admin approval often needed",
     "surface": "Broad REST APIs",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Cloud/server differences and admin app approval",
     "evidence": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/"
@@ -2776,7 +2784,7 @@
     "auth": "OAuth2; personal access token",
     "access": "Self-serve developer app",
     "surface": "Broad REST API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Workspace permissions and app approval",
     "evidence": "https://developers.asana.com/docs/authentication"
@@ -2789,7 +2797,7 @@
     "auth": "OAuth2; API token",
     "access": "Self-serve developer/apps",
     "surface": "Broad GraphQL API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "GraphQL complexity/rate budgets",
     "evidence": "https://developer.monday.com/api-reference/docs/authentication"
@@ -2802,7 +2810,7 @@
     "auth": "OAuth2; personal token",
     "access": "Self-serve developer app",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Workspace/team hierarchy complexity",
     "evidence": "https://clickup.com/api"
@@ -2815,7 +2823,7 @@
     "auth": "API token; OAuth for Packs",
     "access": "Self-serve account",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Document/table schema discovery",
     "evidence": "https://coda.io/developers/apis/v1"
@@ -2828,7 +2836,7 @@
     "auth": "OAuth2; access token",
     "access": "Self-serve developer account",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Enterprise admin controls and rate limits",
     "evidence": "https://smartsheet.redoc.ly/"
@@ -2854,7 +2862,7 @@
     "auth": "API key; OAuth for Connect",
     "access": "Self-serve test mode, live activation needed",
     "surface": "Broad REST API",
-    "mcp": "Official/community MCPs",
+    "mcp": "Official or community MCP signal",
     "verdict": "Buildable",
     "blocker": "Payment compliance and live account activation",
     "evidence": "https://docs.stripe.com/api/authentication"
@@ -2867,7 +2875,7 @@
     "auth": "API keys; link tokens",
     "access": "Self-serve sandbox, production access reviewed",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Production review and regulated data handling",
     "evidence": "https://plaid.com/docs/api/"
@@ -2880,7 +2888,7 @@
     "auth": "API key/secret; HMAC",
     "access": "Self-serve account/API keys",
     "surface": "Broad REST and WebSocket APIs",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Trading safety, regional restrictions, KYC",
     "evidence": "https://developers.binance.com/docs/binance-spot-api-docs"
@@ -2919,7 +2927,7 @@
     "auth": "OAuth2",
     "access": "Self-serve sandbox/dev app, production review possible",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Accounting data permissions and app review",
     "evidence": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization"
@@ -2932,7 +2940,7 @@
     "auth": "OAuth2",
     "access": "Self-serve developer app",
     "surface": "Broad REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Tenant connections and accounting permissions",
     "evidence": "https://developer.xero.com/documentation/guides/oauth2/overview/"
@@ -3036,7 +3044,7 @@
     "auth": "API key",
     "access": "Self-serve/contact depending tier",
     "surface": "REST API",
-    "mcp": "Community MCPs",
+    "mcp": "MCP/community signal, not independently verified",
     "verdict": "Buildable",
     "blocker": "Paid usage and document privacy",
     "evidence": "https://docs.reducto.ai/"
@@ -3075,7 +3083,7 @@
     "auth": "No remote auth; local CLI",
     "access": "Open source self-serve",
     "surface": "CLI, npm package",
-    "mcp": "Community MCP potential",
+    "mcp": "MCP wrapper potential, not independently verified",
     "verdict": "Buildable",
     "blocker": "Wrap CLI, not app API",
     "evidence": "https://github.com/mermaid-js/mermaid-cli"
@@ -3088,7 +3096,7 @@
     "auth": "API key",
     "access": "Self-serve paid/free API",
     "surface": "REST API narrow",
-    "mcp": "Community MCP potential",
+    "mcp": "MCP wrapper potential, not independently verified",
     "verdict": "Buildable",
     "blocker": "Narrow surface and YouTube policy dependence",
     "evidence": "https://www.transcriptapi.com/docs"

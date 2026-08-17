@@ -4,6 +4,8 @@ This is a take-home case study for mapping whether 100 requested apps can become
 
 ## Deliverable
 
+- Live page: pending GitHub Pages deployment
+- Source repo: https://github.com/Eshaj20/composio-app-research
 - Single page case study: `site/index.html`
 - Structured source data: `data/apps.tsv`
 - Evidence-fetching research agent: `scripts/evidence_agent.py`
@@ -67,4 +69,4 @@ Three first-pass classifications were corrected:
 
 ## Known Limits
 
-No paid accounts, partner accounts, or production API credentials were used. Gated products are therefore marked as partial or not-yet, which is the intended behavior for this research: the blocker itself is the finding.
+No paid accounts, partner accounts, or production API credentials were used. Gated products are therefore marked as partial or not-yet, which is the intended behavior for this research: the blocker itself is the finding. MCP/community references are treated as discovery signals unless explicitly marked official.

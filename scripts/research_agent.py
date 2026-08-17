@@ -310,7 +310,7 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
         <h2>What matters</h2>
         <ul>
           <li><strong>OAuth dominates distribution, but tokens dominate first-party use.</strong> CRM, support, productivity, ads, and commerce often need OAuth for multi-tenant installs; infra, data, email, and scraping tools commonly start with API keys.</li>
-          <li><strong>The easiest wins are already agent-shaped.</strong> Developer platforms, productivity tools, support desks, and ecommerce platforms have broad public APIs, clear docs, and existing MCP/community precedent.</li>
+          <li><strong>The easiest wins are already agent-shaped.</strong> Developer platforms, productivity tools, support desks, and ecommerce platforms have broad public APIs, clear docs, and MCP/community integration precedent, treated as a discovery signal rather than production proof.</li>
           <li><strong>The hardest blockers are not technical endpoints.</strong> Ads, fintech, Amazon SP-API, and enterprise commerce are mostly blocked by review, compliance, tenant admin approval, or paid data licenses.</li>
           <li><strong>Not-yet apps are mostly missing a public developer surface.</strong> Pumble, fanbasis, Paygent Connect, NotebookLM, and Consensus should go to outreach or partner-discovery before engineering starts.</li>
         </ul>
@@ -403,13 +403,21 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     </section>
 
     <section>
+      <h2>Runnable proof</h2>
+      <p>Source repo: <a href="https://github.com/Eshaj20/composio-app-research" target="_blank" rel="noreferrer">github.com/Eshaj20/composio-app-research</a>. Reproduce the agent run with:</p>
+      <pre class="data-note">python scripts/evidence_agent.py
+python scripts/research_agent.py
+npm run build</pre>
+    </section>
+
+    <section>
       <h2>Machine-readable output</h2>
-      <p>Generated from <code>data/apps.tsv</code> by <code>python scripts/evidence_agent.py</code> and <code>python scripts/research_agent.py</code>. The runs write <code>data/evidence_checks.json</code>, <code>data/verification_report.json</code>, and <code>agent_trace.json</code>.</p>
+      <p>Generated from <code>data/apps.tsv</code> by the evidence agent and report generator. The runs write <code>data/evidence_checks.json</code>, <code>data/verification_report.json</code>, and <code>agent_trace.json</code>.</p>
       <pre class="data-note">{html.escape(stats_json)}</pre>
     </section>
   </main>
   <footer>
-    Source and runnable trigger: <code>python scripts/evidence_agent.py</code> then <code>python scripts/research_agent.py</code>. Evidence links are intentionally official docs or product developer pages wherever available; unclear apps are marked as gated/unknown rather than inferred.
+    Source repo: <a href="https://github.com/Eshaj20/composio-app-research" target="_blank" rel="noreferrer">github.com/Eshaj20/composio-app-research</a>. Evidence links are intentionally official docs or product developer pages wherever available; unclear apps are marked as gated/unknown rather than inferred. MCP/community references are discovery signals unless marked official.
   </footer>
   <script>
     const rows = Array.from(document.querySelectorAll("#apps tbody tr"));
