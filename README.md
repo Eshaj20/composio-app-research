@@ -4,7 +4,7 @@ This is a take-home case study for mapping whether 100 requested apps can become
 
 ## Deliverable
 
-- Live page: pending GitHub Pages deployment
+- Live page: https://eshaj20.github.io/composio-app-research/
 - Source repo: https://github.com/Eshaj20/composio-app-research
 - Single page case study: `site/index.html`
 - Structured source data: `data/apps.tsv`
