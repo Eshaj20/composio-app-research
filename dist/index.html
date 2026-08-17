@@ -21,6 +21,7 @@
     section { margin:0 auto 34px; max-width:1320px; }
     .lede { max-width:900px; font-size:1.12rem; }
     .grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; }
+    .grid.five { grid-template-columns:repeat(5, minmax(0, 1fr)); }
     .metric, .category-card, .verify, .workflow-step { background:white; border:1px solid var(--line); border-radius:8px; padding:16px; }
     .metric strong { display:block; font-size:2rem; }
     .metric span { color:var(--muted); }
@@ -42,9 +43,9 @@
     th { position:sticky; top:0; background:#eef3f7; z-index:1; }
     td span { display:block; color:var(--muted); margin-top:4px; font-size:.82rem; }
     .pill { display:inline-block; padding:4px 8px; border-radius:999px; font-size:.78rem; font-weight:700; background:#eef1f5; color:#31363c; }
-    .pill.buildable, .pill.pass { background:#dff2e7; color:var(--ok); }
-    .pill.partially-buildable, .pill.corrected { background:#fff0d8; color:var(--mid); }
-    .pill.not-yet { background:#fde5e5; color:var(--bad); }
+    .pill.buildable, .pill.pass, .pill.supported, .pill.supports_blocker { background:#dff2e7; color:var(--ok); }
+    .pill.partially-buildable, .pill.corrected, .pill.needs_human_review { background:#fff0d8; color:var(--mid); }
+    .pill.not-yet, .pill.blocked_or_missing, .pill.fetch_failed { background:#fde5e5; color:var(--bad); }
     .verify-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; }
     .data-note { font-family:ui-monospace, SFMono-Regular, Consolas, monospace; font-size:.8rem; background:#111827; color:#e5e7eb; padding:14px; border-radius:8px; overflow:auto; max-height:240px; }
     footer { max-width:1320px; margin:0 auto; padding:0 5vw 48px; color:var(--muted); }
@@ -64,11 +65,12 @@
     <p class="lede">An agent-assisted pass across requested apps to find auth patterns, API access gates, MCP/toolkit readiness, blockers, and the best near-term build queue.</p>
   </header>
   <main>
-    <section class="grid" aria-label="headline metrics">
+    <section class="grid five" aria-label="headline metrics">
       <div class="metric"><strong>78</strong><span>apps buildable today (78%)</span></div>
       <div class="metric"><strong>17</strong><span>partial or gated (17%)</span></div>
       <div class="metric"><strong>5</strong><span>not yet buildable (5%)</span></div>
       <div class="metric"><strong>68</strong><span>have OAuth somewhere in the auth model</span></div>
+      <div class="metric"><strong>22</strong><span>rows supported by live evidence-agent signals</span></div>
     </section>
 
     <section class="insights">
@@ -197,10 +199,112 @@
       <h2>Agent workflow</h2>
       <div class="workflow">
         <article class="workflow-step"><b>1</b><h3>Seed</h3><p>Started from the 100-app list, official domains, and developer-doc hints.</p></article>
-        <article class="workflow-step"><b>2</b><h3>Collect</h3><p>For each app, the script stores one evidence URL and normalizes category, auth, access, API surface, MCP, verdict, and blocker fields.</p></article>
-        <article class="workflow-step"><b>3</b><h3>Classify</h3><p>Rules bucket OAuth/key/basic auth, self-serve versus gated access, and final buildability.</p></article>
-        <article class="workflow-step"><b>4</b><h3>Verify</h3><p>A 12-app hand sample cross-checks easy, gated, ambiguous, and no-public-API cases against docs.</p></article>
-        <article class="workflow-step"><b>5</b><h3>Package</h3><p>The agent emits this HTML and a JSON trace for review or reruns.</p></article>
+        <article class="workflow-step"><b>2</b><h3>Fetch</h3><p><code>evidence_agent.py</code> visits every evidence URL, strips page chrome, and extracts text from official docs pages.</p></article>
+        <article class="workflow-step"><b>3</b><h3>Extract</h3><p>Deterministic rules detect OAuth, API keys, tokens, Basic auth, REST, GraphQL, webhooks, MCP, review, and gated-access signals.</p></article>
+        <article class="workflow-step"><b>4</b><h3>Verify</h3><p>The agent compares extracted signals with the TSV, routes low-signal rows to human review, and a 12-app sample is checked manually.</p></article>
+        <article class="workflow-step"><b>5</b><h3>Package</h3><p><code>research_agent.py</code> emits this HTML, <code>agent_trace.json</code>, and the verification report for reruns.</p></article>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="agent verification metrics">
+      <div class="metric"><strong>22</strong><span>supported or blocker-supported by fetched evidence</span></div>
+      <div class="metric"><strong>60</strong><span>routed to human review by the evidence agent</span></div>
+      <div class="metric"><strong>18</strong><span>blocked, missing, or failed fetches</span></div>
+      <div class="metric"><strong>89</strong><span>URLs returned an HTTP status during the live run</span></div>
+    </section>
+
+    <section>
+      <h2>Agent-routed review queue</h2>
+      <p>These are examples the evidence agent refused to fully trust. They are the right places for manual checking, outreach, or paid-account validation.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>App</th><th>Agent status</th><th>Reason</th><th>Evidence snippet</th></tr></thead>
+          <tbody>
+                <tr>
+                  <td><strong>Salesforce</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_auth_signal, missing_surface_signal, missing_access_signal</td>
+                  <td>API Library | Salesforce Developers Browse all APIs Overview Guides Reference Overview Guides Reference Overview Guides Reference Overview Guides Reference Overview Guides Reference Ov</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>HubSpot</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_surface_signal</td>
+                  <td>tant Changelog Sign up Sign up Search... Navigation HubSpot APIs | Authentication methods on HubSpot close On this page OAuth Private app access tokens Automatic token deactivation Related docs HubSpot APIs | Authentication methods on HubSp</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Twenty</strong></td>
+                  <td><span class="pill fetch_failed">fetch_failed</span></td>
+                  <td>URLError: &lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)&gt;</td>
+                  <td></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Podio</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_surface_signal, missing_access_signal</td>
+                  <td>es Email Embeds Files Flows Forms Friends Grants Hooks Importer Integrations Items Layout Linked Accounts Notifications OAuth authorization Organizations Questions Ratings Recurrence Reference Reminders Search Space members Spaces Status St</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Zoho CRM</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_auth_signal, missing_access_signal</td>
+                  <td>ore APIs Perform CRUD operations on CRM module entities and integrate with any third party application through flexible RESTful endpoints. Composite API Combine up to five API calls in a single request through this API. Bulk APIs Push and r</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Close</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_access_signal</td>
+                  <td>lopers Home API Reference MCP Developers Home API Reference MCP Developers Home Build an Integration Overview Create an OAuth App Publish External Links Integrations Directory Product Help Product Updates Making of Close Blog Open Source (G</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Copper</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_access_signal</td>
+                  <td>ge Policy Postman Resources Import the Collection Import and Use the Environment Authentication Authentication Overview OAuth2.0 OAuth2.0 Overview Quickstart Guide Documentation Requests Responses Search Paginating search results Best pract</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>DealCloud</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_access_signal</td>
+                  <td>w starting July 2026 Feedback Feedback (opens in a new tab) Feedback (opens in a new tab) API Reference Getting Started API Keys Authorization Token Pagination Rate Limits Status Codes and Handling Core Schema EntryTypes All Entry Types Ent</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Zendesk</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_auth_signal, missing_surface_signal, missing_access_signal</td>
+                  <td>ng and custom data. For each API, you&#x27;ll find information about who can authenticate requests, detailed descriptions of endpoints, example requests, and other essential information to help you unlock the full potential of Zendesk. Run in Po</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Intercom</strong></td>
+                  <td><span class="pill fetch_failed">fetch_failed</span></td>
+                  <td>URLError: &lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)&gt;</td>
+                  <td></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>Pylon</strong></td>
+                  <td><span class="pill needs_human_review">needs_human_review</span></td>
+                  <td>missing_auth_signal, missing_access_signal</td>
+                  <td>ording Calendar Data Warehouse Codebase Pylon MCP Security Security Overview Developer API Custom Apps Embedded Iframes Webhooks Powered by GitBook On this page For the complete documentation index, see llms.txt . This page is also availabl</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>LiveAgent</strong></td>
+                  <td><span class="pill blocked_or_missing">blocked_or_missing</span></td>
+                  <td>HTTP 404</td>
+                  <td>ticket Login 404: The page you&#x27;re looking for was not found on this site Please take a look at the search results below API key What is an API key API key is an identity of your LiveAgent (like your usern... Updated: Mar 16, 2021 Home -&gt; Te</td>
+                </tr>
+                </tbody>
+        </table>
       </div>
     </section>
 
@@ -1409,7 +1513,7 @@
 
     <section>
       <h2>Machine-readable output</h2>
-      <p>Generated from <code>data/apps.tsv</code> by <code>python scripts/research_agent.py</code>. The same run writes <code>agent_trace.json</code>.</p>
+      <p>Generated from <code>data/apps.tsv</code> by <code>python scripts/evidence_agent.py</code> and <code>python scripts/research_agent.py</code>. The runs write <code>data/evidence_checks.json</code>, <code>data/verification_report.json</code>, and <code>agent_trace.json</code>.</p>
       <pre class="data-note">{
   &quot;auth&quot;: {
     &quot;OAuth present&quot;: 68,
@@ -1564,7 +1668,7 @@
     </section>
   </main>
   <footer>
-    Source and runnable trigger: <code>python scripts/research_agent.py</code>. Evidence links are intentionally official docs or product developer pages wherever available; unclear apps are marked as gated/unknown rather than inferred.
+    Source and runnable trigger: <code>python scripts/evidence_agent.py</code> then <code>python scripts/research_agent.py</code>. Evidence links are intentionally official docs or product developer pages wherever available; unclear apps are marked as gated/unknown rather than inferred.
   </footer>
   <script>
     const rows = Array.from(document.querySelectorAll("#apps tbody tr"));

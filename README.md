@@ -6,24 +6,39 @@ This is a take-home case study for mapping whether 100 requested apps can become
 
 - Single page case study: `site/index.html`
 - Structured source data: `data/apps.tsv`
-- Runnable research/report agent: `scripts/research_agent.py`
+- Evidence-fetching research agent: `scripts/evidence_agent.py`
+- Runnable report generator: `scripts/research_agent.py`
+- Agent verification outputs: `data/evidence_checks.json` and `data/verification_report.json`
 - Machine-readable run trace: `agent_trace.json`
 
 ## Run
 
 ```bash
+python scripts/evidence_agent.py
 python scripts/research_agent.py
+npm run build
 ```
 
-The script reads the 100-app TSV, normalizes auth/access/buildability buckets, computes category-level patterns, embeds the table and statistics into `site/index.html`, and writes `agent_trace.json`.
+`evidence_agent.py` fetches the evidence URL for each app, extracts visible text, detects auth/API/access signals, and writes verification artifacts. `research_agent.py` reads the 100-app TSV plus those verification artifacts, computes patterns, embeds the table and statistics into `site/index.html`, and writes `agent_trace.json`.
 
 ## What The Agent Does
 
-1. Ingests the app list and evidence URLs.
-2. Normalizes auth methods into OAuth-present, key/token, Basic, no remote auth, or unclear.
-3. Normalizes credential availability into self-serve, gated, paid/plan-limited, or unclear.
-4. Scores each app as `Buildable`, `Partially buildable`, or `Not yet`.
-5. Produces a reviewer-friendly HTML case study with filters, matrix, headline insights, workflow, and verification notes.
+1. Ingests the app list and official evidence URLs.
+2. Fetches each docs/product page with a deterministic batch agent.
+3. Extracts visible page text and detects OAuth, API key, token, Basic auth, REST, GraphQL, webhook, MCP, review, and gated-access signals.
+4. Compares extracted signals against the curated row and routes low-signal or blocked pages to human review.
+5. Normalizes auth/access/buildability patterns and produces the reviewer-friendly HTML case study.
+
+## Latest Agent Run
+
+The latest run checked all 100 rows:
+
+- 89 URLs returned an HTTP status.
+- 22 rows were supported by the evidence-agent signal checks.
+- 60 rows were routed to human review because the fetched page was too broad, dynamic, or missing expected signals.
+- 18 rows were blocked, missing, or failed fetches.
+
+This strictness is intentional. The agent is used to accelerate collection and triage; it does not silently invent confidence when docs are gated, rendered client-side, or ambiguous.
 
 ## Human Verification Loop
 

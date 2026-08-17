@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "apps.tsv"
 SITE = ROOT / "site" / "index.html"
 TRACE = ROOT / "agent_trace.json"
+EVIDENCE_REPORT = ROOT / "data" / "verification_report.json"
+EVIDENCE_CHECKS = ROOT / "data" / "evidence_checks.json"
 
 
 VERIFICATION_SAMPLE = {
@@ -114,6 +116,12 @@ def build_stats(rows: list[dict[str, str]]) -> dict[str, object]:
     }
 
 
+def load_json(path: Path, fallback: object) -> object:
+    if not path.exists():
+        return fallback
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 def pct(n: int, total: int) -> str:
     return f"{round(n * 100 / total)}%"
 
@@ -130,6 +138,12 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     not_yet = sum(1 for r in rows if r["verdict"] == "Not yet")
     oauth = sum(1 for r in rows if bucket_auth(r["auth"]) == "OAuth present")
     selfserve = sum(1 for r in rows if access_bucket(r["access"]) == "Self-serve")
+    evidence_report = load_json(EVIDENCE_REPORT, {})
+    evidence_checks = load_json(EVIDENCE_CHECKS, [])
+    supported_by_agent = int(evidence_report.get("supported_by_agent", 0)) if isinstance(evidence_report, dict) else 0
+    needs_human_review = int(evidence_report.get("needs_human_review", 0)) if isinstance(evidence_report, dict) else 0
+    blocked_or_failed = int(evidence_report.get("blocked_or_failed_fetch", 0)) if isinstance(evidence_report, dict) else 0
+    fetched_statuses = int(evidence_report.get("pages_fetched_or_returned_status", 0)) if isinstance(evidence_report, dict) else 0
 
     category_cards = []
     for category, counts in stats["category_verdicts"].items():
@@ -180,6 +194,26 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
             """
         )
 
+    agent_review_rows = []
+    if isinstance(evidence_checks, list):
+        review_items = [
+            c
+            for c in evidence_checks
+            if c.get("status") in {"needs_human_review", "blocked_or_missing", "fetch_failed"}
+        ][:12]
+        for item in review_items:
+            notes = ", ".join(str(n) for n in item.get("notes", [])) or str(item.get("fetch_error") or "Needs review")
+            agent_review_rows.append(
+                f"""
+                <tr>
+                  <td><strong>{html.escape(str(item.get('app', '')))}</strong></td>
+                  <td>{pill(str(item.get('status', 'review')))}</td>
+                  <td>{html.escape(notes)}</td>
+                  <td>{html.escape(str(item.get('snippet', ''))[:240])}</td>
+                </tr>
+                """
+            )
+
     rows_json = json.dumps(rows, indent=2)
     stats_json = json.dumps(stats, indent=2)
 
@@ -206,6 +240,7 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     section {{ margin:0 auto 34px; max-width:1320px; }}
     .lede {{ max-width:900px; font-size:1.12rem; }}
     .grid {{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; }}
+    .grid.five {{ grid-template-columns:repeat(5, minmax(0, 1fr)); }}
     .metric, .category-card, .verify, .workflow-step {{ background:white; border:1px solid var(--line); border-radius:8px; padding:16px; }}
     .metric strong {{ display:block; font-size:2rem; }}
     .metric span {{ color:var(--muted); }}
@@ -227,9 +262,9 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     th {{ position:sticky; top:0; background:#eef3f7; z-index:1; }}
     td span {{ display:block; color:var(--muted); margin-top:4px; font-size:.82rem; }}
     .pill {{ display:inline-block; padding:4px 8px; border-radius:999px; font-size:.78rem; font-weight:700; background:#eef1f5; color:#31363c; }}
-    .pill.buildable, .pill.pass {{ background:#dff2e7; color:var(--ok); }}
-    .pill.partially-buildable, .pill.corrected {{ background:#fff0d8; color:var(--mid); }}
-    .pill.not-yet {{ background:#fde5e5; color:var(--bad); }}
+    .pill.buildable, .pill.pass, .pill.supported, .pill.supports_blocker {{ background:#dff2e7; color:var(--ok); }}
+    .pill.partially-buildable, .pill.corrected, .pill.needs_human_review {{ background:#fff0d8; color:var(--mid); }}
+    .pill.not-yet, .pill.blocked_or_missing, .pill.fetch_failed {{ background:#fde5e5; color:var(--bad); }}
     .verify-grid {{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; }}
     .data-note {{ font-family:ui-monospace, SFMono-Regular, Consolas, monospace; font-size:.8rem; background:#111827; color:#e5e7eb; padding:14px; border-radius:8px; overflow:auto; max-height:240px; }}
     footer {{ max-width:1320px; margin:0 auto; padding:0 5vw 48px; color:var(--muted); }}
@@ -249,11 +284,12 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     <p class="lede">An agent-assisted pass across requested apps to find auth patterns, API access gates, MCP/toolkit readiness, blockers, and the best near-term build queue.</p>
   </header>
   <main>
-    <section class="grid" aria-label="headline metrics">
+    <section class="grid five" aria-label="headline metrics">
       <div class="metric"><strong>{buildable}</strong><span>apps buildable today ({pct(buildable, total)})</span></div>
       <div class="metric"><strong>{partial}</strong><span>partial or gated ({pct(partial, total)})</span></div>
       <div class="metric"><strong>{not_yet}</strong><span>not yet buildable ({pct(not_yet, total)})</span></div>
       <div class="metric"><strong>{oauth}</strong><span>have OAuth somewhere in the auth model</span></div>
+      <div class="metric"><strong>{supported_by_agent}</strong><span>rows supported by live evidence-agent signals</span></div>
     </section>
 
     <section class="insights">
@@ -282,10 +318,28 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
       <h2>Agent workflow</h2>
       <div class="workflow">
         <article class="workflow-step"><b>1</b><h3>Seed</h3><p>Started from the 100-app list, official domains, and developer-doc hints.</p></article>
-        <article class="workflow-step"><b>2</b><h3>Collect</h3><p>For each app, the script stores one evidence URL and normalizes category, auth, access, API surface, MCP, verdict, and blocker fields.</p></article>
-        <article class="workflow-step"><b>3</b><h3>Classify</h3><p>Rules bucket OAuth/key/basic auth, self-serve versus gated access, and final buildability.</p></article>
-        <article class="workflow-step"><b>4</b><h3>Verify</h3><p>A 12-app hand sample cross-checks easy, gated, ambiguous, and no-public-API cases against docs.</p></article>
-        <article class="workflow-step"><b>5</b><h3>Package</h3><p>The agent emits this HTML and a JSON trace for review or reruns.</p></article>
+        <article class="workflow-step"><b>2</b><h3>Fetch</h3><p><code>evidence_agent.py</code> visits every evidence URL, strips page chrome, and extracts text from official docs pages.</p></article>
+        <article class="workflow-step"><b>3</b><h3>Extract</h3><p>Deterministic rules detect OAuth, API keys, tokens, Basic auth, REST, GraphQL, webhooks, MCP, review, and gated-access signals.</p></article>
+        <article class="workflow-step"><b>4</b><h3>Verify</h3><p>The agent compares extracted signals with the TSV, routes low-signal rows to human review, and a 12-app sample is checked manually.</p></article>
+        <article class="workflow-step"><b>5</b><h3>Package</h3><p><code>research_agent.py</code> emits this HTML, <code>agent_trace.json</code>, and the verification report for reruns.</p></article>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="agent verification metrics">
+      <div class="metric"><strong>{supported_by_agent}</strong><span>supported or blocker-supported by fetched evidence</span></div>
+      <div class="metric"><strong>{needs_human_review}</strong><span>routed to human review by the evidence agent</span></div>
+      <div class="metric"><strong>{blocked_or_failed}</strong><span>blocked, missing, or failed fetches</span></div>
+      <div class="metric"><strong>{fetched_statuses}</strong><span>URLs returned an HTTP status during the live run</span></div>
+    </section>
+
+    <section>
+      <h2>Agent-routed review queue</h2>
+      <p>These are examples the evidence agent refused to fully trust. They are the right places for manual checking, outreach, or paid-account validation.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>App</th><th>Agent status</th><th>Reason</th><th>Evidence snippet</th></tr></thead>
+          <tbody>{''.join(agent_review_rows) or '<tr><td colspan="4">Run <code>python scripts/evidence_agent.py</code> to generate the review queue.</td></tr>'}</tbody>
+        </table>
       </div>
     </section>
 
@@ -322,12 +376,12 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
 
     <section>
       <h2>Machine-readable output</h2>
-      <p>Generated from <code>data/apps.tsv</code> by <code>python scripts/research_agent.py</code>. The same run writes <code>agent_trace.json</code>.</p>
+      <p>Generated from <code>data/apps.tsv</code> by <code>python scripts/evidence_agent.py</code> and <code>python scripts/research_agent.py</code>. The runs write <code>data/evidence_checks.json</code>, <code>data/verification_report.json</code>, and <code>agent_trace.json</code>.</p>
       <pre class="data-note">{html.escape(stats_json)}</pre>
     </section>
   </main>
   <footer>
-    Source and runnable trigger: <code>python scripts/research_agent.py</code>. Evidence links are intentionally official docs or product developer pages wherever available; unclear apps are marked as gated/unknown rather than inferred.
+    Source and runnable trigger: <code>python scripts/evidence_agent.py</code> then <code>python scripts/research_agent.py</code>. Evidence links are intentionally official docs or product developer pages wherever available; unclear apps are marked as gated/unknown rather than inferred.
   </footer>
   <script>
     const rows = Array.from(document.querySelectorAll("#apps tbody tr"));
@@ -365,6 +419,7 @@ def main() -> None:
                 "output": str(SITE.relative_to(ROOT)),
                 "rows": len(rows),
                 "stats": stats,
+                "evidence_report": load_json(EVIDENCE_REPORT, {}),
                 "verification_sample": VERIFICATION_SAMPLE,
                 "known_limits": [
                     "No paid credentials were used.",
