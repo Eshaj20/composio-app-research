@@ -26,9 +26,9 @@ MAX_WORKERS = 12
 
 
 AUTH_SIGNALS = {
-    "oauth": ["oauth", "oauth2", "authorization code", "authorization", "refresh token"],
-    "api_key": ["api key", "apikey", "x-api-key", "developer token", "access key", "secret key"],
-    "bearer_token": ["bearer", "access token", "personal access token", "pat", "token"],
+    "oauth": ["oauth", "oauth2", "authorization code", "authorization", "authentication", "authenticate", "refresh token"],
+    "api_key": ["api key", "apikey", "x-api-key", "developer token", "access key", "secret key", "credentials", "credential", "client secret", "client id"],
+    "bearer_token": ["bearer", "access token", "personal access token", "pat", "token", "auth token", "authorization header"],
     "basic": ["basic auth", "basic authentication"],
     "jwt": ["jwt", "json web token"],
     "signature": ["hmac", "signature", "sigv4"],
@@ -223,16 +223,17 @@ def build_check(row: dict[str, str]) -> dict[str, object]:
     started = time.time()
     status_code, markup, error = fetch(row["evidence"])
     text = normalize_text(markup)
-    auth_signals = find_signals(text, AUTH_SIGNALS)
-    surface_signals = find_signals(text, SURFACE_SIGNALS)
-    access_signals = find_signals(text, ACCESS_SIGNALS)
+    signal_text = row["evidence"] + " " + text
+    auth_signals = find_signals(signal_text, AUTH_SIGNALS)
+    surface_signals = find_signals(signal_text, SURFACE_SIGNALS)
+    access_signals = find_signals(signal_text, ACCESS_SIGNALS)
     all_terms = [
         term
         for group in (auth_signals, surface_signals, access_signals)
         for terms in group.values()
         for term in terms
     ]
-    status, notes = evidence_status(row, text, error, status_code)
+    status, notes = evidence_status(row, signal_text, error, status_code)
     confidence, confidence_reason = confidence_label(row, status, error)
     return {
         "id": row["id"],

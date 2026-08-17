@@ -2,28 +2,43 @@
   {
     "id": "1",
     "app": "Salesforce",
-    "evidence_url": "https://developer.salesforce.com/docs/apis",
+    "evidence_url": "https://developer.salesforce.com/docs/platform/connect-rest-api/guide/quickstart.html",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Human-reviewed",
-    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "oauth",
+        "authorization",
+        "authenticate"
+      ],
+      "bearer_token": [
+        "access token",
+        "pat",
+        "token"
+      ]
+    },
     "surface_signals": {
       "rest": [
-        "reference"
+        "rest api",
+        "rest"
+      ],
+      "cli": [
+        "cli"
       ]
     },
     "access_signals": {
       "self_serve": [
-        "developer"
+        "sign up",
+        "developer",
+        "quickstart"
       ]
     },
-    "snippet": "API Library | Salesforce Developers Browse all APIs Overview Guides Reference Overview Guides Reference Overview Guides Reference Overview Guides Reference Overview Guides Reference Overview Guides Reference Guides Reference Overview Gui",
-    "elapsed_ms": 4121
+    "snippet": "e for testing and development. Step Two: Set Up Authorization Create an external client app in a Salesforce org, enable OAuth, and configure an OAuth flow. Use the external client app to connect to Salesforce. Step Three: Connect to Connect REST API Using OAuth Use OAuth to connect to",
+    "elapsed_ms": 2516
   },
   {
     "id": "2",
@@ -38,7 +53,9 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
         "api key",
@@ -47,7 +64,8 @@
       "bearer_token": [
         "bearer",
         "access token",
-        "token"
+        "token",
+        "authorization header"
       ]
     },
     "surface_signals": {
@@ -64,7 +82,7 @@
       ]
     },
     "snippet": "tant Changelog Sign up Sign up Search... Navigation HubSpot APIs | Authentication methods on HubSpot close On this page OAuth Private app access tokens Automatic token deactivation Related docs HubSpot APIs | Authentication methods on HubSpot Learn more about using OAuth or private ac",
-    "elapsed_ms": 11329
+    "elapsed_ms": 7623
   },
   {
     "id": "3",
@@ -114,7 +132,7 @@
       ]
     },
     "snippet": "es Filters Goals Item search Lead fields Lead labels Leads Lead sources Legacy teams Mailbox Meetings Note fields Notes OAuth 2.0 Organization fields Organization relationships Organizations Permission sets Person fields Persons Pipelines Product fields Products Project boards Project",
-    "elapsed_ms": 8354
+    "elapsed_ms": 4724
   },
   {
     "id": "4",
@@ -128,7 +146,8 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "oauth"
+        "oauth",
+        "authenticate"
       ]
     },
     "surface_signals": {
@@ -154,7 +173,7 @@
       ]
     },
     "snippet": "rate limits Filtering and sorting Paginating API results Configuring webhooks Tutorials Connect an app to Attio through OAuth Attribute types Overview Actor reference Checkbox Currency Date Domain Email address Interaction Location (Personal) name Number Phone number Rating Record ref",
-    "elapsed_ms": 10675
+    "elapsed_ms": 5918
   },
   {
     "id": "5",
@@ -190,7 +209,7 @@
       ]
     },
     "snippet": "K Overview Developers Apps Getting Started Tutorial Config Data Logic Layout Operations Translations API APIs Webhooks OAuth Self-Host Docker Compose Setup Upgrade guide Troubleshooting Contribute Local Setup Commands Style Guide English Overview Developers Build apps, use the API, s",
-    "elapsed_ms": 12941
+    "elapsed_ms": 6843
   },
   {
     "id": "6",
@@ -205,7 +224,8 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication"
       ],
       "api_key": [
         "api key"
@@ -238,35 +258,52 @@
       ]
     },
     "snippet": "es Email Embeds Files Flows Forms Friends Grants Hooks Importer Integrations Items Layout Linked Accounts Notifications OAuth authorization Organizations Questions Ratings Recurrence Reference Reminders Search Space members Spaces Status Stream Subscriptions Tags Tasks Users Views Vot",
-    "elapsed_ms": 4757
+    "elapsed_ms": 3323
   },
   {
     "id": "7",
     "app": "Zoho CRM",
-    "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/",
+    "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/oauth-overview.html",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "oauth",
+        "authorization",
+        "authentication",
+        "authenticate",
+        "refresh token"
+      ],
+      "api_key": [
+        "credentials",
+        "credential",
+        "client secret",
+        "client id"
+      ],
+      "bearer_token": [
+        "access token",
+        "token"
+      ]
+    },
     "surface_signals": {
-      "rest": [
-        "rest",
-        "endpoint",
-        "endpoints"
+      "cli": [
+        "cli"
       ]
     },
     "access_signals": {
+      "self_serve": [
+        "developer"
+      ],
       "review": [
         "application"
       ]
     },
-    "snippet": "ore APIs Perform CRUD operations on CRM module entities and integrate with any third party application through flexible RESTful endpoints. Composite API Combine up to five API calls in a single request through this API. Bulk APIs Push and retrieve data from Zoho CRM in bulk using a s",
-    "elapsed_ms": 3037
+    "snippet": "OAuth 2.0 Authentication | Zoho CRM API | V8 OAuth 2.0 for V8 APIs - An Overview The Zoho CRM API uses the OAuth 2.0 protocol for authentication. OAuth 2.0 is an ind",
+    "elapsed_ms": 2141
   },
   {
     "id": "8",
@@ -280,7 +317,8 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "oauth"
+        "oauth",
+        "authentication"
       ],
       "api_key": [
         "api key"
@@ -316,7 +354,7 @@
       ]
     },
     "snippet": "lopers Home API Reference MCP Developers Home API Reference MCP Developers Home Build an Integration Overview Create an OAuth App Publish External Links Integrations Directory Product Help Product Updates Making of Close Blog Open Source (GitHub) Developers Home Overview Create an OAu",
-    "elapsed_ms": 6193
+    "elapsed_ms": 4019
   },
   {
     "id": "9",
@@ -331,7 +369,8 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "oauth2"
+        "oauth2",
+        "authentication"
       ]
     },
     "surface_signals": {
@@ -357,7 +396,7 @@
       ]
     },
     "snippet": "ge Policy Postman Resources Import the Collection Import and Use the Environment Authentication Authentication Overview OAuth2.0 OAuth2.0 Overview Quickstart Guide Documentation Requests Responses Search Paginating search results Best practices Embedded Apps Appendix Getting Support C",
-    "elapsed_ms": 4824
+    "elapsed_ms": 3994
   },
   {
     "id": "10",
@@ -371,7 +410,8 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication"
       ],
       "api_key": [
         "api key"
@@ -403,7 +443,7 @@
       ]
     },
     "snippet": "g July 2026 Feedback Feedback (opens in a new tab) Feedback (opens in a new tab) API Reference Getting Started API Keys Authorization Token Pagination Rate Limits Status Codes and Handling Core Schema EntryTypes All Entry Types Entry Type by ID Fields All Fields Fields by EntryType Field by I",
-    "elapsed_ms": 8298
+    "elapsed_ms": 5623
   },
   {
     "id": "11",
@@ -411,13 +451,15 @@
     "evidence_url": "https://developer.zendesk.com/api-reference/",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authenticate"
+      ]
+    },
     "surface_signals": {
       "rest": [
         "endpoint",
@@ -438,30 +480,65 @@
         "partner"
       ]
     },
-    "snippet": "ng and custom data. For each API, you'll find information about who can authenticate requests, detailed descriptions of endpoints, example requests, and other essential information to help you unlock the full potential of Zendesk. Run in Postman To quickly get started with the Zendesk AP",
-    "elapsed_ms": 5298
+    "snippet": "hat span capabilities, such as omnichannel routing and custom data. For each API, you'll find information about who can authenticate requests, detailed descriptions of endpoints, example requests, and other essential information to help you unlock the full potential of Zendesk. Run in Postma",
+    "elapsed_ms": 4074
   },
   {
     "id": "12",
     "app": "Intercom",
-    "evidence_url": "https://developers.intercom.com/docs/references/rest-api/api.intercom.io",
+    "evidence_url": "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
     "http_status": 200,
     "fetch_error": "TLS verification failed; fetched with unverified context",
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
-    "surface_signals": {},
-    "access_signals": {
-      "self_serve": [
-        "developer"
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "oauth",
+        "authorization",
+        "authentication"
+      ],
+      "api_key": [
+        "api key"
+      ],
+      "bearer_token": [
+        "bearer",
+        "access token",
+        "token"
       ]
     },
-    "snippet": "Intercom API | Intercom and Fin Developer Platform",
-    "elapsed_ms": 8630
+    "surface_signals": {
+      "rest": [
+        "rest api",
+        "rest",
+        "api reference",
+        "reference"
+      ],
+      "webhook": [
+        "webhook",
+        "webhooks"
+      ],
+      "mcp": [
+        "mcp",
+        "model context protocol"
+      ],
+      "cli": [
+        "cli"
+      ]
+    },
+    "access_signals": {
+      "self_serve": [
+        "developer",
+        "create an app",
+        "getting started"
+      ],
+      "review": [
+        "application"
+      ]
+    },
+    "snippet": "(MCP) References Object Model REST API Reference Canvas Kit Reference Webhook Topics Public Apps & App Store Configure OAuth Build and Publish Apps App Store Guidelines Home / Authentication Authentication Copy Copy for LLM Copy page as Markdown for LLMs View as Markdown Open this pa",
+    "elapsed_ms": 9179
   },
   {
     "id": "13",
@@ -475,14 +552,19 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
         "api key",
-        "apikey"
+        "apikey",
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
-        "pat"
+        "pat",
+        "authorization header"
       ],
       "signature": [
         "signature"
@@ -503,6 +585,7 @@
     },
     "access_signals": {
       "self_serve": [
+        "developer",
         "getting started"
       ],
       "review": [
@@ -515,7 +598,7 @@
       ]
     },
     "snippet": "but are still unable to access your helpdesk, make sure that the \"APIkey:X\" is Base64-encoded before passing it as an \"Authorization\" header. What are the resources available via the API? Every single piece of information - be it a customer's ID or the priority of a specific ticket - can be",
-    "elapsed_ms": 19147
+    "elapsed_ms": 6842
   },
   {
     "id": "14",
@@ -530,7 +613,8 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "oauth2"
+        "oauth2",
+        "authentication"
       ],
       "bearer_token": [
         "pat",
@@ -562,7 +646,7 @@
       ]
     },
     "snippet": "e the Core API: Getting Started Fundamentals Tools Sample Application API Terminology 101 Authentication Front supports OAuth2.0 as well as API Tokens. To learn about authenticating with Front, see our guide on authentication . Base URL API calls will always work with https://api2.fro",
-    "elapsed_ms": 10962
+    "elapsed_ms": 3318
   },
   {
     "id": "15",
@@ -570,13 +654,15 @@
     "evidence_url": "https://docs.usepylon.com/",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Needs follow-up",
-    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {
       "webhook": [
         "webhook",
@@ -595,44 +681,26 @@
         "verification"
       ]
     },
-    "snippet": "ording Calendar Data Warehouse Codebase Pylon MCP Security Security Overview Developer API Custom Apps Embedded Iframes Webhooks Powered by GitBook On this page For the complete documentation index, see llms.txt . This page is also available as Markdown . Copy On this page Getting Start",
-    "elapsed_ms": 12876
+    "snippet": "guages & Localization Custom Objects Knowledge Base Overview Articles & Collections Gaps Styling & Customization Custom Authentication Search Customer Portal Overview Styling & Customization Portal Experience Access Control Custom Authentication Chat Widget Overview Styling Functionality Chat",
+    "elapsed_ms": 8684
   },
   {
     "id": "16",
     "app": "LiveAgent",
-    "evidence_url": "https://support.liveagent.com/970353-API",
-    "http_status": 404,
-    "fetch_error": "HTTP 404",
-    "status": "blocked_or_missing",
+    "evidence_url": "https://support.liveagent.com/docs/api/v3/",
+    "http_status": 200,
+    "fetch_error": null,
+    "status": "needs_human_review",
     "confidence": "Curated-docs reviewed",
-    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
+    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
     "notes": [
-      "HTTP 404"
+      "missing_auth_signal"
     ],
-    "auth_signals": {
-      "api_key": [
-        "api key"
-      ]
-    },
-    "surface_signals": {
-      "rest": [
-        "rest api",
-        "rest",
-        "api reference",
-        "reference"
-      ],
-      "cli": [
-        "cli"
-      ]
-    },
-    "access_signals": {
-      "review": [
-        "application"
-      ]
-    },
-    "snippet": "ticket Login 404: The page you're looking for was not found on this site Please take a look at the search results below API key What is an API key API key is an identity of your LiveAgent (like your usern... Updated: Mar 16, 2021 Home -> Technical Support -> LiveAgent API -> REST API AP",
-    "elapsed_ms": 8418
+    "auth_signals": {},
+    "surface_signals": {},
+    "access_signals": {},
+    "snippet": "LiveAgent API",
+    "elapsed_ms": 2339
   },
   {
     "id": "17",
@@ -646,7 +714,8 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication"
       ],
       "api_key": [
         "api key"
@@ -659,7 +728,8 @@
     },
     "surface_signals": {
       "rest": [
-        "rest"
+        "rest",
+        "reference"
       ],
       "graphql": [
         "graphql"
@@ -684,26 +754,31 @@
       ]
     },
     "snippet": "PI URL: https://core-api.uk.plain.com/graphql/v1 Allowed method : POST Required headers: Content-Type: application/json Authorization: Bearer YOUR_TOKEN where the token is your API key. See authentication for more details. JSON body: query : the GraphQL query string variables : a JSON object",
-    "elapsed_ms": 12027
+    "elapsed_ms": 6282
   },
   {
     "id": "18",
     "app": "Help Scout",
-    "evidence_url": "https://developer.helpscout.com/mailbox-api/",
+    "evidence_url": "https://developer.helpscout.com/mailbox-api/overview/authentication/",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal",
-      "missing_surface_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {},
-    "access_signals": {},
-    "snippet": "\ufffd\b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd]]s\u06f6\ufffd\ufffd\ufffd\ufffd@\ufffd3k{W\ufffd,9\ufffd\ufffd\ufffd\ufffdc'M\ufffdIc\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdx \u0012\u0012\u0019S\u0004K\ufffd\ufffd\ufffd$3{\ufffd\ufffd{\ufffd\u007f\ufffd\ufffd\ufffd}\ufffdA\ufffd\ufffdd\ufffdM\b(\ufffd8\ufffdX\" \ufffd\ufffd\ufffd>\ufffd\u0017\ufffd\ufffd\ufffd \ufffdO\ufffd.\ufffd\ufffd\ufffd\u0005 \ufffd(:X\ufffd\ufffd \b\ufffd\u0007\ufffd\ufffd\ufffd\u02c8 \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd^#\u0013\u0003\ufffd\ufffd1;\u0010\b\ufffd`\ufffd{\u0016\ufffd{\ufffd\ufffd\u013f \ufffd#6J\ufffd\b\ufffd\u0011m \ufffd\u0142\ufffd\ufffd\ufffd/z\ufffd R\ufffd;\ufffdS\u0011\ufffd\ufffd\ufffd \ufffdY\ufffd@\ufffdu\ufffdg\ufffd\ufffd\ufffd\ufffd5\uadb6\ufffd\u0007?\ufffdW4J\u0439\ufffd2\ufffd\ufffd\ufffdF,\ufffd)\u03fb\ufffdo\u0017\ufffd\u0016\u00cb\u0248\ufffd\u001a>\ufffd^\u001a&\"dqiP%\u0014\ufffd\ufffd8\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdf\u0012\ufffd\"\ufffd\ufffdt z\u0014\ufffd\ufffd& \ufffdP\ufffd$\ufffd\ufffd#\u0011\ufffdu\ufffd\ufffd\u0007",
-    "elapsed_ms": 3795
+    "access_signals": {
+      "self_serve": [
+        "developer"
+      ]
+    },
+    "snippet": "\ufffd\b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd][s\ufffdF\ufffd~\u05ef\ufffdp\ufffdF\ufffd.\ufffd7Q7K\ufffdD\ufffd$\ufffdN\u0012{%%\ufffdT6\ufffdj\u0002M\u00126\ufffd\u01a0\u0001R\ufffd\ufffd}\ufffd\ufffd}\u073f7\ufffdd\ufffd\ufffdn\ufffd\u0000/\ufffd,\u0003MG+'%\u0012@\ufffd\ufffd\ufffd\u03bd/\u0000O\ufffdz\ufffd\ufffd\ufffd\ufffd/o^\ufffdQ < \ufffd\u03f6N\ufffd\u0007!\ufffd#\ufffd\\\ufffde\ufffdcF\ufffd\u0011\ufffd$\ufffd{\ufffd$ \u0423\ufffd\ufffd\ufffd(\ufffdC\ufffd\ufffd\ufffdx\ufffd^\ufffd?\ufffd\ufffd\ufffd\ufffd\u0018\ufffd,\ufffd\ufffd>\ufffd\u0011G\u00041\u000f\ufffdW/z\ufffd ru \ufffd\u001a{\ufffd\ufffd\ufffd@ \ufffd>\b9O\ufffd\u0011\ufffd\ufffd9\u0409\b\ufffdW\ufffd /\ufffd \ufffdKG$1y\ufffd'\ufffd\u0017!\ufffdd\ufffd\ufffdi3\ufffd7\ufffd/`c\u07ab\ufffd\\:\ufffd\u0017b\ufffd9\ufffdr0t\ufffd\ufffd\u01e7\ufffd\ufffd\ufffd\\\ufffd\ufffd\ufffd\u01a3\ufffd\ufffd'\ufffd\u00e9:\ufffd\u0013/\ufffdb\ufffd\ufffdT:\ufffd\ufffdv\ufffd\ufffdQ\ufffd\u0005",
+    "elapsed_ms": 1624
   },
   {
     "id": "19",
@@ -711,13 +786,15 @@
     "evidence_url": "https://developers.gorgias.com/reference/introduction",
     "http_status": 200,
     "fetch_error": "TLS verification failed; fetched with unverified context",
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {
       "rest": [
         "rest api",
@@ -735,8 +812,8 @@
         "quickstart"
       ]
     },
-    "snippet": "e Changelog Introduction JUMP TO Gorgias API Introduction Authentication Requests Errors Pagination Rate Limits Gorgias REST API Account The Account object Retrieve your account get List settings get Create a setting post Update a setting put Customers The Customer object Delete customer",
-    "elapsed_ms": 8576
+    "snippet": "Reference Changelog API Reference Home Quickstart API Reference Changelog Introduction JUMP TO Gorgias API Introduction Authentication Requests Errors Pagination Rate Limits Gorgias REST API Account The Account object Retrieve your account get List settings get Create a setting post Update a s",
+    "elapsed_ms": 3990
   },
   {
     "id": "20",
@@ -768,7 +845,7 @@
       ]
     },
     "snippet": "Main Home - Gladly Developer Gladly Developer Developer Gladly.com Toggle Menu Home Developer API REST API Chat Web SDK Chat iOS SDK Chat Android SDK Help Center Tutorials Help and Support A platform with people at the heart of it Looking to extend Gladly, use Gladl",
-    "elapsed_ms": 3076
+    "elapsed_ms": 945
   },
   {
     "id": "21",
@@ -782,7 +859,9 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "oauth"
+        "oauth",
+        "authentication",
+        "authenticate"
       ],
       "bearer_token": [
         "access token",
@@ -809,7 +888,7 @@
       ]
     },
     "snippet": "m concepts AI in Slack APIs App management App manifests Admin resources Authentication Overview Tokens Installing with OAuth Using token rotation Using PKCE Verifying requests from Slack Authorizing with Postman Binding accounts across services Sign in with Slack Block Kit Enterprise",
-    "elapsed_ms": 9372
+    "elapsed_ms": 5351
   },
   {
     "id": "22",
@@ -823,14 +902,19 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "oauth"
+        "oauth",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
-        "api key"
+        "api key",
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
         "access token",
-        "token"
+        "token",
+        "auth token"
       ]
     },
     "surface_signals": {
@@ -860,7 +944,7 @@
       ]
     },
     "snippet": "Create API Keys in the Console REST API: Key Resource v1 REST API: Key Resource v2010 Restricted API Keys Access Tokens OAuth Apps Overview Account OAuth Apps Organization OAuth Apps OAuth Token API FAQs Credentials REST API: Credentials REST API: CredentialPublicKey Resource REST API",
-    "elapsed_ms": 5963
+    "elapsed_ms": 3266
   },
   {
     "id": "23",
@@ -874,12 +958,19 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "oauth"
+        "oauth",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
         "access token",
         "pat",
-        "token"
+        "token",
+        "auth token"
       ]
     },
     "surface_signals": {
@@ -909,7 +1000,7 @@
       ]
     },
     "snippet": "Sign In Introduction Introduction Overview Authentication Networks Multiple Data Centers Authentication Introduction to OAuth 2.0 Overview Terminologies Scopes Register your application Overview API Reference HTTP Methods Overview Pagination Overview Token Reference Errors Overview Gl",
-    "elapsed_ms": 10174
+    "elapsed_ms": 8873
   },
   {
     "id": "24",
@@ -929,7 +1020,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "\u5f00\u53d1\u6587\u6863 - Lark\u5f00\u653e\u5e73\u53f0",
-    "elapsed_ms": 4256
+    "elapsed_ms": 3162
   },
   {
     "id": "25",
@@ -947,6 +1038,10 @@
     "surface_signals": {
       "rest": [
         "reference"
+      ],
+      "webhook": [
+        "webhook",
+        "webhooks"
       ]
     },
     "access_signals": {
@@ -959,7 +1054,7 @@
       ]
     },
     "snippet": "and Style Messages Sharing Files Search & Navigation Calls and Meetings Profile Account Management Profile Settings & Preferences Personal Notifications Administration Workspace Settings Manage Team Members Billing Page Not Found The page you\u2019re requesting seems to have taken today off.",
-    "elapsed_ms": 6855
+    "elapsed_ms": 4470
   },
   {
     "id": "26",
@@ -995,7 +1090,7 @@
       ]
     },
     "snippet": "oper Portal API & SDK Reference Developer Community Welcome Introduction App Fundamentals Overview of Apps Discord Bots OAuth2 & Permissions Interactions & Commands Components & Modals Server & Channel Management Webhooks Game & Platform Features Account Linking Social Layer Rich Pres",
-    "elapsed_ms": 9042
+    "elapsed_ms": 4899
   },
   {
     "id": "27",
@@ -1008,6 +1103,9 @@
     "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
+      "oauth": [
+        "authentication"
+      ],
       "bearer_token": [
         "pat",
         "token"
@@ -1042,8 +1140,8 @@
         "partner"
       ]
     },
-    "snippet": "ur bot will be able to: Download files without a size limit. Upload files up to 2000 MB. Upload files using their local path and the file URI scheme . Use an HTTP URL for the webhook. Use any local IP address for the webhook. Use any port for the webhook. Set max_webhook_connections",
-    "elapsed_ms": 10632
+    "snippet": ". Added the method getUserPersonalChatMessages . See earlier changes \u00bb Authorizing your bot Each bot is given a unique authentication token when it is created . The token looks something like 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11 , but we'll use simply <token> in this document instead. Yo",
+    "elapsed_ms": 9143
   },
   {
     "id": "28",
@@ -1058,7 +1156,8 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication"
       ],
       "bearer_token": [
         "bearer",
@@ -1095,7 +1194,7 @@
       ]
     },
     "snippet": "/www.luckyshrub.com/webhooks\" }, \"id\": \"106540352242922\" } ``` ### Authentication and authorization Authentication uses OAuth (not 2.0) access tokens, while permissions restrict access to specific resources. - [Learn more about access tokens.](https://developers.facebook.com/documenta",
-    "elapsed_ms": 7191
+    "elapsed_ms": 6102
   },
   {
     "id": "29",
@@ -1111,16 +1210,21 @@
       "oauth": [
         "oauth",
         "authorization code",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
-        "api key"
+        "api key",
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
         "bearer",
         "access token",
         "pat",
-        "token"
+        "token",
+        "authorization header"
       ],
       "basic": [
         "basic auth",
@@ -1156,7 +1260,7 @@
       ]
     },
     "snippet": "API References | Aircall API References Guides Start building REST API Authentication Introduction OAuth \ufe63 Technology Partners Basic Auth \ufe63 Aircall customers Rate limiting Pagination Errors Versioning Versioning Strategy Content-Type Announcements APIS list User V",
-    "elapsed_ms": 19941
+    "elapsed_ms": 12182
   },
   {
     "id": "30",
@@ -1170,14 +1274,18 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication"
       ],
       "api_key": [
-        "api key"
+        "api key",
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
         "pat",
-        "token"
+        "token",
+        "authorization header"
       ],
       "basic": [
         "basic auth",
@@ -1216,7 +1324,7 @@
       ]
     },
     "snippet": "A number of newer Vonage APIs require authentication to be done using an API key and secret sent Base64 encoded in the Authorization header. For these APIs, you send your API key and secret in the following way: Copy Authorization: Basic base64(API_KEY:API_SECRET) If your API key were aaa012",
-    "elapsed_ms": 6623
+    "elapsed_ms": 4584
   },
   {
     "id": "31",
@@ -1259,7 +1367,7 @@
       ]
     },
     "snippet": "Developer Token | Google Ads API | Google for Developers Skip to main content Ads API / English Deutsch Espa\u00f1ol Espa\u00f1ol \u2013 Am\u00e9rica Latina Fran\u00e7ais Indonesia Italiano Polski Por",
-    "elapsed_ms": 10889
+    "elapsed_ms": 5487
   },
   {
     "id": "32",
@@ -1273,7 +1381,8 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication"
       ],
       "bearer_token": [
         "access token",
@@ -1307,7 +1416,7 @@
       ]
     },
     "snippet": "Marketing API How it works Versioning Rate Limiting Data Processing Options Get Started with Marketing API Get Started Authorization Authentication Ad Creation Guides Basic Ad Creation Create an Ad Campaign Create an Ad Set Create an Ad Creative Create an Ad Manage Campaigns Ad Performance &",
-    "elapsed_ms": 15462
+    "elapsed_ms": 12343
   },
   {
     "id": "33",
@@ -1315,13 +1424,15 @@
     "evidence_url": "https://learn.microsoft.com/en-us/linkedin/marketing/",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Needs follow-up",
-    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {
       "cli": [
         "cli"
@@ -1336,8 +1447,8 @@
         "partner"
       ]
     },
-    "snippet": "lp optimize your advertising efforts. Overview Conversions API Getting Access to Conversions API Deduplication Enabling Click IDs Google Tag Manager Server-Side Tagging Conversions API Payload Builder Use Cases - Conversions API Integration Requirements Company Intelligence Gain ins",
-    "elapsed_ms": 5323
+    "snippet": "rformance, to manage leads, and to grow a company Page. Quickstart Quick Start Overview Getting API Access How-To Guide Authentication How-To Guide API Versioning Overview Data Storage Requirements What's new What's New LinkedIn Marketing APIs Advertising With Advertising APIs, streamline your",
+    "elapsed_ms": 4284
   },
   {
     "id": "34",
@@ -1357,7 +1468,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 7443
+    "elapsed_ms": 4510
   },
   {
     "id": "35",
@@ -1373,7 +1484,9 @@
       "oauth": [
         "oauth",
         "oauth2",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
         "api key"
@@ -1417,7 +1530,7 @@
       ]
     },
     "snippet": "building integrations that let other users access data from their own Mailchimp accounts, you should authenticate with OAuth 2 . And if you\u2019re developing an app for iOS or Android, the Mobile SDK provides an easy way to work with a mobile-focused subset of the Marketing API\u2019s functio",
-    "elapsed_ms": 4465
+    "elapsed_ms": 5326
   },
   {
     "id": "36",
@@ -1432,7 +1545,9 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
         "api key",
@@ -1476,7 +1591,7 @@
       ]
     },
     "snippet": "NER RESOURCES Join the Klaviyo ecosystem How your customers can use integrated data in Klaviyo Build your app Implement OAuth Create a public OAuth app Make API calls using OAuth Handle your app's OAuth flow Troubleshoot OAuth errors Update your OAuth scopes Branding for app metrics S",
-    "elapsed_ms": 5296
+    "elapsed_ms": 8116
   },
   {
     "id": "37",
@@ -1489,6 +1604,10 @@
     "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
+      "oauth": [
+        "authentication",
+        "authenticate"
+      ],
       "api_key": [
         "api key",
         "x-api-key"
@@ -1519,37 +1638,37 @@
         "application"
       ]
     },
-    "snippet": "ies. Simply navigate to the profile settings within your Systeme.io dashboard, and generate a new key under the \"Public API keys\" section. Once you have your key, you're all set to embark on your first API request journey! \ud83d\udea7 Important security notice Using the API from public pages is n",
-    "elapsed_ms": 9460
+    "snippet": "t interaction pattern for all users. Getting Started To begin using the Systeme.io Public API, you must first obtain an authentication key. This key is your ticket to unlocking the API's capabilities. Simply navigate to the profile settings within your Systeme.io dashboard, and generate a new",
+    "elapsed_ms": 7938
   },
   {
     "id": "38",
     "app": "Pinterest",
-    "evidence_url": "https://developers.pinterest.com/docs/api/v5/",
+    "evidence_url": "https://developers.pinterest.com/docs/getting-started/set-up-authentication-and-authorization/",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authorization",
+        "authentication"
+      ]
+    },
     "surface_signals": {
       "rest": [
-        "rest",
-        "api reference",
-        "reference"
+        "rest"
       ]
     },
     "access_signals": {
       "self_serve": [
-        "sign up",
         "developer"
       ]
     },
-    "snippet": "Pinterest Developers Skip to content Developer Platform Docs API reference My apps Search docs & API Log in Sign up",
-    "elapsed_ms": 20813
+    "snippet": "Pinterest Developers",
+    "elapsed_ms": 10072
   },
   {
     "id": "39",
@@ -1581,7 +1700,7 @@
       ]
     },
     "snippet": "in the App Dashboard. ### [Reference](https://developers.facebook.com/documentation/threads/reference) The Threads API endpoints and their parameters. ### Guides Learn how to make posts, retrieve media, and troubleshoot issues. * [Single Thread Posts](https://developers.facebook.com/doc",
-    "elapsed_ms": 5100
+    "elapsed_ms": 3538
   },
   {
     "id": "40",
@@ -1595,14 +1714,17 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
         "api key",
         "secret key"
       ],
       "bearer_token": [
-        "bearer"
+        "bearer",
+        "authorization header"
       ],
       "signature": [
         "signature"
@@ -1612,7 +1734,8 @@
       "rest": [
         "rest api",
         "rest",
-        "api documentation"
+        "api documentation",
+        "reference"
       ],
       "webhook": [
         "webhook",
@@ -1637,7 +1760,7 @@
       ]
     },
     "snippet": "topbar Twilio SendGrid Docs SendGrid v3 API Documentation Getting Started How to use the SendGrid V3 API Authentication Authorization Errors On Behalf Of Rate Limits Requests Responses Mail Send Mail Send API Overview Mail Send Errors Cancel scheduled sends Cancel Schedule Sends API Overview",
-    "elapsed_ms": 11074
+    "elapsed_ms": 7953
   },
   {
     "id": "41",
@@ -1645,13 +1768,15 @@
     "evidence_url": "https://shopify.dev/docs/api",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Needs follow-up",
-    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {
       "rest": [
         "rest",
@@ -1685,8 +1810,8 @@
         "partner"
       ]
     },
-    "snippet": "ates App data and logic Graph QL Admin API Shopify Functions Shopify QL for analytics Events Webhooks Payments Apps API REST Admin API (legacy) Polaris Polaris references App Home (iframe) App Home (UI extension) Admin Checkout Customer accounts POS Using Polaris web components Store",
-    "elapsed_ms": 5419
+    "snippet": "tomer Privacy API Customer Account API Web MCP Tools App management Partner API App Events API Additional APIs Customer authentication Web pixel Shop API Shop Minis Shop Pay Wallet API Full index Shopify APIs, libraries, and tools Turn your idea into a working integration. Find everything you",
+    "elapsed_ms": 3821
   },
   {
     "id": "42",
@@ -1701,14 +1826,19 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
         "api key",
-        "secret key"
+        "secret key",
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
-        "pat"
+        "pat",
+        "authorization header"
       ],
       "basic": [
         "basic auth",
@@ -1748,7 +1878,7 @@
       ]
     },
     "snippet": "true // Force Basic Authentication as query string true and using under HTTPS } ) Authentication over HTTP You must use OAuth 1.0a \"one-legged\" authentication to ensure REST API credentials cannot be intercepted by an attacker. Typically you will use any standard OAuth 1.0a library in",
-    "elapsed_ms": 8321
+    "elapsed_ms": 4033
   },
   {
     "id": "43",
@@ -1763,13 +1893,23 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "credentials",
+        "credential",
+        "client secret",
+        "client id"
       ],
       "bearer_token": [
         "bearer",
         "access token",
         "pat",
-        "token"
+        "token",
+        "auth token",
+        "authorization header"
       ],
       "basic": [
         "basic auth",
@@ -1820,7 +1960,7 @@
       ]
     },
     "snippet": "talyst-compatible apps and integrations Beginning development Managing apps in Dev Portal Locating app IDs Implementing OAuth Handling callbacks Supporting multiple users Listening for events Designing the UI Creating install buttons Following best practices Approval requirements Publ",
-    "elapsed_ms": 10986
+    "elapsed_ms": 7999
   },
   {
     "id": "44",
@@ -1842,7 +1982,7 @@
       ]
     },
     "snippet": "Commerce Cloud | Salesforce Developer Center Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Re",
-    "elapsed_ms": 4271
+    "elapsed_ms": 4815
   },
   {
     "id": "45",
@@ -1857,7 +1997,13 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
         "bearer",
@@ -1885,7 +2031,7 @@
       ]
     },
     "snippet": "the Authorization request header on web API calls. Third-party application authentication Third-party applications use OAuth-based authentication to access the web APIs. The third-party Integration registers with Adobe Commerce. Merchants authorize extensions and applications to acce",
-    "elapsed_ms": 3278
+    "elapsed_ms": 1883
   },
   {
     "id": "46",
@@ -1924,7 +2070,7 @@
       ]
     },
     "snippet": "el. 05 Webhooks & automation Subscribe to order, inventory, content, and customer events with signed delivery. 06 AI compatibility Integrate our API docs directly into Claude or ChatGPT. What APIs and tools does the platform include? Get deep control with Commerce APIs, Reseller API",
-    "elapsed_ms": 1556
+    "elapsed_ms": 3359
   },
   {
     "id": "47",
@@ -1964,7 +2110,7 @@
       ]
     },
     "snippet": "Build with Ecwid apps | Ecwid Documentation \u2318 Ctrl k Ask Contact API support More Build apps Site Themes REST API Reference Storefronts (JS API) Webhook automations Discounts Guides Changelog AI Assistant Good morning I'm here to help you with the docs. What is this page a",
-    "elapsed_ms": 11212
+    "elapsed_ms": 5920
   },
   {
     "id": "48",
@@ -1982,7 +2128,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "API",
-    "elapsed_ms": 2175
+    "elapsed_ms": 3409
   },
   {
     "id": "49",
@@ -1997,6 +2143,11 @@
     "auth_signals": {
       "oauth": [
         "authorization"
+      ],
+      "api_key": [
+        "credentials",
+        "credential",
+        "client secret"
       ],
       "bearer_token": [
         "pat",
@@ -2040,7 +2191,7 @@
       ]
     },
     "snippet": "er Profile Step 4: Register a Sandbox Application Step 5: Make Your First Call to the SP-API Sandbox Step 6: Set up the Authorization Workflow Step 7: Register Your Production Application Step 8: Call the SP-API in Production Step 9: Test Your Application Step 10: List Your Application Onboar",
-    "elapsed_ms": 17922
+    "elapsed_ms": 6192
   },
   {
     "id": "50",
@@ -2077,29 +2228,59 @@
       ]
     },
     "snippet": "tructure instead of a blank page \u2014 then make it yours in seconds. From prompt to funnel AI that builds your funnel from patterns proven by top sellers. It pulls from what's converting right now and instantly builds pages that do the same for you. Their years of testing, skipped for",
-    "elapsed_ms": 5060
+    "elapsed_ms": 4009
   },
   {
     "id": "51",
     "app": "DataForSEO",
-    "evidence_url": "https://docs.dataforseo.com/v3/authentication/",
-    "http_status": 404,
-    "fetch_error": "HTTP 404",
-    "status": "blocked_or_missing",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
-    "notes": [
-      "HTTP 404"
-    ],
-    "auth_signals": {},
-    "surface_signals": {},
+    "evidence_url": "https://docs.dataforseo.com/v3/auth/",
+    "http_status": 200,
+    "fetch_error": null,
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "credentials",
+        "credential"
+      ],
+      "bearer_token": [
+        "token"
+      ],
+      "basic": [
+        "basic auth",
+        "basic authentication"
+      ]
+    },
+    "surface_signals": {
+      "rest": [
+        "rest api",
+        "rest"
+      ],
+      "webhook": [
+        "webhook"
+      ],
+      "cli": [
+        "cli"
+      ]
+    },
     "access_signals": {
       "self_serve": [
         "sign up"
+      ],
+      "review": [
+        "review",
+        "application"
       ]
     },
-    "snippet": "Page not found \u2013 DataForSEO API v.3 Search \u2318 K Ask AI Pricing Sign In Sign Up Menu Introduction Authentication SERP API Overview Screenshot AI Summary Google Overview Locations Languages Organic Overview Task POST Tasks Ready Task GET Ad",
-    "elapsed_ms": 4445
+    "snippet": "ead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-access DefaultRequestHeaders = { Authorization = new AuthenticationHeaderValue(\"Basic\", Convert.ToBase64String(Encoding.ASCII.GetBytes(\"login:password\"))) } }; // do something } } } Create a free account wi",
+    "elapsed_ms": 6218
   },
   {
     "id": "52",
@@ -2112,6 +2293,9 @@
     "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
+      "oauth": [
+        "authentication"
+      ],
       "api_key": [
         "api key"
       ],
@@ -2152,8 +2336,8 @@
         "enterprise"
       ]
     },
-    "snippet": "center What\u2019s new Case studies Pricing Platform plans API Plans API & MCP API MCP Our data API Pricing See product tour API Keyword Research API Backlinks API Domain Analysis API MCP SEO Skills for Claude Products SE Ranking Grow your visibility with AI SEO SE Visible Analyze AI visibil",
-    "elapsed_ms": 7738
+    "snippet": "limits Integrations Data Studio MCP n8n Make.com Usage guidelines for commercial purposes Data Overview Getting started Authentication Making requests Postman collection Unit costs Plans and pricing Quickstarts Find keyword opportunities Assess AI search visibility Retrieve URLs with SEO issue",
+    "elapsed_ms": 2387
   },
   {
     "id": "53",
@@ -2168,7 +2352,8 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication"
       ],
       "api_key": [
         "api key"
@@ -2197,7 +2382,7 @@
       ]
     },
     "snippet": "tion program. Built on API v3. Introduction Overview of the integration program How it works Architecture and data flow OAuth guide Implement OAuth 2.0 authorization How to apply Steps to join the program Introduction Overview of the integration program How it works Architecture and d",
-    "elapsed_ms": 5518
+    "elapsed_ms": 2142
   },
   {
     "id": "54",
@@ -2210,6 +2395,9 @@
     "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
+      "oauth": [
+        "authentication"
+      ],
       "bearer_token": [
         "pat",
         "token"
@@ -2244,8 +2432,8 @@
         "review"
       ]
     },
-    "snippet": "work. Proxy Overview Understand proxy types, global coverage, and how to get started. Authentication Configure username patterns, sessions, and country targeting. Code Examples Ready-to-use snippets for Python, Node.js, Go, PHP, Playwright, and more. Quickstart A step-by-step guide",
-    "elapsed_ms": 22113
+    "snippet": "explore features, and generate code without writing code. Token Plan Learn how tokens work and create an API token for authentication. Billing Understand subscription plans, token usage, and billing cycles. AI Agents Pick the agent that matches the page you're scraping, or chain several toget",
+    "elapsed_ms": 6366
   },
   {
     "id": "55",
@@ -2259,16 +2447,20 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
         "api key",
-        "apikey"
+        "apikey",
+        "credential"
       ],
       "bearer_token": [
         "bearer",
         "pat",
-        "token"
+        "token",
+        "authorization header"
       ],
       "signature": [
         "signature"
@@ -2299,7 +2491,7 @@
       ]
     },
     "snippet": "on the Integrations page in the Apify Console. To use your token in a request, either: Add the token to your request's Authorization header as Bearer <token> . E.g., Authorization: Bearer xxxxxxx . More info . (Recommended). Add it as the token parameter to your request URL. (Less secure). U",
-    "elapsed_ms": 3841
+    "elapsed_ms": 2274
   },
   {
     "id": "56",
@@ -2313,15 +2505,19 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication"
       ],
       "api_key": [
-        "api key"
+        "api key",
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
         "bearer",
         "pat",
-        "token"
+        "token",
+        "authorization header"
       ]
     },
     "surface_signals": {
@@ -2352,25 +2548,57 @@
       ]
     },
     "snippet": "tain the following base URL: https://api.firecrawl.dev \u200b Authentication For authentication, it\u2019s required to include an Authorization header. The header should contain Bearer fc-123456789 , where fc-123456789 represents your API Key. Authorization: Bearer fc-123456789 \u200b \u200b Response codes Firec",
-    "elapsed_ms": 7170
+    "elapsed_ms": 2382
   },
   {
     "id": "57",
     "app": "Bright Data",
-    "evidence_url": "https://docs.brightdata.com/api-reference/introduction",
-    "http_status": 404,
-    "fetch_error": "HTTP 404",
-    "status": "blocked_or_missing",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
-    "notes": [
-      "HTTP 404"
-    ],
-    "auth_signals": {},
-    "surface_signals": {},
-    "access_signals": {},
-    "snippet": "",
-    "elapsed_ms": 3282
+    "evidence_url": "https://docs.brightdata.com/api-reference/authentication",
+    "http_status": 200,
+    "fetch_error": null,
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "api key",
+        "credentials",
+        "credential"
+      ],
+      "bearer_token": [
+        "bearer",
+        "pat",
+        "token",
+        "authorization header"
+      ]
+    },
+    "surface_signals": {
+      "rest": [
+        "rest",
+        "endpoint",
+        "api reference",
+        "reference"
+      ],
+      "cli": [
+        "cli"
+      ]
+    },
+    "access_signals": {
+      "self_serve": [
+        "sign up"
+      ],
+      "review": [
+        "application"
+      ]
+    },
+    "snippet": "t? Here\u2019s an example request: Sample Request curl --request POST \\ --url https://api.brightdata.com/request \\ --header 'Authorization: Bearer <token>' \\ --header 'Content-Type: application/json' \\ --data '{ \"zone\": \"my_unlocker_zone\", \"url\": \"https://example.com/page\", \"format\": \"json\", \"meth",
+    "elapsed_ms": 3347
   },
   {
     "id": "58",
@@ -2406,7 +2634,7 @@
       ]
     },
     "snippet": "Platform AI CODE CREATION GitHub Copilot Write better code with AI GitHub Copilot app Direct agents from issue to merge MCP Registry Integrate external tools DEVELOPER WORKFLOWS Actions Automate any workflow Codespaces Instant dev environments Issues Plan and track work Code Review",
-    "elapsed_ms": 9325
+    "elapsed_ms": 2759
   },
   {
     "id": "59",
@@ -2441,7 +2669,7 @@
       ]
     },
     "snippet": "t Copy curl --location 'https://api.waterfall.io/v1/prospector' \\ --header 'Content-Type: application/json' \\ --header 'x-api-key: your_key' \\ --data '{ \"domain\": \"salesforce.com\", \"title_filters\": \"(chief executive officer) OR (chief marketing officer) OR (chief operating officer) OR (ch",
-    "elapsed_ms": 4029
+    "elapsed_ms": 1725
   },
   {
     "id": "60",
@@ -2478,7 +2706,7 @@
       ]
     },
     "snippet": "ructured data from any website, instantly and code-free. View docs topic View docs topic \u200b Transform Clean, format, and restructure data to fit your workflow perfectly. View docs topic View docs topic \u200b Enrich Add missing details using powerful enrichment sources and integrations. Vi",
-    "elapsed_ms": 10604
+    "elapsed_ms": 3138
   },
   {
     "id": "61",
@@ -2493,14 +2721,24 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "credentials",
+        "credential",
+        "client secret",
+        "client id"
       ],
       "bearer_token": [
         "bearer",
         "access token",
         "personal access token",
         "pat",
-        "token"
+        "token",
+        "auth token",
+        "authorization header"
       ],
       "basic": [
         "basic auth",
@@ -2543,7 +2781,7 @@
       ]
     },
     "snippet": "fications Starring Watching Agent tasks Agent tasks Agents Secrets Variables Apps GitHub Apps Installations Marketplace OAuth authorizations Webhooks Billing Budgets Billing usage Branches Branches Protected branches Campaigns Security campaigns Checks Check runs Check suites Classroo",
-    "elapsed_ms": 6364
+    "elapsed_ms": 3084
   },
   {
     "id": "62",
@@ -2557,14 +2795,19 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
-        "apikey"
+        "apikey",
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
         "pat",
-        "token"
+        "token",
+        "auth token"
       ]
     },
     "surface_signals": {
@@ -2595,7 +2838,7 @@
       ]
     },
     "snippet": "d) | Import Connect tokens | | **POST** | [`/v1/connect/authorize/{connector}`](/docs/rest-api/connect/create-a-connect-authorization-request.md) | Create a Connect authorization request | | **POST** | [`/v1/connect/install/{connector}`](/docs/rest-api/connect/create-a-connect-installation-re",
-    "elapsed_ms": 3221
+    "elapsed_ms": 1027
   },
   {
     "id": "63",
@@ -2611,14 +2854,21 @@
       "oauth": [
         "oauth",
         "oauth2",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "client secret"
       ],
       "bearer_token": [
         "bearer",
         "access token",
         "personal access token",
         "pat",
-        "token"
+        "token",
+        "auth token",
+        "authorization header"
       ]
     },
     "surface_signals": {
@@ -2649,7 +2899,7 @@
       ]
     },
     "snippet": "xample in curl: Terminal window curl -H \" User-Agent: MyApp (YOUR_NAME@EXAMPLE.COM) \" \\ -H \" Authorization: Bearer YOUR_OAUTH2_ACCESS_TOKEN \" \\ https://api.netlify.com/api/v1/sites Authentication Section titled \u201cAuthentication\u201d Netlify uses OAuth2 for authentication. All requests must",
-    "elapsed_ms": 15892
+    "elapsed_ms": 3659
   },
   {
     "id": "64",
@@ -2663,10 +2913,12 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "oauth"
+        "oauth",
+        "authentication"
       ],
       "api_key": [
-        "access key"
+        "access key",
+        "client secret"
       ],
       "bearer_token": [
         "access token",
@@ -2694,6 +2946,9 @@
       ]
     },
     "access_signals": {
+      "self_serve": [
+        "developer"
+      ],
       "review": [
         "review",
         "application",
@@ -2701,7 +2956,7 @@
       ]
     },
     "snippet": "connector Initialize new SSO connector Update SSO connector state Delete SSO connector Begin SSO connector verification OAuth Clients OAuth Clients List OAuth Clients OAuth Client Details Create OAuth Client Update OAuth Client Delete OAuth Client Rotate OAuth Client Secret Delete Rot",
-    "elapsed_ms": 9884
+    "elapsed_ms": 2125
   },
   {
     "id": "65",
@@ -2734,7 +2989,7 @@
       ]
     },
     "snippet": "ta API URL and Keys? You can find the API URL in the Integrations > Data API section of the Dashboard. You can find the API Keys in the Settings > API Keys section of the Dashboard. Features # Supabase provides a RESTful API using PostgREST , a thin API layer on top of Postgres. It expo",
-    "elapsed_ms": 6618
+    "elapsed_ms": 1333
   },
   {
     "id": "66",
@@ -2783,7 +3038,7 @@
       ]
     },
     "snippet": "ing Data Fundamentals Importing CSV Data Graph Data Modeling Data Scientist Courses Get started with Graph Data Science Path Finding Generative AI Courses Neo4j & Generative AI Fundamentals Vector Indexes & Unstructured Data Constructing Knowledge Graphs Building Agents in Neo4j Aur",
-    "elapsed_ms": 5605
+    "elapsed_ms": 1405
   },
   {
     "id": "67",
@@ -2798,13 +3053,17 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "bearer_token": [
         "bearer",
         "access token",
         "pat",
-        "token"
+        "token",
+        "auth token",
+        "authorization header"
       ],
       "jwt": [
         "jwt",
@@ -2834,26 +3093,71 @@
       ]
     },
     "snippet": "st must include authentication information. The next sections explain how to add this information to the request: Using OAuth Using key-pair authentication Using workload identity federation Using OAuth \u00b6 To use OAuth, follow these steps: Set up OAuth for authentication. See Introduct",
-    "elapsed_ms": 10703
+    "elapsed_ms": 2134
   },
   {
     "id": "68",
     "app": "MongoDB Atlas",
-    "evidence_url": "https://www.mongodb.com/docs/atlas/api/",
+    "evidence_url": "https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal",
-      "missing_surface_signal"
-    ],
-    "auth_signals": {},
-    "surface_signals": {},
-    "access_signals": {},
-    "snippet": "Atlas Programmatic Access - Atlas - MongoDB Docs",
-    "elapsed_ms": 24240
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "oauth",
+        "oauth2",
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "api key",
+        "credentials",
+        "credential",
+        "client id"
+      ],
+      "bearer_token": [
+        "bearer",
+        "access token",
+        "pat",
+        "token"
+      ]
+    },
+    "surface_signals": {
+      "rest": [
+        "rest api",
+        "rest",
+        "endpoint",
+        "endpoints",
+        "api documentation"
+      ],
+      "mcp": [
+        "mcp"
+      ],
+      "cli": [
+        "cli"
+      ]
+    },
+    "access_signals": {
+      "self_serve": [
+        "sign up",
+        "developer"
+      ],
+      "review": [
+        "review",
+        "application",
+        "verification"
+      ],
+      "gated": [
+        "partner",
+        "enterprise"
+      ]
+    },
+    "snippet": "s Administration API allows developers to manage all components in MongoDB Atlas. The Atlas Administration API supports OAuth2 Service Accounts and HTTP Digest-based API keys. Service accounts are the recommended authentication method and API keys are considered a legacy option. To au",
+    "elapsed_ms": 3167
   },
   {
     "id": "69",
@@ -2861,18 +3165,19 @@
     "evidence_url": "https://docs.datadoghq.com/api/latest/authentication/",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal",
-      "missing_surface_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {},
     "access_signals": {},
     "snippet": "\ufffd\b\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\ufffd\ufffdr\ufffd6\ufffd.\ufffd\ufffd\ufffd*0\ufffd\ufffd&v\ufffd)u\ufffd[\ufffd[\ufffde\ufffdN4#\u01ca$\ufffd3\ufffd[oq\ufffdI4\u001b\u0016I0\u0000\ufffd-%\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd{.m_\ufffd.\u0000$\ufffd\ufffdDw\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdX\u0012\ufffd,p=\ufffd\\X\u0000\u0016\ufffd\ufffd\ufffd%\u000e\u007f\ufffd\u0010\ufffd\ufffd\ufffd?{#\ufffd\u0005> \ufffd1 \ufffdOw\ufffd\ufffd Z\ufffd\ufffd\u0018FX\ufffdE\ufffd !\u001a@ \ufffd\u000f\ufffd]\u0018\ufffd] r\ufffd\ufffd.\ufffd\ufffd \ufffd ;\ufffdc\u0012\ufffd*4 \ufffdc \u03d1\ufffd\ufffd!A\ufffd\ufffdE\ufffd\u00140\ufffd\ufffd1\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u065b\u0019\ufffd\ufffd\ufffd\u001b\ufffdP q ?\ufffd\ufffd#\ufffd\ufffd\u0002\ufffd0y\u02283 \ufffd8\ufffd\ufffd\ufffd\ufffd]\ufffd\ufffd \ufffd|\ufffd\u04d8qH\ufffd \ufffd\u0004\ufffd\ufffd=\ufffd\u0005\ufffd\ufffd\ufffdy\ufffd\ufffd!\ufffd\ufffd\u0010\ufffdv\u0002 \ufffd|a\u007fq\ufffd+w O\ufffd\ufffd\ufffd\ufffd",
-    "elapsed_ms": 11041
+    "elapsed_ms": 1784
   },
   {
     "id": "70",
@@ -2890,15 +3195,22 @@
         "oauth2",
         "authorization code",
         "authorization",
+        "authentication",
+        "authenticate",
         "refresh token"
       ],
       "api_key": [
-        "api key"
+        "api key",
+        "credentials",
+        "credential",
+        "client id"
       ],
       "bearer_token": [
         "bearer",
         "access token",
-        "token"
+        "token",
+        "auth token",
+        "authorization header"
       ],
       "basic": [
         "basic auth"
@@ -2923,7 +3235,7 @@
       ]
     },
     "snippet": "s. The endpoints that require a user authentication token are specific to your user, such as Retrieve an Organization . OAuth2 For third-party applications that need to access Sentry on behalf of users, Sentry supports OAuth2 with the authorization code grant type. This allows users t",
-    "elapsed_ms": 6777
+    "elapsed_ms": 2152
   },
   {
     "id": "71",
@@ -2940,17 +3252,22 @@
         "oauth",
         "authorization code",
         "authorization",
+        "authentication",
+        "authenticate",
         "refresh token"
       ],
       "api_key": [
-        "api key"
+        "api key",
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
         "bearer",
         "access token",
         "personal access token",
         "pat",
-        "token"
+        "token",
+        "authorization header"
       ],
       "basic": [
         "basic auth",
@@ -2984,7 +3301,7 @@
       ]
     },
     "snippet": "tions use a static API token, personal access tokens use a user-scoped static API token, and public connections use the OAuth 2.0 protocol. \u200b Internal connection auth flow set-up To use an internal connection, start by creating your connection in the Developer portal . The internal co",
-    "elapsed_ms": 17009
+    "elapsed_ms": 4041
   },
   {
     "id": "72",
@@ -2992,17 +3309,23 @@
     "evidence_url": "https://airtable.com/developers/web/api/authentication",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {},
-    "access_signals": {},
+    "access_signals": {
+      "self_serve": [
+        "developer"
+      ]
+    },
     "snippet": "Airtable Web API",
-    "elapsed_ms": 19315
+    "elapsed_ms": 2042
   },
   {
     "id": "73",
@@ -3017,7 +3340,9 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "api_key": [
         "api key"
@@ -3049,27 +3374,56 @@
       ]
     },
     "snippet": "Pagination Filtering Rate limiting Deprecations Webhooks Attachments Managing Customers GraphQL Schema \u2197 Authentication OAuth 2.0 authentication OAuth actor authorization OAuth application manifests File storage authentication Agents Agent Interaction Guidelines (AIG) Getting Started",
-    "elapsed_ms": 13223
+    "elapsed_ms": 4037
   },
   {
     "id": "74",
     "app": "Jira",
-    "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/",
+    "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/security-for-connect-apps/",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal",
-      "missing_surface_signal",
-      "missing_access_signal"
-    ],
-    "auth_signals": {},
-    "surface_signals": {},
-    "access_signals": {},
-    "snippet": "",
-    "elapsed_ms": 13411
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "bearer_token": [
+        "pat",
+        "token",
+        "authorization header"
+      ],
+      "jwt": [
+        "jwt",
+        "json web token"
+      ]
+    },
+    "surface_signals": {
+      "rest": [
+        "rest api",
+        "rest",
+        "endpoint",
+        "endpoints",
+        "reference"
+      ],
+      "cli": [
+        "cli"
+      ]
+    },
+    "access_signals": {
+      "self_serve": [
+        "developer"
+      ],
+      "review": [
+        "application"
+      ]
+    },
+    "snippet": "or Node.js Express README Atlassian Connect for Spring Boot README Security basics Here's how to use authentication and authorization in your app: In the app descriptor , declare that the app uses JWT as the authentication mechanism. Implement an installation callback endpoint and add a refer",
+    "elapsed_ms": 1458
   },
   {
     "id": "75",
@@ -3084,7 +3438,13 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "credentials",
+        "credential"
       ],
       "bearer_token": [
         "access token",
@@ -3125,7 +3485,7 @@
       ]
     },
     "snippet": "es Get started API explorer Developer sandbox Quick start guide FAQ feature guides Authentication Personal access token OAuth OAuth Code Samples / Libraries OAuth scopes OpenID Connect API Input/output options Batch requests Custom fields Custom external data Dates and times Rich text",
-    "elapsed_ms": 7518
+    "elapsed_ms": 1592
   },
   {
     "id": "76",
@@ -3140,12 +3500,15 @@
     "auth_signals": {
       "oauth": [
         "oauth",
-        "authorization"
+        "authorization",
+        "authentication",
+        "authenticate"
       ],
       "bearer_token": [
         "access token",
         "pat",
-        "token"
+        "token",
+        "authorization header"
       ]
     },
     "surface_signals": {
@@ -3175,7 +3538,7 @@
       ]
     },
     "snippet": "atible MCP clients Integrate with the monday MCP server Authenticate with an API token Control MCP access with your own OAuth app Make your MCP integration publicly available Platform MCP tools Create Board (Platform MCP) Get Board Info (Platform MCP) Get Board Items (Platform MCP) Ge",
-    "elapsed_ms": 10440
+    "elapsed_ms": 1673
   },
   {
     "id": "77",
@@ -3215,7 +3578,7 @@
       ]
     },
     "snippet": "Public API specification. MCP Use ClickUp right from your AI assistant. Webhooks Trigger workflows from ClickUp events. OAuth Let people sign into their ClickUp account. Get started with the API Try the API Download the spec Get started with the MCP MCP setup instructions MCP tools Ge",
-    "elapsed_ms": 8228
+    "elapsed_ms": 1890
   },
   {
     "id": "78",
@@ -3235,28 +3598,69 @@
         "reference"
       ]
     },
-    "access_signals": {},
+    "access_signals": {
+      "self_serve": [
+        "developer"
+      ]
+    },
     "snippet": "Superhuman Docs API (v1) Reference Documentation",
-    "elapsed_ms": 22955
+    "elapsed_ms": 3442
   },
   {
     "id": "79",
     "app": "Smartsheet",
-    "evidence_url": "https://smartsheet.redoc.ly/",
+    "evidence_url": "https://developers.smartsheet.com/api/smartsheet/guides/basics/authentication",
     "http_status": 200,
-    "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal",
-      "missing_surface_signal"
-    ],
-    "auth_signals": {},
-    "surface_signals": {},
-    "access_signals": {},
-    "snippet": "\ufffd\b\u0000\u0000\u0000\u0000\u0000\u0000\u0003\ufffd=\ufffdv\u06f8\ufffd\ufffd\ufffd\u0015h\ufffd\ufffd\ufffd\ufffd\u0014wm\ufffd\ufffd8\ufffd\ufffd\ufffd#\u024e\ufffdt\ufffd\ufffd\ufffd\u0003\ufffd\u0010E\ufffd\"\u0019\u0012\ufffd$+\ufffd\ufffdy\ufffd\ufffd\ufffd/\ufffd\u0003\ufffd\ufffdH\ufffdt\ucfb9\ufffd2 \ufffd2 \u0014 \ufffd\ufffd\u0002PUXt\ufffd\ufffd\ufffd?\ufffdpu\u0001\u0016x\ufffd\ufffd~:c\u007f\u00008[ h\ufffd\u0007\u0000\ufffdV\bC`.`\u0018!\ufffd\ufffd\ufffdx\ufffd\ufffd@=\ufffd\ufffd\u000evQ\ufffdf\u0005C -\u0010\ufffd@\u0000\ufffd\ufffdc:\ufffd\u0005\ufffdWC\u0000= \ufffd ^\ufffd\ufffdo\ufffdW\ufffd\ufffd\u0010;\ufffdwVg\ufffd\u0018 \ufffd\ufffdnA\ufffd\ufffd.\u763e\u01c1E\ufffd\ufffd]\ufffd\ueb20\ufffd\ufffd\ufffd \u0791d\ufffd\ufffd\u0286\u0018x6\u0007\"\ufffd E]\ufffd\ufffdp\u0000\ufffd\u0002\ufffd\ufffd(p\ufffdd?\u0005\ufffd\ufffdlU%\ufffd\ufffd\ufffdT\"\ufffdY\u0010\ufffd\ufffd\ufffd\ufffd,0\ufffdC\u0000-\u0018`\ufffd\u000e\u0001 E\ufffd\ufffd\u0001A\ufffd2\u0303+\ufffd\ufffd\ufffd \ufffd \ufffd\u0010",
-    "elapsed_ms": 4066
+    "fetch_error": "TLS verification failed; fetched with unverified context",
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "oauth",
+        "authorization",
+        "authentication",
+        "authenticate"
+      ],
+      "api_key": [
+        "api key",
+        "client secret"
+      ],
+      "bearer_token": [
+        "bearer",
+        "access token",
+        "token",
+        "authorization header"
+      ]
+    },
+    "surface_signals": {
+      "rest": [
+        "rest",
+        "api reference",
+        "reference"
+      ],
+      "webhook": [
+        "webhook",
+        "webhooks"
+      ],
+      "mcp": [
+        "mcp"
+      ],
+      "cli": [
+        "cli"
+      ]
+    },
+    "access_signals": {
+      "self_serve": [
+        "developer"
+      ],
+      "review": [
+        "application"
+      ]
+    },
+    "snippet": "u want user consent and interaction? If your scenario involves user consent and interaction, it's typically best to use OAuth with Smartsheet. Note that the Smartsheet implementation of OAuth 2.0 is a 3-legged process, which requires human intervention. See OAuth Walkthrough for detai",
+    "elapsed_ms": 12445
   },
   {
     "id": "80",
@@ -3274,13 +3678,16 @@
         "oauth2",
         "authorization code",
         "authorization",
+        "authentication",
+        "authenticate",
         "refresh token"
       ],
       "bearer_token": [
         "bearer",
         "access token",
         "personal access token",
-        "token"
+        "token",
+        "authorization header"
       ],
       "basic": [
         "basic auth",
@@ -3305,7 +3712,7 @@
       ]
     },
     "snippet": "s Token which is tied directly to you and is the quickest way to start playing around with the API. Implementing a full OAuth2 Authentication flow which allows other people to use your Harvest integrations. Personal access tokens The API can be accessed by creating a Personal Access T",
-    "elapsed_ms": 2479
+    "elapsed_ms": 1583
   },
   {
     "id": "81",
@@ -3318,6 +3725,10 @@
     "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
+      "oauth": [
+        "authentication",
+        "authenticate"
+      ],
       "api_key": [
         "api key",
         "secret key"
@@ -3352,8 +3763,8 @@
         "contact sales"
       ]
     },
-    "snippet": "eference Docs Support Sign in \u2192 Authentication Ask about this section Copy for LLM View as Markdown The Stripe API uses API keys to authenticate requests. You can view and manage your API keys in the Stripe Dashboard . Test mode secret keys start with sk _ test _ and have unrestricted a",
-    "elapsed_ms": 19442
+    "snippet": "Authentication | Stripe API Reference Find anything / Ask AI Introduction Authentication Errors Expanding Responses Idempotent requests Include-dependent response values (API",
+    "elapsed_ms": 7567
   },
   {
     "id": "82",
@@ -3411,26 +3822,33 @@
       ]
     },
     "snippet": "ments Income Instant Onboarding Plaid Layer Fundamentals Items Accounts Institutions Sandbox Link Users Consent Network OAuth Partnerships Processor tokens Processor partners Reseller partners Docs Search or Ask a Question Markdown Plaid.com Log in Get API Keys Open nav Close search m",
-    "elapsed_ms": 3133
+    "elapsed_ms": 1799
   },
   {
     "id": "83",
     "app": "Binance",
-    "evidence_url": "https://developers.binance.com/docs/binance-spot-api-docs",
+    "evidence_url": "https://developers.binance.com/en/docs/products/spot/rest-api",
     "http_status": 202,
     "fetch_error": null,
     "status": "needs_human_review",
     "confidence": "Curated-docs reviewed",
     "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
     "notes": [
-      "missing_auth_signal",
-      "missing_surface_signal"
+      "missing_auth_signal"
     ],
     "auth_signals": {},
-    "surface_signals": {},
-    "access_signals": {},
+    "surface_signals": {
+      "rest": [
+        "rest"
+      ]
+    },
+    "access_signals": {
+      "self_serve": [
+        "developer"
+      ]
+    },
     "snippet": "",
-    "elapsed_ms": 7701
+    "elapsed_ms": 625
   },
   {
     "id": "84",
@@ -3444,7 +3862,8 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "authorization"
+        "authorization",
+        "authentication"
       ],
       "bearer_token": [
         "token"
@@ -3474,7 +3893,7 @@
       ]
     },
     "snippet": ".0 and Discover ProtectBuy 2.0 authentications. The result of these authentications can then be used during the payment authorization process providing conformance with card scheme rules and greater liability shift for the merchant. The NMI 3-D Secure Server (3DS2) makes use of the HTTP proto",
-    "elapsed_ms": 8725
+    "elapsed_ms": 1974
   },
   {
     "id": "85",
@@ -3494,7 +3913,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "iPayX Protocol \u2014 FINTRAC-registered FX forensic audit layer",
-    "elapsed_ms": 8947
+    "elapsed_ms": 5635
   },
   {
     "id": "86",
@@ -3502,13 +3921,16 @@
     "evidence_url": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authorization",
+        "authentication"
+      ]
+    },
     "surface_signals": {},
     "access_signals": {
       "self_serve": [
@@ -3516,7 +3938,7 @@
       ]
     },
     "snippet": "Intuit Developer",
-    "elapsed_ms": 12737
+    "elapsed_ms": 17966
   },
   {
     "id": "87",
@@ -3530,7 +3952,8 @@
     "notes": [],
     "auth_signals": {
       "oauth": [
-        "oauth"
+        "oauth",
+        "oauth2"
       ]
     },
     "surface_signals": {},
@@ -3540,32 +3963,35 @@
       ]
     },
     "snippet": "OAuth 2.0 \u2014 Xero Developer",
-    "elapsed_ms": 4493
+    "elapsed_ms": 3375
   },
   {
     "id": "88",
     "app": "Brex",
-    "evidence_url": "https://developer.brex.com/",
+    "evidence_url": "https://developer.brex.com/guides/authentication",
     "http_status": 200,
     "fetch_error": "TLS verification failed; fetched with unverified context",
-    "status": "needs_human_review",
-    "confidence": "Needs follow-up",
-    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
-    "surface_signals": {
-      "rest": [
-        "rest",
-        "api documentation"
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authorization",
+        "authentication"
       ],
+      "bearer_token": [
+        "bearer",
+        "token"
+      ]
+    },
+    "surface_signals": {
       "webhook": [
         "webhook",
         "webhooks"
       ],
-      "mcp": [
-        "mcp"
+      "cli": [
+        "cli"
       ]
     },
     "access_signals": {
@@ -3574,25 +4000,31 @@
         "quickstart"
       ],
       "review": [
-        "review"
+        "review",
+        "application"
+      ],
+      "gated": [
+        "partner"
       ]
     },
-    "snippet": "all in one place. Using the Brex API, you can power your internal tools and create custom workflows. Brex APIs use the REST architecture, are defined using the OpenAPI specification and use standard HTTP response codes and verbs. All APIs accept and return JSON and require HTTPS. Ex",
-    "elapsed_ms": 9347
+    "snippet": "ur API call headers To pass your user token to Brex APIs, add it as a header to your API calls in the following format: Authorization: \"Bearer {{your user_token here}}\" If, for example, your user token value is bxt_jBWQLZXtu1f4sVT6UjaWPp7Gh9nVGjzEZgRX , your header will be: Authorization: \"Be",
+    "elapsed_ms": 7688
   },
   {
     "id": "89",
     "app": "Ramp",
-    "evidence_url": "https://docs.ramp.com/developer-api/v1/overview/introduction",
+    "evidence_url": "https://docs.ramp.com/developer-api/v1/authorization/scopes",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Needs follow-up",
-    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authorization"
+      ]
+    },
     "surface_signals": {
       "rest": [
         "api reference",
@@ -3606,7 +4038,7 @@
       ]
     },
     "snippet": "fetch: /llms.txt (LLM index), /llms-guides.txt (guides index), /llms-guides/<slug>.txt (specific guide), /llms-api.txt (API reference), /llms-full.txt (combined docs), or /openapi/developer-api.json (OpenAPI spec). If you run into any issues while helping developers with the Ramp API document",
-    "elapsed_ms": 4376
+    "elapsed_ms": 750
   },
   {
     "id": "90",
@@ -3624,7 +4056,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Just a moment...",
-    "elapsed_ms": 2868
+    "elapsed_ms": 467
   },
   {
     "id": "91",
@@ -3644,7 +4076,7 @@
       ]
     },
     "snippet": "Google AI Studio vs. Gemini Enterprise Agent Platform vs. Gemini Enterprise app | Google Cloud",
-    "elapsed_ms": 2477
+    "elapsed_ms": 3292
   },
   {
     "id": "92",
@@ -3662,7 +4094,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Just a moment...",
-    "elapsed_ms": 6015
+    "elapsed_ms": 4166
   },
   {
     "id": "93",
@@ -3694,7 +4126,7 @@
       ]
     },
     "snippet": "decisions are visible, follow-through is consistent, and nothing gets lost between meetings. Search conversations, spot patterns, and keep work moving without the manual work. See our pricing Automatic notes, summaries, and updates reduce follow-ups and admin across the team. Turn c",
-    "elapsed_ms": 9787
+    "elapsed_ms": 6092
   },
   {
     "id": "94",
@@ -3712,25 +4144,42 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Just a moment...",
-    "elapsed_ms": 2272
+    "elapsed_ms": 2308
   },
   {
     "id": "95",
     "app": "Reducto",
-    "evidence_url": "https://docs.reducto.ai/",
+    "evidence_url": "https://docs.reducto.ai/agent-guide",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Needs follow-up",
-    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authorization",
+        "authentication"
+      ],
+      "api_key": [
+        "api key",
+        "apikey"
+      ],
+      "bearer_token": [
+        "bearer",
+        "pat",
+        "token"
+      ],
+      "signature": [
+        "signature"
+      ]
+    },
     "surface_signals": {
       "rest": [
+        "rest api",
         "rest",
         "endpoint",
+        "endpoints",
         "api reference",
         "reference"
       ],
@@ -3748,14 +4197,18 @@
     "access_signals": {
       "self_serve": [
         "developer",
+        "create app",
         "quickstart"
+      ],
+      "review": [
+        "application"
       ],
       "gated": [
         "enterprise"
       ]
     },
-    "snippet": "nts. \u200b How to use Reducto API & SDKs For developers building automated pipelines. Available in Python, Node.js, Go, and REST. Studio For visual pipeline building. Configure, test, and deploy document workflows in your browser. Agent-ready tooling: Reducto integrates directly into AI",
-    "elapsed_ms": 6881
+    "snippet": "s (PDFs, images, spreadsheets, DOCX, and 30+ other formats) via a REST API. Base URL: https://platform.reducto.ai Auth: Authorization: Bearer $REDUCTO_API_KEY SDKs: Python ( pip install reductoai ), Node.js ( npm install reductoai ), Go ( go get github.com/reductoai/reducto-go-sdk ) Input: Up",
+    "elapsed_ms": 4454
   },
   {
     "id": "96",
@@ -3763,13 +4216,15 @@
     "evidence_url": "https://docs.devin.ai/",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Human-reviewed",
-    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {
       "rest": [
         "reference"
@@ -3796,8 +4251,8 @@
         "enterprise"
       ]
     },
-    "snippet": "ernal tools, and more! See what\u2019s new with Devin in our release notes ! In some cases Devin may not function exactly as referenced, or documentation may be out of date. \u200b Already Signed Up? Get Started Now: Browse use cases \u200b What are Devin\u2019s strengths? Here are the types of tasks where D",
-    "elapsed_ms": 5670
+    "snippet": "t Guides Knowledge Skills Plugin marketplace Set up your plugin ecosystem Session Insights Secrets & Site Cookies Cloud Authentication with OIDC Creating Playbooks Using Playbooks Automations Auto-triage Scheduled Sessions Deployments Autofix Settings - Bot Comments Invite your Team Integratio",
+    "elapsed_ms": 5229
   },
   {
     "id": "97",
@@ -3810,6 +4265,9 @@
     "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
+      "oauth": [
+        "authenticate"
+      ],
       "api_key": [
         "api key"
       ],
@@ -3837,8 +4295,8 @@
         "enterprise"
       ]
     },
-    "snippet": "g Soul training, and more. You can generate from text prompts, reference images, or a combination of both. Do I need an API key? No. Add the Higgsfield MCP server URL in your agent's settings and authenticate through your Higgsfield account. No API keys to manage or configure. How does",
-    "elapsed_ms": 3198
+    "snippet": "iggsfield for me so I can generate images and videos from here. 1. Install the CLI: run `npm i -g @higgsfield/cli` . 2. Authenticate: run `higgsfield auth login` and complete the sign-in in the browser it opens. 3. Install the companion skills: run `npx skills add higgsfield-ai/skills` . Onc",
+    "elapsed_ms": 4505
   },
   {
     "id": "98",
@@ -3882,7 +4340,7 @@
       ]
     },
     "snippet": "i:8.8.0 The container looks for input files in /data . So for example, if you have a diagram defined on your system in /path/to/diagrams/diagram.mmd , you can use the container to generate an SVG file as follows: docker run --rm -u ` id -u ` : ` id -g ` -v /path/to/diagrams:/data mi",
-    "elapsed_ms": 6037
+    "elapsed_ms": 3209
   },
   {
     "id": "99",
@@ -3890,13 +4348,15 @@
     "evidence_url": "https://www.transcriptapi.com/docs",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Curated-docs reviewed",
-    "confidence_reason": "Official docs were identified and curated; second-pass extraction did not confirm every field automatically.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {
       "rest": [
         "endpoint",
@@ -3918,8 +4378,8 @@
         "application"
       ]
     },
-    "snippet": "e Quick Access Section titled \u201cQuick Access\u201d API Reference Complete guide to transcripts, search, channel, and playlist endpoints with authentication, parameters, and examples. View API Reference \u2192 MCP Integration Use TranscriptAPI with Model Context Protocol for seamless integration wit",
-    "elapsed_ms": 8901
+    "snippet": "Section titled \u201cQuick Access\u201d API Reference Complete guide to transcripts, search, channel, and playlist endpoints with authentication, parameters, and examples. View API Reference \u2192 MCP Integration Use TranscriptAPI with Model Context Protocol for seamless integration with AI tools. View MCP",
+    "elapsed_ms": 4290
   },
   {
     "id": "100",
@@ -3927,13 +4387,15 @@
     "evidence_url": "https://grain.com/",
     "http_status": 200,
     "fetch_error": null,
-    "status": "needs_human_review",
-    "confidence": "Needs follow-up",
-    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
-    "notes": [
-      "missing_auth_signal"
-    ],
-    "auth_signals": {},
+    "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
+    "notes": [],
+    "auth_signals": {
+      "oauth": [
+        "authentication"
+      ]
+    },
     "surface_signals": {
       "mcp": [
         "mcp"
@@ -3954,7 +4416,7 @@
         "paid plan"
       ]
     },
-    "snippet": "any AI tool One-click AI export Bulk download enriched Markdown transcripts or open them directly in Claude or ChatGPT. MCP Server & API Let your AI agents query transcripts, search across meetings, and access your full meeting history. Ask anything inside Grain Ask questions across",
-    "elapsed_ms": 3278
+    "snippet": "s annual penetration testing by third-party firms (Prescient Security) and maintains an A+ Qualys/SSL Labs rating. User authentication uses Google, Microsoft, or SSO, with SAML for enterprise clients coming soon. For more details, see https://grain.com/security . Do I need permission to record",
+    "elapsed_ms": 1702
   }
 ]
