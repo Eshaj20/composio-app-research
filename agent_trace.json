@@ -1,0 +1,211 @@
+{
+  "source": "data\\apps.tsv",
+  "output": "site\\index.html",
+  "rows": 100,
+  "stats": {
+    "auth": {
+      "OAuth present": 68,
+      "Key/token": 26,
+      "Unclear/other": 3,
+      "Basic": 1,
+      "No remote auth": 2
+    },
+    "access": {
+      "Self-serve": 79,
+      "Gated": 21
+    },
+    "verdict": {
+      "Buildable": 78,
+      "Partially buildable": 17,
+      "Not yet": 5
+    },
+    "category_verdicts": {
+      "CRM and Sales": {
+        "Buildable": 9,
+        "Partially buildable": 1
+      },
+      "Support and Helpdesk": {
+        "Buildable": 8,
+        "Partially buildable": 2
+      },
+      "Communications and Messaging": {
+        "Buildable": 9,
+        "Not yet": 1
+      },
+      "Marketing, Ads, Email and Social": {
+        "Buildable": 9,
+        "Partially buildable": 1
+      },
+      "Ecommerce": {
+        "Buildable": 7,
+        "Partially buildable": 2,
+        "Not yet": 1
+      },
+      "Data, SEO and Scraping": {
+        "Buildable": 7,
+        "Partially buildable": 3
+      },
+      "Developer, Infra and Data platforms": {
+        "Buildable": 10
+      },
+      "Productivity and Project Management": {
+        "Buildable": 10
+      },
+      "Finance and Fintech": {
+        "Buildable": 5,
+        "Not yet": 1,
+        "Partially buildable": 4
+      },
+      "AI, Research and Media-native": {
+        "Not yet": 2,
+        "Partially buildable": 4,
+        "Buildable": 4
+      }
+    },
+    "category_access": {
+      "CRM and Sales": {
+        "Self-serve": 8,
+        "Gated": 2
+      },
+      "Support and Helpdesk": {
+        "Self-serve": 8,
+        "Gated": 2
+      },
+      "Communications and Messaging": {
+        "Self-serve": 9,
+        "Gated": 1
+      },
+      "Marketing, Ads, Email and Social": {
+        "Self-serve": 9,
+        "Gated": 1
+      },
+      "Ecommerce": {
+        "Self-serve": 8,
+        "Gated": 2
+      },
+      "Data, SEO and Scraping": {
+        "Self-serve": 8,
+        "Gated": 2
+      },
+      "Developer, Infra and Data platforms": {
+        "Self-serve": 10
+      },
+      "Productivity and Project Management": {
+        "Self-serve": 10
+      },
+      "Finance and Fintech": {
+        "Self-serve": 5,
+        "Gated": 5
+      },
+      "AI, Research and Media-native": {
+        "Gated": 6,
+        "Self-serve": 4
+      }
+    },
+    "top_blockers": [
+      [
+        "Admin scopes and object model complexity",
+        1
+      ],
+      [
+        "Marketplace OAuth review for public distribution",
+        1
+      ],
+      [
+        "OAuth app review and per-account permissions",
+        1
+      ],
+      [
+        "Schema mapping needed per workspace",
+        1
+      ],
+      [
+        "Open-source deployments vary by version",
+        1
+      ],
+      [
+        "Legacy OAuth patterns and app-specific permissions",
+        1
+      ],
+      [
+        "Regional domains and scope granularity",
+        1
+      ],
+      [
+        "Commercial account required beyond trial",
+        1
+      ],
+      [
+        "API access depends on paid plan/admin",
+        1
+      ],
+      [
+        "Customer credentials and tenant access",
+        1
+      ],
+      [
+        "Tenant subdomains and admin scopes",
+        1
+      ],
+      [
+        "App review for public apps",
+        1
+      ]
+    ]
+  },
+  "verification_sample": {
+    "Salesforce": {
+      "result": "Pass",
+      "check": "Docs expose multiple APIs and OAuth patterns; dev org path is self-serve."
+    },
+    "HubSpot": {
+      "result": "Pass",
+      "check": "Auth docs state OAuth for public apps and private app access tokens for single-account use."
+    },
+    "Google Ads": {
+      "result": "Pass",
+      "check": "Developer token is required; test access is self-serve while production levels are reviewed."
+    },
+    "Amazon Selling Partner": {
+      "result": "Pass",
+      "check": "Sandbox path exists, but production public apps require developer registration, roles, and review."
+    },
+    "Pumble": {
+      "result": "Corrected",
+      "check": "First pass treated webhooks as an API. Verification downgraded it to not-yet buildable."
+    },
+    "fanbasis": {
+      "result": "Pass",
+      "check": "No stable public developer docs were found; kept as outreach/not-yet instead of guessing."
+    },
+    "GitHub": {
+      "result": "Pass",
+      "check": "REST and GraphQL APIs plus GitHub App/PAT/OAuth auth are well documented."
+    },
+    "Snowflake": {
+      "result": "Corrected",
+      "check": "Added SQL API auth nuance: key-pair JWT, OAuth, username/password, and PAT patterns."
+    },
+    "Notion": {
+      "result": "Pass",
+      "check": "Internal tokens and OAuth are documented; page sharing remains the main agent blocker."
+    },
+    "Stripe": {
+      "result": "Pass",
+      "check": "API keys and Connect OAuth are documented; live activation/compliance is the limiter."
+    },
+    "NotebookLM": {
+      "result": "Corrected",
+      "check": "First pass overfit Gemini docs. Verification changed verdict to no standalone public API."
+    },
+    "Devin": {
+      "result": "Pass",
+      "check": "Docs expose API/MCP integration path, with account/action-safety as the limiter."
+    }
+  },
+  "known_limits": [
+    "No paid credentials were used.",
+    "Official docs were preferred; gated products are marked as partial or not-yet.",
+    "MCP presence is a discovery signal, not a guarantee of production readiness."
+  ]
+}

@@ -1,0 +1,2891 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Composio Toolkit Research: 100 App Buildability Map</title>
+  <style>
+    :root {
+      --ink:#171717; --muted:#5f6368; --line:#d9dee7; --panel:#f8fafc; --paper:#fffdf8;
+      --ok:#217a4b; --mid:#b66a00; --bad:#a43a3a; --accent:#285f8f; --teal:#14756f;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif; color:var(--ink); background:var(--paper); }
+    header { padding:42px 5vw 28px; border-bottom:1px solid var(--line); background:#f4f7fb; }
+    h1 { margin:0; max-width:980px; font-size:clamp(2rem, 4vw, 4.3rem); line-height:1; letter-spacing:0; }
+    h2 { margin:0 0 14px; font-size:1.4rem; }
+    h3 { margin:0 0 8px; font-size:1rem; }
+    p { color:var(--muted); line-height:1.45; }
+    a { color:var(--accent); }
+    main { padding:28px 5vw 64px; }
+    section { margin:0 auto 34px; max-width:1320px; }
+    .lede { max-width:900px; font-size:1.12rem; }
+    .grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; }
+    .metric, .category-card, .verify, .workflow-step { background:white; border:1px solid var(--line); border-radius:8px; padding:16px; }
+    .metric strong { display:block; font-size:2rem; }
+    .metric span { color:var(--muted); }
+    .insights { display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
+    .insights ul { margin:0; padding-left:20px; line-height:1.5; }
+    .matrix { display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:10px; }
+    .bar { display:flex; height:10px; overflow:hidden; border-radius:999px; background:#edf1f5; margin:10px 0; }
+    .bar span.ok { background:var(--ok); }
+    .bar span.mid { background:var(--mid); }
+    .bar span.bad { background:var(--bad); }
+    .workflow { display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:10px; }
+    .workflow-step b { display:inline-grid; place-items:center; width:26px; height:26px; border-radius:999px; background:#dff0eb; color:#07594e; margin-bottom:8px; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:12px 0; }
+    input, select { border:1px solid var(--line); border-radius:6px; padding:9px 10px; background:white; min-height:40px; }
+    input { min-width:260px; flex:1; }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:8px; background:white; }
+    table { width:100%; border-collapse:collapse; min-width:1180px; }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; font-size:.9rem; }
+    th { position:sticky; top:0; background:#eef3f7; z-index:1; }
+    td span { display:block; color:var(--muted); margin-top:4px; font-size:.82rem; }
+    .pill { display:inline-block; padding:4px 8px; border-radius:999px; font-size:.78rem; font-weight:700; background:#eef1f5; color:#31363c; }
+    .pill.buildable, .pill.pass { background:#dff2e7; color:var(--ok); }
+    .pill.partially-buildable, .pill.corrected { background:#fff0d8; color:var(--mid); }
+    .pill.not-yet { background:#fde5e5; color:var(--bad); }
+    .verify-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; }
+    .data-note { font-family:ui-monospace, SFMono-Regular, Consolas, monospace; font-size:.8rem; background:#111827; color:#e5e7eb; padding:14px; border-radius:8px; overflow:auto; max-height:240px; }
+    footer { max-width:1320px; margin:0 auto; padding:0 5vw 48px; color:var(--muted); }
+    @media (max-width: 960px) {
+      .grid, .insights, .matrix, .workflow, .verify-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      header, main { padding-left:18px; padding-right:18px; }
+      .grid, .insights, .matrix, .workflow, .verify-grid { grid-template-columns:1fr; }
+      input { min-width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>100 app toolkit research map for Composio</h1>
+    <p class="lede">An agent-assisted pass across requested apps to find auth patterns, API access gates, MCP/toolkit readiness, blockers, and the best near-term build queue.</p>
+  </header>
+  <main>
+    <section class="grid" aria-label="headline metrics">
+      <div class="metric"><strong>78</strong><span>apps buildable today (78%)</span></div>
+      <div class="metric"><strong>17</strong><span>partial or gated (17%)</span></div>
+      <div class="metric"><strong>5</strong><span>not yet buildable (5%)</span></div>
+      <div class="metric"><strong>68</strong><span>have OAuth somewhere in the auth model</span></div>
+    </section>
+
+    <section class="insights">
+      <div>
+        <h2>What matters</h2>
+        <ul>
+          <li><strong>OAuth dominates distribution, but tokens dominate first-party use.</strong> CRM, support, productivity, ads, and commerce often need OAuth for multi-tenant installs; infra, data, email, and scraping tools commonly start with API keys.</li>
+          <li><strong>The easiest wins are already agent-shaped.</strong> Developer platforms, productivity tools, support desks, and ecommerce platforms have broad public APIs, clear docs, and existing MCP/community precedent.</li>
+          <li><strong>The hardest blockers are not technical endpoints.</strong> Ads, fintech, Amazon SP-API, and enterprise commerce are mostly blocked by review, compliance, tenant admin approval, or paid data licenses.</li>
+          <li><strong>Not-yet apps are mostly missing a public developer surface.</strong> Pumble, fanbasis, Paygent Connect, NotebookLM, and Consensus should go to outreach or partner-discovery before engineering starts.</li>
+        </ul>
+      </div>
+      <div class="metric">
+        <strong>79</strong>
+        <span>apps had a practical self-serve or trial path for a developer to start research without a partnership.</span>
+        <p>Self-serve did not always mean production-ready. Google Ads, Plaid, Amazon SP-API, Meta/LinkedIn Ads, and finance platforms still need review before broad customer use.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Category buildability matrix</h2>
+      <div class="matrix">
+            <article class="category-card">
+              <h3>CRM and Sales</h3>
+              <div class="bar" aria-label="CRM and Sales verdict split">
+                <span style="width:90%" class="ok"></span>
+                <span style="width:10%" class="mid"></span>
+                <span style="width:0%" class="bad"></span>
+              </div>
+              <p>9/10 buildable, 1/10 partial, 0/10 not yet</p>
+            </article>
+            
+            <article class="category-card">
+              <h3>Support and Helpdesk</h3>
+              <div class="bar" aria-label="Support and Helpdesk verdict split">
+                <span style="width:80%" class="ok"></span>
+                <span style="width:20%" class="mid"></span>
+                <span style="width:0%" class="bad"></span>
+              </div>
+              <p>8/10 buildable, 2/10 partial, 0/10 not yet</p>
+            </article>
+            
+            <article class="category-card">
+              <h3>Communications and Messaging</h3>
+              <div class="bar" aria-label="Communications and Messaging verdict split">
+                <span style="width:90%" class="ok"></span>
+                <span style="width:0%" class="mid"></span>
+                <span style="width:10%" class="bad"></span>
+              </div>
+              <p>9/10 buildable, 0/10 partial, 1/10 not yet</p>
+            </article>
+            
+            <article class="category-card">
+              <h3>Marketing, Ads, Email and Social</h3>
+              <div class="bar" aria-label="Marketing, Ads, Email and Social verdict split">
+                <span style="width:90%" class="ok"></span>
+                <span style="width:10%" class="mid"></span>
+                <span style="width:0%" class="bad"></span>
+              </div>
+              <p>9/10 buildable, 1/10 partial, 0/10 not yet</p>
+            </article>
+            
+            <article class="category-card">
+              <h3>Ecommerce</h3>
+              <div class="bar" aria-label="Ecommerce verdict split">
+                <span style="width:70%" class="ok"></span>
+                <span style="width:20%" class="mid"></span>
+                <span style="width:10%" class="bad"></span>
+              </div>
+              <p>7/10 buildable, 2/10 partial, 1/10 not yet</p>
+            </article>
+            
+            <article class="category-card">
+              <h3>Data, SEO and Scraping</h3>
+              <div class="bar" aria-label="Data, SEO and Scraping verdict split">
+                <span style="width:70%" class="ok"></span>
+                <span style="width:30%" class="mid"></span>
+                <span style="width:0%" class="bad"></span>
+              </div>
+              <p>7/10 buildable, 3/10 partial, 0/10 not yet</p>
+            </article>
+            
+            <article class="category-card">
+              <h3>Developer, Infra and Data platforms</h3>
+              <div class="bar" aria-label="Developer, Infra and Data platforms verdict split">
+                <span style="width:100%" class="ok"></span>
+                <span style="width:0%" class="mid"></span>
+                <span style="width:0%" class="bad"></span>
+              </div>
+              <p>10/10 buildable, 0/10 partial, 0/10 not yet</p>
+            </article>
+            
+            <article class="category-card">
+              <h3>Productivity and Project Management</h3>
+              <div class="bar" aria-label="Productivity and Project Management verdict split">
+                <span style="width:100%" class="ok"></span>
+                <span style="width:0%" class="mid"></span>
+                <span style="width:0%" class="bad"></span>
+              </div>
+              <p>10/10 buildable, 0/10 partial, 0/10 not yet</p>
+            </article>
+            
+            <article class="category-card">
+              <h3>Finance and Fintech</h3>
+              <div class="bar" aria-label="Finance and Fintech verdict split">
+                <span style="width:50%" class="ok"></span>
+                <span style="width:40%" class="mid"></span>
+                <span style="width:10%" class="bad"></span>
+              </div>
+              <p>5/10 buildable, 4/10 partial, 1/10 not yet</p>
+            </article>
+            
+            <article class="category-card">
+              <h3>AI, Research and Media-native</h3>
+              <div class="bar" aria-label="AI, Research and Media-native verdict split">
+                <span style="width:40%" class="ok"></span>
+                <span style="width:40%" class="mid"></span>
+                <span style="width:20%" class="bad"></span>
+              </div>
+              <p>4/10 buildable, 4/10 partial, 2/10 not yet</p>
+            </article>
+            </div>
+    </section>
+
+    <section>
+      <h2>Agent workflow</h2>
+      <div class="workflow">
+        <article class="workflow-step"><b>1</b><h3>Seed</h3><p>Started from the 100-app list, official domains, and developer-doc hints.</p></article>
+        <article class="workflow-step"><b>2</b><h3>Collect</h3><p>For each app, the script stores one evidence URL and normalizes category, auth, access, API surface, MCP, verdict, and blocker fields.</p></article>
+        <article class="workflow-step"><b>3</b><h3>Classify</h3><p>Rules bucket OAuth/key/basic auth, self-serve versus gated access, and final buildability.</p></article>
+        <article class="workflow-step"><b>4</b><h3>Verify</h3><p>A 12-app hand sample cross-checks easy, gated, ambiguous, and no-public-API cases against docs.</p></article>
+        <article class="workflow-step"><b>5</b><h3>Package</h3><p>The agent emits this HTML and a JSON trace for review or reruns.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Verification sample</h2>
+      <p>Initial pass accuracy on this sample was 9/12. After verification corrections for Pumble, Snowflake, and NotebookLM, the reported sample is 12/12 against the checked evidence. This is the key human loop: ambiguous APIs are downgraded, not guessed.</p>
+      <div class="verify-grid">
+            <article class="verify pass">
+              <h3>Salesforce</h3>
+              <span class="pill pass">Pass</span>
+              <p>Docs expose multiple APIs and OAuth patterns; dev org path is self-serve.</p>
+            </article>
+            
+            <article class="verify pass">
+              <h3>HubSpot</h3>
+              <span class="pill pass">Pass</span>
+              <p>Auth docs state OAuth for public apps and private app access tokens for single-account use.</p>
+            </article>
+            
+            <article class="verify pass">
+              <h3>Google Ads</h3>
+              <span class="pill pass">Pass</span>
+              <p>Developer token is required; test access is self-serve while production levels are reviewed.</p>
+            </article>
+            
+            <article class="verify pass">
+              <h3>Amazon Selling Partner</h3>
+              <span class="pill pass">Pass</span>
+              <p>Sandbox path exists, but production public apps require developer registration, roles, and review.</p>
+            </article>
+            
+            <article class="verify corrected">
+              <h3>Pumble</h3>
+              <span class="pill corrected">Corrected</span>
+              <p>First pass treated webhooks as an API. Verification downgraded it to not-yet buildable.</p>
+            </article>
+            
+            <article class="verify pass">
+              <h3>fanbasis</h3>
+              <span class="pill pass">Pass</span>
+              <p>No stable public developer docs were found; kept as outreach/not-yet instead of guessing.</p>
+            </article>
+            
+            <article class="verify pass">
+              <h3>GitHub</h3>
+              <span class="pill pass">Pass</span>
+              <p>REST and GraphQL APIs plus GitHub App/PAT/OAuth auth are well documented.</p>
+            </article>
+            
+            <article class="verify corrected">
+              <h3>Snowflake</h3>
+              <span class="pill corrected">Corrected</span>
+              <p>Added SQL API auth nuance: key-pair JWT, OAuth, username/password, and PAT patterns.</p>
+            </article>
+            
+            <article class="verify pass">
+              <h3>Notion</h3>
+              <span class="pill pass">Pass</span>
+              <p>Internal tokens and OAuth are documented; page sharing remains the main agent blocker.</p>
+            </article>
+            
+            <article class="verify pass">
+              <h3>Stripe</h3>
+              <span class="pill pass">Pass</span>
+              <p>API keys and Connect OAuth are documented; live activation/compliance is the limiter.</p>
+            </article>
+            
+            <article class="verify corrected">
+              <h3>NotebookLM</h3>
+              <span class="pill corrected">Corrected</span>
+              <p>First pass overfit Gemini docs. Verification changed verdict to no standalone public API.</p>
+            </article>
+            
+            <article class="verify pass">
+              <h3>Devin</h3>
+              <span class="pill pass">Pass</span>
+              <p>Docs expose API/MCP integration path, with account/action-safety as the limiter.</p>
+            </article>
+            </div>
+    </section>
+
+    <section>
+      <h2>Clean table</h2>
+      <div class="toolbar">
+        <input id="q" placeholder="Search app, auth, blocker, or category" aria-label="Search table">
+        <select id="verdict" aria-label="Filter verdict">
+          <option value="">All verdicts</option>
+          <option>Buildable</option>
+          <option>Partially buildable</option>
+          <option>Not yet</option>
+        </select>
+        <select id="category" aria-label="Filter category">
+          <option value="">All categories</option>
+          <option>AI, Research and Media-native</option><option>CRM and Sales</option><option>Communications and Messaging</option><option>Data, SEO and Scraping</option><option>Developer, Infra and Data platforms</option><option>Ecommerce</option><option>Finance and Fintech</option><option>Marketing, Ads, Email and Social</option><option>Productivity and Project Management</option><option>Support and Helpdesk</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table id="apps">
+          <thead>
+            <tr><th>#</th><th>App</th><th>What it does</th><th>Auth</th><th>Access</th><th>API surface / MCP</th><th>Verdict / blocker</th><th>Proof</th></tr>
+          </thead>
+          <tbody>
+            <tr data-category="CRM and Sales" data-verdict="Buildable">
+              <td>1</td>
+              <td><strong>Salesforce</strong><span>CRM and Sales</span></td>
+              <td>Enterprise CRM with sales, service, and platform objects.</td>
+              <td>OAuth2; JWT bearer; username-password legacy</td>
+              <td>Self-serve dev org, production needs org/admin setup</td>
+              <td>Broad REST, Bulk, Streaming, Metadata, GraphQL APIs<span>Community and ecosystem MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Admin scopes and object model complexity</span></td>
+              <td><a href="https://developer.salesforce.com/docs/apis" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="CRM and Sales" data-verdict="Buildable">
+              <td>2</td>
+              <td><strong>HubSpot</strong><span>CRM and Sales</span></td>
+              <td>CRM and marketing platform for contacts, companies, deals, and engagement data.</td>
+              <td>OAuth2; private app bearer token</td>
+              <td>Self-serve free developer account and private apps</td>
+              <td>Broad REST APIs across CRM, marketing, files, conversations<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Marketplace OAuth review for public distribution</span></td>
+              <td><a href="https://developers.hubspot.com/docs/apps/legacy-apps/authentication/intro-to-auth" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="CRM and Sales" data-verdict="Buildable">
+              <td>3</td>
+              <td><strong>Pipedrive</strong><span>CRM and Sales</span></td>
+              <td>Sales CRM for deals, activities, people, and pipelines.</td>
+              <td>OAuth2; API token</td>
+              <td>Self-serve trial and developer app flow</td>
+              <td>Broad REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>OAuth app review and per-account permissions</span></td>
+              <td><a href="https://developers.pipedrive.com/docs/api/v1" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="CRM and Sales" data-verdict="Buildable">
+              <td>4</td>
+              <td><strong>Attio</strong><span>CRM and Sales</span></td>
+              <td>Modern CRM/workspace for flexible records and relationship data.</td>
+              <td>OAuth2; API key</td>
+              <td>Self-serve developer docs and workspace tokens</td>
+              <td>Broad REST API with objects, records, lists, notes<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Schema mapping needed per workspace</span></td>
+              <td><a href="https://docs.attio.com/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="CRM and Sales" data-verdict="Buildable">
+              <td>5</td>
+              <td><strong>Twenty</strong><span>CRM and Sales</span></td>
+              <td>Open-source CRM with configurable companies, people, and opportunities.</td>
+              <td>API key; bearer token</td>
+              <td>Self-serve open source and cloud</td>
+              <td>REST and GraphQL surfaces<span>Community potential</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Open-source deployments vary by version</span></td>
+              <td><a href="https://twenty.com/developers" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="CRM and Sales" data-verdict="Buildable">
+              <td>6</td>
+              <td><strong>Podio</strong><span>CRM and Sales</span></td>
+              <td>Citrix work management/CRM-style app platform.</td>
+              <td>OAuth2; app auth; password grant legacy</td>
+              <td>Self-serve account, app tokens available</td>
+              <td>Broad REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Legacy OAuth patterns and app-specific permissions</span></td>
+              <td><a href="https://developers.podio.com/doc" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="CRM and Sales" data-verdict="Buildable">
+              <td>7</td>
+              <td><strong>Zoho CRM</strong><span>CRM and Sales</span></td>
+              <td>CRM for leads, contacts, deals, campaigns, and workflows.</td>
+              <td>OAuth2</td>
+              <td>Self-serve developer console, org scopes/admin needed</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Regional domains and scope granularity</span></td>
+              <td><a href="https://www.zoho.com/crm/developer/docs/api/v8/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="CRM and Sales" data-verdict="Buildable">
+              <td>8</td>
+              <td><strong>Close</strong><span>CRM and Sales</span></td>
+              <td>Sales CRM focused on calls, email, leads, and opportunities.</td>
+              <td>API key; OAuth2</td>
+              <td>Self-serve API keys in account</td>
+              <td>Broad REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Commercial account required beyond trial</span></td>
+              <td><a href="https://developer.close.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="CRM and Sales" data-verdict="Buildable">
+              <td>9</td>
+              <td><strong>Copper</strong><span>CRM and Sales</span></td>
+              <td>Google Workspace-native CRM for contacts, leads, and opportunities.</td>
+              <td>API key; OAuth2</td>
+              <td>Gated by account/admin for API keys</td>
+              <td>REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>API access depends on paid plan/admin</span></td>
+              <td><a href="https://developer.copper.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="CRM and Sales" data-verdict="Partially buildable">
+              <td>10</td>
+              <td><strong>DealCloud</strong><span>CRM and Sales</span></td>
+              <td>Deal management CRM for financial services.</td>
+              <td>OAuth2; bearer token</td>
+              <td>Gated/customer access</td>
+              <td>REST API documented<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Customer credentials and tenant access</span></td>
+              <td><a href="https://api.docs.dealcloud.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+              <td>11</td>
+              <td><strong>Zendesk</strong><span>Support and Helpdesk</span></td>
+              <td>Support platform for tickets, users, help center, chat, and messaging.</td>
+              <td>OAuth2; API token; basic plus token</td>
+              <td>Self-serve trial, admin setup</td>
+              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Tenant subdomains and admin scopes</span></td>
+              <td><a href="https://developer.zendesk.com/api-reference/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+              <td>12</td>
+              <td><strong>Intercom</strong><span>Support and Helpdesk</span></td>
+              <td>Customer messaging and support platform.</td>
+              <td>OAuth2; access token</td>
+              <td>Self-serve developer workspace</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>App review for public apps</span></td>
+              <td><a href="https://developers.intercom.com/docs/references/rest-api/api.intercom.io" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+              <td>13</td>
+              <td><strong>Freshdesk</strong><span>Support and Helpdesk</span></td>
+              <td>Helpdesk ticketing, contacts, companies, and knowledge base.</td>
+              <td>API key; OAuth2</td>
+              <td>Self-serve trial and API key</td>
+              <td>Broad REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Plan limits and product-specific APIs</span></td>
+              <td><a href="https://developers.freshdesk.com/api/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+              <td>14</td>
+              <td><strong>Front</strong><span>Support and Helpdesk</span></td>
+              <td>Shared inbox and customer operations platform.</td>
+              <td>OAuth2; API token</td>
+              <td>Self-serve developer portal</td>
+              <td>Broad REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Workspace permissions and rate limits</span></td>
+              <td><a href="https://dev.frontapp.com/reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Partially buildable">
+              <td>15</td>
+              <td><strong>Pylon</strong><span>Support and Helpdesk</span></td>
+              <td>B2B support platform for Slack/Teams/email customer channels.</td>
+              <td>API key; OAuth indications</td>
+              <td>Gated/customer workspace likely</td>
+              <td>REST API docs<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Access appears customer/workspace gated</span></td>
+              <td><a href="https://docs.usepylon.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+              <td>16</td>
+              <td><strong>LiveAgent</strong><span>Support and Helpdesk</span></td>
+              <td>Helpdesk/live chat software for tickets, chats, calls, and customers.</td>
+              <td>API key</td>
+              <td>Self-serve trial</td>
+              <td>Broad REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Older docs and account-specific endpoints</span></td>
+              <td><a href="https://support.liveagent.com/970353-API" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+              <td>17</td>
+              <td><strong>Plain</strong><span>Support and Helpdesk</span></td>
+              <td>API-first customer support platform.</td>
+              <td>API key; OAuth for customer portal patterns</td>
+              <td>Self-serve developer docs, workspace needed</td>
+              <td>GraphQL API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>GraphQL schema and support workflow design</span></td>
+              <td><a href="https://www.plain.com/docs/api-reference/graphql" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+              <td>18</td>
+              <td><strong>Help Scout</strong><span>Support and Helpdesk</span></td>
+              <td>Helpdesk mailbox, docs, customers, and conversations.</td>
+              <td>OAuth2</td>
+              <td>Self-serve app registration</td>
+              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>OAuth scopes and mailbox permissions</span></td>
+              <td><a href="https://developer.helpscout.com/mailbox-api/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+              <td>19</td>
+              <td><strong>Gorgias</strong><span>Support and Helpdesk</span></td>
+              <td>Ecommerce helpdesk for tickets, customers, and orders.</td>
+              <td>Basic auth; API key/token</td>
+              <td>Self-serve for customers, plan dependent</td>
+              <td>REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Plan/admin access and ecommerce context</span></td>
+              <td><a href="https://developers.gorgias.com/reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Support and Helpdesk" data-verdict="Partially buildable">
+              <td>20</td>
+              <td><strong>Gladly</strong><span>Support and Helpdesk</span></td>
+              <td>Customer service platform for conversations and people profiles.</td>
+              <td>OAuth2; API token</td>
+              <td>Gated/customer access</td>
+              <td>REST API<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Enterprise sales/admin access</span></td>
+              <td><a href="https://developer.gladly.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+              <td>21</td>
+              <td><strong>Slack</strong><span>Communications and Messaging</span></td>
+              <td>Team messaging platform with channels, users, files, and workflow APIs.</td>
+              <td>OAuth2; bot/user tokens</td>
+              <td>Self-serve app creation, workspace install</td>
+              <td>Broad Web API, Events, Socket Mode<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Workspace admin approval for installs/scopes</span></td>
+              <td><a href="https://api.slack.com/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+              <td>22</td>
+              <td><strong>Twilio</strong><span>Communications and Messaging</span></td>
+              <td>Communications APIs for SMS, voice, WhatsApp, email, and verification.</td>
+              <td>API key/secret; account SID auth; OAuth beta areas</td>
+              <td>Self-serve trial</td>
+              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Phone number compliance and paid usage</span></td>
+              <td><a href="https://www.twilio.com/docs/iam/api-keys" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+              <td>23</td>
+              <td><strong>Zoho Cliq</strong><span>Communications and Messaging</span></td>
+              <td>Team chat and collaboration platform.</td>
+              <td>OAuth2; bot/webhook tokens</td>
+              <td>Self-serve Zoho developer console</td>
+              <td>REST APIs, bots, webhooks<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Zoho regional OAuth and org permissions</span></td>
+              <td><a href="https://www.zoho.com/cliq/help/restapi/v2/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+              <td>24</td>
+              <td><strong>Lark (Larksuite)</strong><span>Communications and Messaging</span></td>
+              <td>Collaboration suite with messaging, docs, calendar, and approval APIs.</td>
+              <td>OAuth2; app access tokens</td>
+              <td>Self-serve app console, org approval for installs</td>
+              <td>Broad Open Platform APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Region/product naming and tenant approval</span></td>
+              <td><a href="https://open.larksuite.com/document/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Not yet">
+              <td>25</td>
+              <td><strong>Pumble</strong><span>Communications and Messaging</span></td>
+              <td>Team chat app from CAKE.com.</td>
+              <td>Webhooks; limited public API unclear</td>
+              <td>Gated/limited</td>
+              <td>Incoming webhooks, public API not clearly broad<span>Public MCP not found</span></td>
+              <td><span class="pill not-yet">Not yet</span><span>No broad documented public API found</span></td>
+              <td><a href="https://pumble.com/help/integrations/webhooks/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+              <td>26</td>
+              <td><strong>Discord</strong><span>Communications and Messaging</span></td>
+              <td>Community chat, voice, and bot platform.</td>
+              <td>OAuth2; bot token</td>
+              <td>Self-serve developer portal</td>
+              <td>Broad REST/Gateway APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Gateway/event handling and bot permissions</span></td>
+              <td><a href="https://discord.com/developers/docs/intro" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+              <td>27</td>
+              <td><strong>Telegram</strong><span>Communications and Messaging</span></td>
+              <td>Messaging platform with bot and client APIs.</td>
+              <td>Bot token; MTProto auth</td>
+              <td>Self-serve BotFather</td>
+              <td>Broad Bot API and MTProto<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Bot API limits versus full user-client API</span></td>
+              <td><a href="https://core.telegram.org/bots/api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+              <td>28</td>
+              <td><strong>WhatsApp Business</strong><span>Communications and Messaging</span></td>
+              <td>Meta WhatsApp messaging for business conversations.</td>
+              <td>OAuth2; system user tokens</td>
+              <td>Self-serve Cloud API, business verification for scale</td>
+              <td>Graph API endpoints for messaging and templates<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Business verification, templates, phone compliance</span></td>
+              <td><a href="https://developers.facebook.com/docs/whatsapp/cloud-api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+              <td>29</td>
+              <td><strong>Aircall</strong><span>Communications and Messaging</span></td>
+              <td>Cloud phone system for calls, numbers, users, and analytics.</td>
+              <td>OAuth2; API ID/token</td>
+              <td>Self-serve docs, customer account needed</td>
+              <td>REST API and webhooks<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Commercial phone account and call compliance</span></td>
+              <td><a href="https://developer.aircall.io/api-references/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+              <td>30</td>
+              <td><strong>Vonage</strong><span>Communications and Messaging</span></td>
+              <td>Communications APIs for SMS, voice, verify, video, and number insights.</td>
+              <td>API key/secret; JWT; OAuth in some products</td>
+              <td>Self-serve developer account</td>
+              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Product-specific auth differences</span></td>
+              <td><a href="https://developer.vonage.com/en/getting-started/concepts/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+              <td>31</td>
+              <td><strong>Google Ads</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>Google advertising platform for campaign management and reporting.</td>
+              <td>OAuth2 plus developer token</td>
+              <td>Self-serve test token; production access reviewed</td>
+              <td>Broad Google Ads API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Developer token access level and policy review</span></td>
+              <td><a href="https://developers.google.com/google-ads/api/docs/api-policy/developer-token" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+              <td>32</td>
+              <td><strong>Meta Ads</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>Meta marketing APIs for ads, audiences, campaigns, and insights.</td>
+              <td>OAuth2; system user tokens</td>
+              <td>Self-serve app, advanced access reviewed</td>
+              <td>Broad Graph/Marketing API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>App review and business verification for advanced scopes</span></td>
+              <td><a href="https://developers.facebook.com/docs/marketing-apis/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Partially buildable">
+              <td>33</td>
+              <td><strong>LinkedIn Ads</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>LinkedIn marketing APIs for ad accounts, campaigns, creatives, and analytics.</td>
+              <td>OAuth2</td>
+              <td>Partner/developer access gated</td>
+              <td>Broad REST APIs<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Marketing API access review/partner gating</span></td>
+              <td><a href="https://learn.microsoft.com/en-us/linkedin/marketing/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+              <td>34</td>
+              <td><strong>GoHighLevel</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>Agency CRM/marketing automation platform.</td>
+              <td>OAuth2; API key/private integration tokens</td>
+              <td>Self-serve for accounts, marketplace approval for distribution</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Agency/location model and marketplace review</span></td>
+              <td><a href="https://highlevel.stoplight.io/docs/integrations/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+              <td>35</td>
+              <td><strong>Mailchimp</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>Email marketing and audience automation platform.</td>
+              <td>OAuth2; API key</td>
+              <td>Self-serve account and developer apps</td>
+              <td>Broad REST Marketing API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Account plan limits and data-center specific base URLs</span></td>
+              <td><a href="https://mailchimp.com/developer/marketing/docs/fundamentals/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+              <td>36</td>
+              <td><strong>Klaviyo</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>Marketing automation for ecommerce email/SMS and profiles/events.</td>
+              <td>API key; OAuth2</td>
+              <td>Self-serve developer account and private keys</td>
+              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>API revision headers and scope planning</span></td>
+              <td><a href="https://developers.klaviyo.com/en/docs/authenticate_" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+              <td>37</td>
+              <td><strong>systeme.io</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>Funnel, email marketing, course, and automation builder.</td>
+              <td>API key</td>
+              <td>Self-serve for account holders</td>
+              <td>REST API appears moderate<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Public docs less mature than major vendors</span></td>
+              <td><a href="https://developer.systeme.io/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+              <td>38</td>
+              <td><strong>Pinterest</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>Pinterest content and ads platform.</td>
+              <td>OAuth2</td>
+              <td>Self-serve developer app, access reviewed for some scopes</td>
+              <td>REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>App review for protected endpoints</span></td>
+              <td><a href="https://developers.pinterest.com/docs/api/v5/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+              <td>39</td>
+              <td><strong>Threads (Meta)</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>Meta social publishing and insights API for Threads.</td>
+              <td>OAuth2</td>
+              <td>Self-serve app, Meta review for advanced use</td>
+              <td>Graph-based Threads API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>App review and feature maturity</span></td>
+              <td><a href="https://developers.facebook.com/docs/threads/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+              <td>40</td>
+              <td><strong>SendGrid</strong><span>Marketing, Ads, Email and Social</span></td>
+              <td>Transactional and marketing email API.</td>
+              <td>API key</td>
+              <td>Self-serve trial/account</td>
+              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Email sender verification and compliance</span></td>
+              <td><a href="https://docs.sendgrid.com/api-reference/how-to-use-the-sendgrid-v3-api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Buildable">
+              <td>41</td>
+              <td><strong>Shopify</strong><span>Ecommerce</span></td>
+              <td>Commerce platform for stores, products, orders, customers, and admin workflows.</td>
+              <td>OAuth2; access tokens</td>
+              <td>Self-serve partner/dev store</td>
+              <td>Broad REST and GraphQL Admin APIs<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>App review for public apps and protected data</span></td>
+              <td><a href="https://shopify.dev/docs/api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Buildable">
+              <td>42</td>
+              <td><strong>WooCommerce</strong><span>Ecommerce</span></td>
+              <td>WordPress ecommerce plugin for stores and orders.</td>
+              <td>Consumer key/secret; Basic/OAuth1</td>
+              <td>Self-serve if site owner/admin</td>
+              <td>REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Site-specific auth and plugin/version variance</span></td>
+              <td><a href="https://woocommerce.github.io/woocommerce-rest-api-docs/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Buildable">
+              <td>43</td>
+              <td><strong>BigCommerce</strong><span>Ecommerce</span></td>
+              <td>SaaS ecommerce platform for catalogs, carts, orders, and storefronts.</td>
+              <td>OAuth2; access tokens</td>
+              <td>Self-serve sandbox/trial</td>
+              <td>Broad REST and GraphQL APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>App marketplace review for distribution</span></td>
+              <td><a href="https://developer.bigcommerce.com/docs/start/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Partially buildable">
+              <td>44</td>
+              <td><strong>Salesforce Commerce Cloud</strong><span>Ecommerce</span></td>
+              <td>Enterprise commerce platform for storefront/order/customer APIs.</td>
+              <td>OAuth2; SLAS/client credentials</td>
+              <td>Gated/customer access</td>
+              <td>Broad Commerce APIs<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Enterprise tenant and Salesforce access setup</span></td>
+              <td><a href="https://developer.salesforce.com/docs/commerce" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Buildable">
+              <td>45</td>
+              <td><strong>Magento (Adobe Commerce)</strong><span>Ecommerce</span></td>
+              <td>Adobe ecommerce platform for catalogs, carts, orders, and customers.</td>
+              <td>OAuth1/integration tokens; bearer tokens</td>
+              <td>Self-serve open source, Adobe Commerce paid</td>
+              <td>REST and GraphQL APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Deployment-specific modules and admin setup</span></td>
+              <td><a href="https://developer.adobe.com/commerce/webapi/get-started/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Buildable">
+              <td>46</td>
+              <td><strong>Squarespace</strong><span>Ecommerce</span></td>
+              <td>Website/ecommerce platform for orders, products, inventory, and profiles.</td>
+              <td>OAuth2; API key</td>
+              <td>Self-serve developer platform, commerce plan needs account</td>
+              <td>REST APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Endpoint coverage narrower than Shopify</span></td>
+              <td><a href="https://developers.squarespace.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Buildable">
+              <td>47</td>
+              <td><strong>Ecwid</strong><span>Ecommerce</span></td>
+              <td>Lightweight ecommerce store platform.</td>
+              <td>OAuth2; secret token</td>
+              <td>Self-serve developer app</td>
+              <td>Broad REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Store-specific app install flow</span></td>
+              <td><a href="https://api-docs.ecwid.com/reference/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Buildable">
+              <td>48</td>
+              <td><strong>Gumroad</strong><span>Ecommerce</span></td>
+              <td>Creator commerce platform for products, sales, and subscribers.</td>
+              <td>OAuth2</td>
+              <td>Self-serve app registration</td>
+              <td>REST API moderate<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>API surface smaller and product-specific</span></td>
+              <td><a href="https://gumroad.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Partially buildable">
+              <td>49</td>
+              <td><strong>Amazon Selling Partner</strong><span>Ecommerce</span></td>
+              <td>Seller/vendor commerce APIs for listings, orders, reports, and fulfillment.</td>
+              <td>Login with Amazon OAuth; AWS SigV4</td>
+              <td>Sandbox self-serve; production gated/reviewed</td>
+              <td>Broad SP-API<span>Community MCPs</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Seller/vendor role approval and security review</span></td>
+              <td><a href="https://developer-docs.amazon.com/sp-api/docs" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Ecommerce" data-verdict="Not yet">
+              <td>50</td>
+              <td><strong>fanbasis</strong><span>Ecommerce</span></td>
+              <td>Creator monetization and fan engagement marketplace.</td>
+              <td>No clear public auth docs found</td>
+              <td>Gated/unknown</td>
+              <td>No broad public API found<span>Public MCP not found</span></td>
+              <td><span class="pill not-yet">Not yet</span><span>No documented public developer surface found</span></td>
+              <td><a href="https://www.fanbasis.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+              <td>51</td>
+              <td><strong>DataForSEO</strong><span>Data, SEO and Scraping</span></td>
+              <td>SEO and SERP data APIs for rankings, keywords, backlinks, and ads.</td>
+              <td>Basic auth</td>
+              <td>Self-serve paid/trial API account</td>
+              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Usage is paid and quota-driven</span></td>
+              <td><a href="https://docs.dataforseo.com/v3/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+              <td>52</td>
+              <td><strong>SE Ranking</strong><span>Data, SEO and Scraping</span></td>
+              <td>SEO platform for rankings, keywords, audits, and backlinks.</td>
+              <td>API key</td>
+              <td>Self-serve paid plan/trial</td>
+              <td>REST API moderate<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>API availability depends on plan</span></td>
+              <td><a href="https://seranking.com/api.html" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Partially buildable">
+              <td>53</td>
+              <td><strong>Ahrefs</strong><span>Data, SEO and Scraping</span></td>
+              <td>SEO data platform for backlinks, keywords, and site explorer.</td>
+              <td>API token</td>
+              <td>Gated/paid enterprise-ish API</td>
+              <td>REST API broad for SEO data<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Paid API subscription and limits</span></td>
+              <td><a href="https://ahrefs.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+              <td>54</td>
+              <td><strong>MrScraper</strong><span>Data, SEO and Scraping</span></td>
+              <td>Web scraping API/service.</td>
+              <td>API key</td>
+              <td>Self-serve account</td>
+              <td>REST API moderate<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Anti-abuse and extraction reliability</span></td>
+              <td><a href="https://docs.mrscraper.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+              <td>55</td>
+              <td><strong>Apify</strong><span>Data, SEO and Scraping</span></td>
+              <td>Cloud platform for actors, scraping, and browser automation.</td>
+              <td>API token</td>
+              <td>Self-serve free tier</td>
+              <td>Broad REST API and SDKs<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Actor-specific input/output schemas</span></td>
+              <td><a href="https://docs.apify.com/api/v2" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+              <td>56</td>
+              <td><strong>Firecrawl</strong><span>Data, SEO and Scraping</span></td>
+              <td>Web crawling/scraping API for LLM-ready extraction.</td>
+              <td>API key</td>
+              <td>Self-serve free/paid API</td>
+              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Extraction quality varies by site</span></td>
+              <td><a href="https://docs.firecrawl.dev/api-reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+              <td>57</td>
+              <td><strong>Bright Data</strong><span>Data, SEO and Scraping</span></td>
+              <td>Proxy, scraping, and web data platform.</td>
+              <td>API key; bearer token</td>
+              <td>Self-serve account, some products compliance reviewed</td>
+              <td>Broad REST APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>KYC/compliance for proxy and scraping use</span></td>
+              <td><a href="https://docs.brightdata.com/api-reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+              <td>58</td>
+              <td><strong>Sherlock</strong><span>Data, SEO and Scraping</span></td>
+              <td>Open-source OSINT tool for checking usernames across sites.</td>
+              <td>No hosted auth; CLI</td>
+              <td>GitHub self-serve</td>
+              <td>CLI/library, not SaaS API<span>Community MCP potential</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Toolkit wraps CLI rather than remote app API</span></td>
+              <td><a href="https://github.com/sherlock-project/sherlock" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Partially buildable">
+              <td>59</td>
+              <td><strong>Waterfall.io</strong><span>Data, SEO and Scraping</span></td>
+              <td>Contact/company intelligence and enrichment platform.</td>
+              <td>API key likely</td>
+              <td>Gated/contact sales</td>
+              <td>API docs not broadly public<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Access/docs appear sales-gated</span></td>
+              <td><a href="https://www.waterfall.io/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Data, SEO and Scraping" data-verdict="Partially buildable">
+              <td>60</td>
+              <td><strong>Clay</strong><span>Data, SEO and Scraping</span></td>
+              <td>Data enrichment and outbound workflow platform.</td>
+              <td>API key; webhooks</td>
+              <td>Self-serve product, API details account-gated</td>
+              <td>HTTP API/webhooks narrower<span>Community MCPs</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>API docs and keys tied to account/plan</span></td>
+              <td><a href="https://docs.clay.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>61</td>
+              <td><strong>GitHub</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Developer platform for repos, issues, pull requests, actions, and users.</td>
+              <td>OAuth2; GitHub App tokens; PATs</td>
+              <td>Self-serve developer apps</td>
+              <td>Broad REST and GraphQL APIs<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Installation permissions and org approval</span></td>
+              <td><a href="https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>62</td>
+              <td><strong>Vercel</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Frontend cloud platform for deployments, projects, domains, and teams.</td>
+              <td>OAuth2; bearer tokens</td>
+              <td>Self-serve account/team</td>
+              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Team scopes and deployment side effects</span></td>
+              <td><a href="https://vercel.com/docs/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>63</td>
+              <td><strong>Netlify</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Web hosting platform for sites, deploys, forms, and functions.</td>
+              <td>OAuth2; personal access token</td>
+              <td>Self-serve account</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Site/team permission modeling</span></td>
+              <td><a href="https://docs.netlify.com/api/get-started/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>64</td>
+              <td><strong>Cloudflare</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Internet infrastructure for DNS, CDN, Workers, security, and storage.</td>
+              <td>API token; API key</td>
+              <td>Self-serve account</td>
+              <td>Broad REST APIs<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Dangerous write scopes need careful guardrails</span></td>
+              <td><a href="https://developers.cloudflare.com/api/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>65</td>
+              <td><strong>Supabase</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Postgres backend platform with auth, storage, edge functions, and database APIs.</td>
+              <td>API keys; JWT; Postgres auth</td>
+              <td>Self-serve free tier</td>
+              <td>Broad platform APIs and direct Postgres<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Project-level secrets and database safety</span></td>
+              <td><a href="https://supabase.com/docs/guides/api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>66</td>
+              <td><strong>Neo4j</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Graph database platform and Aura cloud service.</td>
+              <td>Basic auth; bearer tokens; API keys for Aura</td>
+              <td>Self-serve Aura trial and local</td>
+              <td>REST admin APIs plus Bolt/GraphQL options<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Database query safety and schema discovery</span></td>
+              <td><a href="https://neo4j.com/docs/http-api/current/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>67</td>
+              <td><strong>Snowflake</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Cloud data warehouse and data platform.</td>
+              <td>Key-pair JWT; OAuth; username/password; PATs</td>
+              <td>Self-serve trial, enterprise admin for prod</td>
+              <td>SQL API, REST APIs, drivers<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Account/admin network policies and warehouse cost</span></td>
+              <td><a href="https://docs.snowflake.com/en/developer-guide/sql-api/authenticating" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>68</td>
+              <td><strong>MongoDB Atlas</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Managed MongoDB platform for clusters, projects, users, and data APIs.</td>
+              <td>API keys; OAuth/service accounts</td>
+              <td>Self-serve free tier</td>
+              <td>Broad Admin API and Data API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Project-level permissions and data safety</span></td>
+              <td><a href="https://www.mongodb.com/docs/atlas/api/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>69</td>
+              <td><strong>Datadog</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Observability platform for metrics, logs, traces, monitors, and incidents.</td>
+              <td>API key plus application key</td>
+              <td>Self-serve trial/account</td>
+              <td>Broad REST APIs<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Write actions can affect alerts/incidents</span></td>
+              <td><a href="https://docs.datadoghq.com/api/latest/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+              <td>70</td>
+              <td><strong>Sentry</strong><span>Developer, Infra and Data platforms</span></td>
+              <td>Error monitoring and performance platform.</td>
+              <td>Auth token; OAuth2</td>
+              <td>Self-serve account</td>
+              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Org/project scopes and issue mutation safety</span></td>
+              <td><a href="https://docs.sentry.io/api/auth/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>71</td>
+              <td><strong>Notion</strong><span>Productivity and Project Management</span></td>
+              <td>Workspace docs, databases, pages, users, and comments.</td>
+              <td>OAuth2; internal integration token</td>
+              <td>Self-serve integrations</td>
+              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Per-page sharing required for internal integrations</span></td>
+              <td><a href="https://developers.notion.com/docs/authorization" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>72</td>
+              <td><strong>Airtable</strong><span>Productivity and Project Management</span></td>
+              <td>Database/spreadsheet collaboration platform.</td>
+              <td>OAuth2; personal access tokens</td>
+              <td>Self-serve developer hub</td>
+              <td>Broad Web API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Base-level permissions and schema variance</span></td>
+              <td><a href="https://airtable.com/developers/web/api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>73</td>
+              <td><strong>Linear</strong><span>Productivity and Project Management</span></td>
+              <td>Issue tracking and product planning tool.</td>
+              <td>OAuth2; API key</td>
+              <td>Self-serve developer settings</td>
+              <td>Broad GraphQL API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>GraphQL schema and workspace permissions</span></td>
+              <td><a href="https://developers.linear.app/docs/graphql/working-with-the-graphql-api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>74</td>
+              <td><strong>Jira</strong><span>Productivity and Project Management</span></td>
+              <td>Atlassian issue/project management platform.</td>
+              <td>OAuth2; API token; Forge app auth</td>
+              <td>Self-serve dev, org/admin approval often needed</td>
+              <td>Broad REST APIs<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Cloud/server differences and admin app approval</span></td>
+              <td><a href="https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>75</td>
+              <td><strong>Asana</strong><span>Productivity and Project Management</span></td>
+              <td>Work management for tasks, projects, teams, goals, and portfolios.</td>
+              <td>OAuth2; personal access token</td>
+              <td>Self-serve developer app</td>
+              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Workspace permissions and app approval</span></td>
+              <td><a href="https://developers.asana.com/docs/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>76</td>
+              <td><strong>Monday.com</strong><span>Productivity and Project Management</span></td>
+              <td>Work OS for boards, items, automations, and workflows.</td>
+              <td>OAuth2; API token</td>
+              <td>Self-serve developer/apps</td>
+              <td>Broad GraphQL API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>GraphQL complexity/rate budgets</span></td>
+              <td><a href="https://developer.monday.com/api-reference/docs/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>77</td>
+              <td><strong>ClickUp</strong><span>Productivity and Project Management</span></td>
+              <td>Project management and docs platform.</td>
+              <td>OAuth2; personal token</td>
+              <td>Self-serve developer app</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Workspace/team hierarchy complexity</span></td>
+              <td><a href="https://clickup.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>78</td>
+              <td><strong>Coda</strong><span>Productivity and Project Management</span></td>
+              <td>Docs platform with tables, packs, and automation.</td>
+              <td>API token; OAuth for Packs</td>
+              <td>Self-serve account</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Document/table schema discovery</span></td>
+              <td><a href="https://coda.io/developers/apis/v1" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>79</td>
+              <td><strong>Smartsheet</strong><span>Productivity and Project Management</span></td>
+              <td>Work management and spreadsheet-like project platform.</td>
+              <td>OAuth2; access token</td>
+              <td>Self-serve developer account</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Enterprise admin controls and rate limits</span></td>
+              <td><a href="https://smartsheet.redoc.ly/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+              <td>80</td>
+              <td><strong>Harvest</strong><span>Productivity and Project Management</span></td>
+              <td>Time tracking and invoicing platform.</td>
+              <td>OAuth2; personal access token</td>
+              <td>Self-serve developer app</td>
+              <td>Broad REST API<span>None found</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Account ID header and workspace permissions</span></td>
+              <td><a href="https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+              <td>81</td>
+              <td><strong>Stripe</strong><span>Finance and Fintech</span></td>
+              <td>Payments and financial infrastructure for charges, customers, invoices, and accounts.</td>
+              <td>API key; OAuth for Connect</td>
+              <td>Self-serve test mode, live activation needed</td>
+              <td>Broad REST API<span>Official/community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Payment compliance and live account activation</span></td>
+              <td><a href="https://docs.stripe.com/api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+              <td>82</td>
+              <td><strong>Plaid</strong><span>Finance and Fintech</span></td>
+              <td>Financial data connectivity for bank accounts, transactions, identity, and payments.</td>
+              <td>API keys; link tokens</td>
+              <td>Self-serve sandbox, production access reviewed</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Production review and regulated data handling</span></td>
+              <td><a href="https://plaid.com/docs/api/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+              <td>83</td>
+              <td><strong>Binance</strong><span>Finance and Fintech</span></td>
+              <td>Crypto exchange APIs for market data, trading, wallets, and accounts.</td>
+              <td>API key/secret; HMAC</td>
+              <td>Self-serve account/API keys</td>
+              <td>Broad REST and WebSocket APIs<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Trading safety, regional restrictions, KYC</span></td>
+              <td><a href="https://developers.binance.com/docs/binance-spot-api-docs" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Not yet">
+              <td>84</td>
+              <td><strong>Paygent Connect</strong><span>Finance and Fintech</span></td>
+              <td>Payment gateway/merchant services stack, described as NMI-powered.</td>
+              <td>API key/token likely</td>
+              <td>Gated/contact merchant provider</td>
+              <td>Public docs unclear<span>Public MCP not found</span></td>
+              <td><span class="pill not-yet">Not yet</span><span>No stable public developer docs found</span></td>
+              <td><a href="https://www.paygent.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
+              <td>85</td>
+              <td><strong>iPayX</strong><span>Finance and Fintech</span></td>
+              <td>AI/payments product with developer docs.</td>
+              <td>API key likely</td>
+              <td>Gated/unclear</td>
+              <td>Docs site exists, surface unclear<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Need account/docs validation</span></td>
+              <td><a href="https://ipayx.ai/docs" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+              <td>86</td>
+              <td><strong>QuickBooks</strong><span>Finance and Fintech</span></td>
+              <td>Intuit accounting platform for companies, invoices, customers, and reports.</td>
+              <td>OAuth2</td>
+              <td>Self-serve sandbox/dev app, production review possible</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Accounting data permissions and app review</span></td>
+              <td><a href="https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+              <td>87</td>
+              <td><strong>Xero</strong><span>Finance and Fintech</span></td>
+              <td>Accounting platform for invoices, contacts, bank transactions, and reports.</td>
+              <td>OAuth2</td>
+              <td>Self-serve developer app</td>
+              <td>Broad REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Tenant connections and accounting permissions</span></td>
+              <td><a href="https://developer.xero.com/documentation/guides/oauth2/overview/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
+              <td>88</td>
+              <td><strong>Brex</strong><span>Finance and Fintech</span></td>
+              <td>Corporate card, spend management, and banking platform.</td>
+              <td>OAuth2; API token</td>
+              <td>Gated/customer/admin access</td>
+              <td>REST APIs<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Customer/admin access and finance controls</span></td>
+              <td><a href="https://developer.brex.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
+              <td>89</td>
+              <td><strong>Ramp</strong><span>Finance and Fintech</span></td>
+              <td>Corporate card and spend management platform.</td>
+              <td>OAuth2</td>
+              <td>Gated/customer/admin access</td>
+              <td>Broad REST API<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Partner/customer access and spend controls</span></td>
+              <td><a href="https://docs.ramp.com/developer-api/v1/overview/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
+              <td>90</td>
+              <td><strong>PitchBook</strong><span>Finance and Fintech</span></td>
+              <td>Private markets data and research platform.</td>
+              <td>API token/license</td>
+              <td>Gated/contract only</td>
+              <td>Data/API products<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Commercial data license and sales access</span></td>
+              <td><a href="https://pitchbook.com/data" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Not yet">
+              <td>91</td>
+              <td><strong>NotebookLM</strong><span>AI, Research and Media-native</span></td>
+              <td>Google AI note/research product; enterprise capability points to Gemini/Workspace APIs.</td>
+              <td>Google OAuth/service account for related APIs</td>
+              <td>Gated/no standalone public NotebookLM API</td>
+              <td>No standalone public NotebookLM developer API found<span>Public MCP not found</span></td>
+              <td><span class="pill not-yet">Not yet</span><span>No direct public API; use Gemini/Drive alternatives</span></td>
+              <td><a href="https://cloud.google.com/gemini" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable">
+              <td>92</td>
+              <td><strong>Otter AI</strong><span>AI, Research and Media-native</span></td>
+              <td>Meeting transcription and notes product.</td>
+              <td>MCP/OAuth depending connector</td>
+              <td>Gated for API; MCP docs available</td>
+              <td>API not broadly public; MCP server noted<span>Existing MCP noted</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Public API surface limited; MCP may be connector path</span></td>
+              <td><a href="https://help.otter.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable">
+              <td>93</td>
+              <td><strong>Fathom</strong><span>AI, Research and Media-native</span></td>
+              <td>AI meeting recorder and summary tool.</td>
+              <td>OAuth/API access unclear</td>
+              <td>Gated/unclear</td>
+              <td>Limited public API docs<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Developer docs/API access unclear</span></td>
+              <td><a href="https://fathom.video/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Not yet">
+              <td>94</td>
+              <td><strong>Consensus</strong><span>AI, Research and Media-native</span></td>
+              <td>AI academic search/research product.</td>
+              <td>OAuth requested per assignment; public API unclear</td>
+              <td>Gated/unclear</td>
+              <td>Public API not clearly documented<span>Public MCP not found</span></td>
+              <td><span class="pill not-yet">Not yet</span><span>OAuth/API access requested but not public</span></td>
+              <td><a href="https://consensus.app/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Buildable">
+              <td>95</td>
+              <td><strong>Reducto</strong><span>AI, Research and Media-native</span></td>
+              <td>Document parsing API for complex PDFs and unstructured files.</td>
+              <td>API key</td>
+              <td>Self-serve/contact depending tier</td>
+              <td>REST API<span>Community MCPs</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Paid usage and document privacy</span></td>
+              <td><a href="https://docs.reducto.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Buildable">
+              <td>96</td>
+              <td><strong>Devin</strong><span>AI, Research and Media-native</span></td>
+              <td>AI software engineer product with API/MCP integrations.</td>
+              <td>API key/token; MCP</td>
+              <td>Self-serve/customer account likely</td>
+              <td>API and MCP docs<span>Official MCP</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Account availability and action safety</span></td>
+              <td><a href="https://docs.devin.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable">
+              <td>97</td>
+              <td><strong>higgsfield</strong><span>AI, Research and Media-native</span></td>
+              <td>AI video/content suite with CLI hint.</td>
+              <td>CLI auth unclear</td>
+              <td>Gated/unclear</td>
+              <td>CLI/product surface, API docs unclear<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>No broad public API verified</span></td>
+              <td><a href="https://higgsfield.ai/cli" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Buildable">
+              <td>98</td>
+              <td><strong>Mermaid CLI</strong><span>AI, Research and Media-native</span></td>
+              <td>Command-line renderer for Mermaid diagrams.</td>
+              <td>No remote auth; local CLI</td>
+              <td>Open source self-serve</td>
+              <td>CLI, npm package<span>Community MCP potential</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Wrap CLI, not app API</span></td>
+              <td><a href="https://github.com/mermaid-js/mermaid-cli" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Buildable">
+              <td>99</td>
+              <td><strong>YouTube Transcript</strong><span>AI, Research and Media-native</span></td>
+              <td>Transcript extraction API/service.</td>
+              <td>API key</td>
+              <td>Self-serve paid/free API</td>
+              <td>REST API narrow<span>Community MCP potential</span></td>
+              <td><span class="pill buildable">Buildable</span><span>Narrow surface and YouTube policy dependence</span></td>
+              <td><a href="https://www.transcriptapi.com/docs" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            
+            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable">
+              <td>100</td>
+              <td><strong>Grain</strong><span>AI, Research and Media-native</span></td>
+              <td>Meeting recording, notes, clips, and conversation intelligence.</td>
+              <td>OAuth/API token unclear</td>
+              <td>Gated/customer access</td>
+              <td>API docs not broadly obvious<span>Public MCP not found</span></td>
+              <td><span class="pill partially-buildable">Partially buildable</span><span>Public developer access unclear</span></td>
+              <td><a href="https://grain.com/" target="_blank" rel="noreferrer">Evidence</a></td>
+            </tr>
+            </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Machine-readable output</h2>
+      <p>Generated from <code>data/apps.tsv</code> by <code>python scripts/research_agent.py</code>. The same run writes <code>agent_trace.json</code>.</p>
+      <pre class="data-note">{
+  &quot;auth&quot;: {
+    &quot;OAuth present&quot;: 68,
+    &quot;Key/token&quot;: 26,
+    &quot;Unclear/other&quot;: 3,
+    &quot;Basic&quot;: 1,
+    &quot;No remote auth&quot;: 2
+  },
+  &quot;access&quot;: {
+    &quot;Self-serve&quot;: 79,
+    &quot;Gated&quot;: 21
+  },
+  &quot;verdict&quot;: {
+    &quot;Buildable&quot;: 78,
+    &quot;Partially buildable&quot;: 17,
+    &quot;Not yet&quot;: 5
+  },
+  &quot;category_verdicts&quot;: {
+    &quot;CRM and Sales&quot;: {
+      &quot;Buildable&quot;: 9,
+      &quot;Partially buildable&quot;: 1
+    },
+    &quot;Support and Helpdesk&quot;: {
+      &quot;Buildable&quot;: 8,
+      &quot;Partially buildable&quot;: 2
+    },
+    &quot;Communications and Messaging&quot;: {
+      &quot;Buildable&quot;: 9,
+      &quot;Not yet&quot;: 1
+    },
+    &quot;Marketing, Ads, Email and Social&quot;: {
+      &quot;Buildable&quot;: 9,
+      &quot;Partially buildable&quot;: 1
+    },
+    &quot;Ecommerce&quot;: {
+      &quot;Buildable&quot;: 7,
+      &quot;Partially buildable&quot;: 2,
+      &quot;Not yet&quot;: 1
+    },
+    &quot;Data, SEO and Scraping&quot;: {
+      &quot;Buildable&quot;: 7,
+      &quot;Partially buildable&quot;: 3
+    },
+    &quot;Developer, Infra and Data platforms&quot;: {
+      &quot;Buildable&quot;: 10
+    },
+    &quot;Productivity and Project Management&quot;: {
+      &quot;Buildable&quot;: 10
+    },
+    &quot;Finance and Fintech&quot;: {
+      &quot;Buildable&quot;: 5,
+      &quot;Not yet&quot;: 1,
+      &quot;Partially buildable&quot;: 4
+    },
+    &quot;AI, Research and Media-native&quot;: {
+      &quot;Not yet&quot;: 2,
+      &quot;Partially buildable&quot;: 4,
+      &quot;Buildable&quot;: 4
+    }
+  },
+  &quot;category_access&quot;: {
+    &quot;CRM and Sales&quot;: {
+      &quot;Self-serve&quot;: 8,
+      &quot;Gated&quot;: 2
+    },
+    &quot;Support and Helpdesk&quot;: {
+      &quot;Self-serve&quot;: 8,
+      &quot;Gated&quot;: 2
+    },
+    &quot;Communications and Messaging&quot;: {
+      &quot;Self-serve&quot;: 9,
+      &quot;Gated&quot;: 1
+    },
+    &quot;Marketing, Ads, Email and Social&quot;: {
+      &quot;Self-serve&quot;: 9,
+      &quot;Gated&quot;: 1
+    },
+    &quot;Ecommerce&quot;: {
+      &quot;Self-serve&quot;: 8,
+      &quot;Gated&quot;: 2
+    },
+    &quot;Data, SEO and Scraping&quot;: {
+      &quot;Self-serve&quot;: 8,
+      &quot;Gated&quot;: 2
+    },
+    &quot;Developer, Infra and Data platforms&quot;: {
+      &quot;Self-serve&quot;: 10
+    },
+    &quot;Productivity and Project Management&quot;: {
+      &quot;Self-serve&quot;: 10
+    },
+    &quot;Finance and Fintech&quot;: {
+      &quot;Self-serve&quot;: 5,
+      &quot;Gated&quot;: 5
+    },
+    &quot;AI, Research and Media-native&quot;: {
+      &quot;Gated&quot;: 6,
+      &quot;Self-serve&quot;: 4
+    }
+  },
+  &quot;top_blockers&quot;: [
+    [
+      &quot;Admin scopes and object model complexity&quot;,
+      1
+    ],
+    [
+      &quot;Marketplace OAuth review for public distribution&quot;,
+      1
+    ],
+    [
+      &quot;OAuth app review and per-account permissions&quot;,
+      1
+    ],
+    [
+      &quot;Schema mapping needed per workspace&quot;,
+      1
+    ],
+    [
+      &quot;Open-source deployments vary by version&quot;,
+      1
+    ],
+    [
+      &quot;Legacy OAuth patterns and app-specific permissions&quot;,
+      1
+    ],
+    [
+      &quot;Regional domains and scope granularity&quot;,
+      1
+    ],
+    [
+      &quot;Commercial account required beyond trial&quot;,
+      1
+    ],
+    [
+      &quot;API access depends on paid plan/admin&quot;,
+      1
+    ],
+    [
+      &quot;Customer credentials and tenant access&quot;,
+      1
+    ],
+    [
+      &quot;Tenant subdomains and admin scopes&quot;,
+      1
+    ],
+    [
+      &quot;App review for public apps&quot;,
+      1
+    ]
+  ]
+}</pre>
+    </section>
+  </main>
+  <footer>
+    Source and runnable trigger: <code>python scripts/research_agent.py</code>. Evidence links are intentionally official docs or product developer pages wherever available; unclear apps are marked as gated/unknown rather than inferred.
+  </footer>
+  <script>
+    const rows = Array.from(document.querySelectorAll("#apps tbody tr"));
+    const q = document.querySelector("#q");
+    const verdict = document.querySelector("#verdict");
+    const category = document.querySelector("#category");
+    function applyFilters() {
+      const term = q.value.trim().toLowerCase();
+      for (const row of rows) {
+        const text = row.innerText.toLowerCase();
+        const okTerm = !term || text.includes(term);
+        const okVerdict = !verdict.value || row.dataset.verdict === verdict.value;
+        const okCategory = !category.value || row.dataset.category === category.value;
+        row.style.display = okTerm && okVerdict && okCategory ? "" : "none";
+      }
+    }
+    q.addEventListener("input", applyFilters);
+    verdict.addEventListener("change", applyFilters);
+    category.addEventListener("change", applyFilters);
+    window.__researchRows = [
+  {
+    "id": "1",
+    "category": "CRM and Sales",
+    "app": "Salesforce",
+    "one_line": "Enterprise CRM with sales, service, and platform objects.",
+    "auth": "OAuth2; JWT bearer; username-password legacy",
+    "access": "Self-serve dev org, production needs org/admin setup",
+    "surface": "Broad REST, Bulk, Streaming, Metadata, GraphQL APIs",
+    "mcp": "Community and ecosystem MCPs",
+    "verdict": "Buildable",
+    "blocker": "Admin scopes and object model complexity",
+    "evidence": "https://developer.salesforce.com/docs/apis"
+  },
+  {
+    "id": "2",
+    "category": "CRM and Sales",
+    "app": "HubSpot",
+    "one_line": "CRM and marketing platform for contacts, companies, deals, and engagement data.",
+    "auth": "OAuth2; private app bearer token",
+    "access": "Self-serve free developer account and private apps",
+    "surface": "Broad REST APIs across CRM, marketing, files, conversations",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Marketplace OAuth review for public distribution",
+    "evidence": "https://developers.hubspot.com/docs/apps/legacy-apps/authentication/intro-to-auth"
+  },
+  {
+    "id": "3",
+    "category": "CRM and Sales",
+    "app": "Pipedrive",
+    "one_line": "Sales CRM for deals, activities, people, and pipelines.",
+    "auth": "OAuth2; API token",
+    "access": "Self-serve trial and developer app flow",
+    "surface": "Broad REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "OAuth app review and per-account permissions",
+    "evidence": "https://developers.pipedrive.com/docs/api/v1"
+  },
+  {
+    "id": "4",
+    "category": "CRM and Sales",
+    "app": "Attio",
+    "one_line": "Modern CRM/workspace for flexible records and relationship data.",
+    "auth": "OAuth2; API key",
+    "access": "Self-serve developer docs and workspace tokens",
+    "surface": "Broad REST API with objects, records, lists, notes",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Schema mapping needed per workspace",
+    "evidence": "https://docs.attio.com/rest-api"
+  },
+  {
+    "id": "5",
+    "category": "CRM and Sales",
+    "app": "Twenty",
+    "one_line": "Open-source CRM with configurable companies, people, and opportunities.",
+    "auth": "API key; bearer token",
+    "access": "Self-serve open source and cloud",
+    "surface": "REST and GraphQL surfaces",
+    "mcp": "Community potential",
+    "verdict": "Buildable",
+    "blocker": "Open-source deployments vary by version",
+    "evidence": "https://twenty.com/developers"
+  },
+  {
+    "id": "6",
+    "category": "CRM and Sales",
+    "app": "Podio",
+    "one_line": "Citrix work management/CRM-style app platform.",
+    "auth": "OAuth2; app auth; password grant legacy",
+    "access": "Self-serve account, app tokens available",
+    "surface": "Broad REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Legacy OAuth patterns and app-specific permissions",
+    "evidence": "https://developers.podio.com/doc"
+  },
+  {
+    "id": "7",
+    "category": "CRM and Sales",
+    "app": "Zoho CRM",
+    "one_line": "CRM for leads, contacts, deals, campaigns, and workflows.",
+    "auth": "OAuth2",
+    "access": "Self-serve developer console, org scopes/admin needed",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Regional domains and scope granularity",
+    "evidence": "https://www.zoho.com/crm/developer/docs/api/v8/"
+  },
+  {
+    "id": "8",
+    "category": "CRM and Sales",
+    "app": "Close",
+    "one_line": "Sales CRM focused on calls, email, leads, and opportunities.",
+    "auth": "API key; OAuth2",
+    "access": "Self-serve API keys in account",
+    "surface": "Broad REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Commercial account required beyond trial",
+    "evidence": "https://developer.close.com/"
+  },
+  {
+    "id": "9",
+    "category": "CRM and Sales",
+    "app": "Copper",
+    "one_line": "Google Workspace-native CRM for contacts, leads, and opportunities.",
+    "auth": "API key; OAuth2",
+    "access": "Gated by account/admin for API keys",
+    "surface": "REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "API access depends on paid plan/admin",
+    "evidence": "https://developer.copper.com/"
+  },
+  {
+    "id": "10",
+    "category": "CRM and Sales",
+    "app": "DealCloud",
+    "one_line": "Deal management CRM for financial services.",
+    "auth": "OAuth2; bearer token",
+    "access": "Gated/customer access",
+    "surface": "REST API documented",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Customer credentials and tenant access",
+    "evidence": "https://api.docs.dealcloud.com/"
+  },
+  {
+    "id": "11",
+    "category": "Support and Helpdesk",
+    "app": "Zendesk",
+    "one_line": "Support platform for tickets, users, help center, chat, and messaging.",
+    "auth": "OAuth2; API token; basic plus token",
+    "access": "Self-serve trial, admin setup",
+    "surface": "Broad REST APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Tenant subdomains and admin scopes",
+    "evidence": "https://developer.zendesk.com/api-reference/"
+  },
+  {
+    "id": "12",
+    "category": "Support and Helpdesk",
+    "app": "Intercom",
+    "one_line": "Customer messaging and support platform.",
+    "auth": "OAuth2; access token",
+    "access": "Self-serve developer workspace",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "App review for public apps",
+    "evidence": "https://developers.intercom.com/docs/references/rest-api/api.intercom.io"
+  },
+  {
+    "id": "13",
+    "category": "Support and Helpdesk",
+    "app": "Freshdesk",
+    "one_line": "Helpdesk ticketing, contacts, companies, and knowledge base.",
+    "auth": "API key; OAuth2",
+    "access": "Self-serve trial and API key",
+    "surface": "Broad REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Plan limits and product-specific APIs",
+    "evidence": "https://developers.freshdesk.com/api/"
+  },
+  {
+    "id": "14",
+    "category": "Support and Helpdesk",
+    "app": "Front",
+    "one_line": "Shared inbox and customer operations platform.",
+    "auth": "OAuth2; API token",
+    "access": "Self-serve developer portal",
+    "surface": "Broad REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Workspace permissions and rate limits",
+    "evidence": "https://dev.frontapp.com/reference/introduction"
+  },
+  {
+    "id": "15",
+    "category": "Support and Helpdesk",
+    "app": "Pylon",
+    "one_line": "B2B support platform for Slack/Teams/email customer channels.",
+    "auth": "API key; OAuth indications",
+    "access": "Gated/customer workspace likely",
+    "surface": "REST API docs",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Access appears customer/workspace gated",
+    "evidence": "https://docs.usepylon.com/"
+  },
+  {
+    "id": "16",
+    "category": "Support and Helpdesk",
+    "app": "LiveAgent",
+    "one_line": "Helpdesk/live chat software for tickets, chats, calls, and customers.",
+    "auth": "API key",
+    "access": "Self-serve trial",
+    "surface": "Broad REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Older docs and account-specific endpoints",
+    "evidence": "https://support.liveagent.com/970353-API"
+  },
+  {
+    "id": "17",
+    "category": "Support and Helpdesk",
+    "app": "Plain",
+    "one_line": "API-first customer support platform.",
+    "auth": "API key; OAuth for customer portal patterns",
+    "access": "Self-serve developer docs, workspace needed",
+    "surface": "GraphQL API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "GraphQL schema and support workflow design",
+    "evidence": "https://www.plain.com/docs/api-reference/graphql"
+  },
+  {
+    "id": "18",
+    "category": "Support and Helpdesk",
+    "app": "Help Scout",
+    "one_line": "Helpdesk mailbox, docs, customers, and conversations.",
+    "auth": "OAuth2",
+    "access": "Self-serve app registration",
+    "surface": "Broad REST APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "OAuth scopes and mailbox permissions",
+    "evidence": "https://developer.helpscout.com/mailbox-api/"
+  },
+  {
+    "id": "19",
+    "category": "Support and Helpdesk",
+    "app": "Gorgias",
+    "one_line": "Ecommerce helpdesk for tickets, customers, and orders.",
+    "auth": "Basic auth; API key/token",
+    "access": "Self-serve for customers, plan dependent",
+    "surface": "REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Plan/admin access and ecommerce context",
+    "evidence": "https://developers.gorgias.com/reference/introduction"
+  },
+  {
+    "id": "20",
+    "category": "Support and Helpdesk",
+    "app": "Gladly",
+    "one_line": "Customer service platform for conversations and people profiles.",
+    "auth": "OAuth2; API token",
+    "access": "Gated/customer access",
+    "surface": "REST API",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Enterprise sales/admin access",
+    "evidence": "https://developer.gladly.com/"
+  },
+  {
+    "id": "21",
+    "category": "Communications and Messaging",
+    "app": "Slack",
+    "one_line": "Team messaging platform with channels, users, files, and workflow APIs.",
+    "auth": "OAuth2; bot/user tokens",
+    "access": "Self-serve app creation, workspace install",
+    "surface": "Broad Web API, Events, Socket Mode",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Workspace admin approval for installs/scopes",
+    "evidence": "https://api.slack.com/authentication"
+  },
+  {
+    "id": "22",
+    "category": "Communications and Messaging",
+    "app": "Twilio",
+    "one_line": "Communications APIs for SMS, voice, WhatsApp, email, and verification.",
+    "auth": "API key/secret; account SID auth; OAuth beta areas",
+    "access": "Self-serve trial",
+    "surface": "Broad REST APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Phone number compliance and paid usage",
+    "evidence": "https://www.twilio.com/docs/iam/api-keys"
+  },
+  {
+    "id": "23",
+    "category": "Communications and Messaging",
+    "app": "Zoho Cliq",
+    "one_line": "Team chat and collaboration platform.",
+    "auth": "OAuth2; bot/webhook tokens",
+    "access": "Self-serve Zoho developer console",
+    "surface": "REST APIs, bots, webhooks",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Zoho regional OAuth and org permissions",
+    "evidence": "https://www.zoho.com/cliq/help/restapi/v2/"
+  },
+  {
+    "id": "24",
+    "category": "Communications and Messaging",
+    "app": "Lark (Larksuite)",
+    "one_line": "Collaboration suite with messaging, docs, calendar, and approval APIs.",
+    "auth": "OAuth2; app access tokens",
+    "access": "Self-serve app console, org approval for installs",
+    "surface": "Broad Open Platform APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Region/product naming and tenant approval",
+    "evidence": "https://open.larksuite.com/document/"
+  },
+  {
+    "id": "25",
+    "category": "Communications and Messaging",
+    "app": "Pumble",
+    "one_line": "Team chat app from CAKE.com.",
+    "auth": "Webhooks; limited public API unclear",
+    "access": "Gated/limited",
+    "surface": "Incoming webhooks, public API not clearly broad",
+    "mcp": "Public MCP not found",
+    "verdict": "Not yet",
+    "blocker": "No broad documented public API found",
+    "evidence": "https://pumble.com/help/integrations/webhooks/"
+  },
+  {
+    "id": "26",
+    "category": "Communications and Messaging",
+    "app": "Discord",
+    "one_line": "Community chat, voice, and bot platform.",
+    "auth": "OAuth2; bot token",
+    "access": "Self-serve developer portal",
+    "surface": "Broad REST/Gateway APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Gateway/event handling and bot permissions",
+    "evidence": "https://discord.com/developers/docs/intro"
+  },
+  {
+    "id": "27",
+    "category": "Communications and Messaging",
+    "app": "Telegram",
+    "one_line": "Messaging platform with bot and client APIs.",
+    "auth": "Bot token; MTProto auth",
+    "access": "Self-serve BotFather",
+    "surface": "Broad Bot API and MTProto",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Bot API limits versus full user-client API",
+    "evidence": "https://core.telegram.org/bots/api"
+  },
+  {
+    "id": "28",
+    "category": "Communications and Messaging",
+    "app": "WhatsApp Business",
+    "one_line": "Meta WhatsApp messaging for business conversations.",
+    "auth": "OAuth2; system user tokens",
+    "access": "Self-serve Cloud API, business verification for scale",
+    "surface": "Graph API endpoints for messaging and templates",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Business verification, templates, phone compliance",
+    "evidence": "https://developers.facebook.com/docs/whatsapp/cloud-api"
+  },
+  {
+    "id": "29",
+    "category": "Communications and Messaging",
+    "app": "Aircall",
+    "one_line": "Cloud phone system for calls, numbers, users, and analytics.",
+    "auth": "OAuth2; API ID/token",
+    "access": "Self-serve docs, customer account needed",
+    "surface": "REST API and webhooks",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Commercial phone account and call compliance",
+    "evidence": "https://developer.aircall.io/api-references/"
+  },
+  {
+    "id": "30",
+    "category": "Communications and Messaging",
+    "app": "Vonage",
+    "one_line": "Communications APIs for SMS, voice, verify, video, and number insights.",
+    "auth": "API key/secret; JWT; OAuth in some products",
+    "access": "Self-serve developer account",
+    "surface": "Broad REST APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Product-specific auth differences",
+    "evidence": "https://developer.vonage.com/en/getting-started/concepts/authentication"
+  },
+  {
+    "id": "31",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "Google Ads",
+    "one_line": "Google advertising platform for campaign management and reporting.",
+    "auth": "OAuth2 plus developer token",
+    "access": "Self-serve test token; production access reviewed",
+    "surface": "Broad Google Ads API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Developer token access level and policy review",
+    "evidence": "https://developers.google.com/google-ads/api/docs/api-policy/developer-token"
+  },
+  {
+    "id": "32",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "Meta Ads",
+    "one_line": "Meta marketing APIs for ads, audiences, campaigns, and insights.",
+    "auth": "OAuth2; system user tokens",
+    "access": "Self-serve app, advanced access reviewed",
+    "surface": "Broad Graph/Marketing API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "App review and business verification for advanced scopes",
+    "evidence": "https://developers.facebook.com/docs/marketing-apis/"
+  },
+  {
+    "id": "33",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "LinkedIn Ads",
+    "one_line": "LinkedIn marketing APIs for ad accounts, campaigns, creatives, and analytics.",
+    "auth": "OAuth2",
+    "access": "Partner/developer access gated",
+    "surface": "Broad REST APIs",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Marketing API access review/partner gating",
+    "evidence": "https://learn.microsoft.com/en-us/linkedin/marketing/"
+  },
+  {
+    "id": "34",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "GoHighLevel",
+    "one_line": "Agency CRM/marketing automation platform.",
+    "auth": "OAuth2; API key/private integration tokens",
+    "access": "Self-serve for accounts, marketplace approval for distribution",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Agency/location model and marketplace review",
+    "evidence": "https://highlevel.stoplight.io/docs/integrations/"
+  },
+  {
+    "id": "35",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "Mailchimp",
+    "one_line": "Email marketing and audience automation platform.",
+    "auth": "OAuth2; API key",
+    "access": "Self-serve account and developer apps",
+    "surface": "Broad REST Marketing API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Account plan limits and data-center specific base URLs",
+    "evidence": "https://mailchimp.com/developer/marketing/docs/fundamentals/"
+  },
+  {
+    "id": "36",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "Klaviyo",
+    "one_line": "Marketing automation for ecommerce email/SMS and profiles/events.",
+    "auth": "API key; OAuth2",
+    "access": "Self-serve developer account and private keys",
+    "surface": "Broad REST APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "API revision headers and scope planning",
+    "evidence": "https://developers.klaviyo.com/en/docs/authenticate_"
+  },
+  {
+    "id": "37",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "systeme.io",
+    "one_line": "Funnel, email marketing, course, and automation builder.",
+    "auth": "API key",
+    "access": "Self-serve for account holders",
+    "surface": "REST API appears moderate",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Public docs less mature than major vendors",
+    "evidence": "https://developer.systeme.io/"
+  },
+  {
+    "id": "38",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "Pinterest",
+    "one_line": "Pinterest content and ads platform.",
+    "auth": "OAuth2",
+    "access": "Self-serve developer app, access reviewed for some scopes",
+    "surface": "REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "App review for protected endpoints",
+    "evidence": "https://developers.pinterest.com/docs/api/v5/"
+  },
+  {
+    "id": "39",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "Threads (Meta)",
+    "one_line": "Meta social publishing and insights API for Threads.",
+    "auth": "OAuth2",
+    "access": "Self-serve app, Meta review for advanced use",
+    "surface": "Graph-based Threads API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "App review and feature maturity",
+    "evidence": "https://developers.facebook.com/docs/threads/"
+  },
+  {
+    "id": "40",
+    "category": "Marketing, Ads, Email and Social",
+    "app": "SendGrid",
+    "one_line": "Transactional and marketing email API.",
+    "auth": "API key",
+    "access": "Self-serve trial/account",
+    "surface": "Broad REST APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Email sender verification and compliance",
+    "evidence": "https://docs.sendgrid.com/api-reference/how-to-use-the-sendgrid-v3-api/authentication"
+  },
+  {
+    "id": "41",
+    "category": "Ecommerce",
+    "app": "Shopify",
+    "one_line": "Commerce platform for stores, products, orders, customers, and admin workflows.",
+    "auth": "OAuth2; access tokens",
+    "access": "Self-serve partner/dev store",
+    "surface": "Broad REST and GraphQL Admin APIs",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "App review for public apps and protected data",
+    "evidence": "https://shopify.dev/docs/api"
+  },
+  {
+    "id": "42",
+    "category": "Ecommerce",
+    "app": "WooCommerce",
+    "one_line": "WordPress ecommerce plugin for stores and orders.",
+    "auth": "Consumer key/secret; Basic/OAuth1",
+    "access": "Self-serve if site owner/admin",
+    "surface": "REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Site-specific auth and plugin/version variance",
+    "evidence": "https://woocommerce.github.io/woocommerce-rest-api-docs/"
+  },
+  {
+    "id": "43",
+    "category": "Ecommerce",
+    "app": "BigCommerce",
+    "one_line": "SaaS ecommerce platform for catalogs, carts, orders, and storefronts.",
+    "auth": "OAuth2; access tokens",
+    "access": "Self-serve sandbox/trial",
+    "surface": "Broad REST and GraphQL APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "App marketplace review for distribution",
+    "evidence": "https://developer.bigcommerce.com/docs/start/authentication"
+  },
+  {
+    "id": "44",
+    "category": "Ecommerce",
+    "app": "Salesforce Commerce Cloud",
+    "one_line": "Enterprise commerce platform for storefront/order/customer APIs.",
+    "auth": "OAuth2; SLAS/client credentials",
+    "access": "Gated/customer access",
+    "surface": "Broad Commerce APIs",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Enterprise tenant and Salesforce access setup",
+    "evidence": "https://developer.salesforce.com/docs/commerce"
+  },
+  {
+    "id": "45",
+    "category": "Ecommerce",
+    "app": "Magento (Adobe Commerce)",
+    "one_line": "Adobe ecommerce platform for catalogs, carts, orders, and customers.",
+    "auth": "OAuth1/integration tokens; bearer tokens",
+    "access": "Self-serve open source, Adobe Commerce paid",
+    "surface": "REST and GraphQL APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Deployment-specific modules and admin setup",
+    "evidence": "https://developer.adobe.com/commerce/webapi/get-started/authentication/"
+  },
+  {
+    "id": "46",
+    "category": "Ecommerce",
+    "app": "Squarespace",
+    "one_line": "Website/ecommerce platform for orders, products, inventory, and profiles.",
+    "auth": "OAuth2; API key",
+    "access": "Self-serve developer platform, commerce plan needs account",
+    "surface": "REST APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Endpoint coverage narrower than Shopify",
+    "evidence": "https://developers.squarespace.com/"
+  },
+  {
+    "id": "47",
+    "category": "Ecommerce",
+    "app": "Ecwid",
+    "one_line": "Lightweight ecommerce store platform.",
+    "auth": "OAuth2; secret token",
+    "access": "Self-serve developer app",
+    "surface": "Broad REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Store-specific app install flow",
+    "evidence": "https://api-docs.ecwid.com/reference/rest-api"
+  },
+  {
+    "id": "48",
+    "category": "Ecommerce",
+    "app": "Gumroad",
+    "one_line": "Creator commerce platform for products, sales, and subscribers.",
+    "auth": "OAuth2",
+    "access": "Self-serve app registration",
+    "surface": "REST API moderate",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "API surface smaller and product-specific",
+    "evidence": "https://gumroad.com/api"
+  },
+  {
+    "id": "49",
+    "category": "Ecommerce",
+    "app": "Amazon Selling Partner",
+    "one_line": "Seller/vendor commerce APIs for listings, orders, reports, and fulfillment.",
+    "auth": "Login with Amazon OAuth; AWS SigV4",
+    "access": "Sandbox self-serve; production gated/reviewed",
+    "surface": "Broad SP-API",
+    "mcp": "Community MCPs",
+    "verdict": "Partially buildable",
+    "blocker": "Seller/vendor role approval and security review",
+    "evidence": "https://developer-docs.amazon.com/sp-api/docs"
+  },
+  {
+    "id": "50",
+    "category": "Ecommerce",
+    "app": "fanbasis",
+    "one_line": "Creator monetization and fan engagement marketplace.",
+    "auth": "No clear public auth docs found",
+    "access": "Gated/unknown",
+    "surface": "No broad public API found",
+    "mcp": "Public MCP not found",
+    "verdict": "Not yet",
+    "blocker": "No documented public developer surface found",
+    "evidence": "https://www.fanbasis.com/"
+  },
+  {
+    "id": "51",
+    "category": "Data, SEO and Scraping",
+    "app": "DataForSEO",
+    "one_line": "SEO and SERP data APIs for rankings, keywords, backlinks, and ads.",
+    "auth": "Basic auth",
+    "access": "Self-serve paid/trial API account",
+    "surface": "Broad REST APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Usage is paid and quota-driven",
+    "evidence": "https://docs.dataforseo.com/v3/authentication/"
+  },
+  {
+    "id": "52",
+    "category": "Data, SEO and Scraping",
+    "app": "SE Ranking",
+    "one_line": "SEO platform for rankings, keywords, audits, and backlinks.",
+    "auth": "API key",
+    "access": "Self-serve paid plan/trial",
+    "surface": "REST API moderate",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "API availability depends on plan",
+    "evidence": "https://seranking.com/api.html"
+  },
+  {
+    "id": "53",
+    "category": "Data, SEO and Scraping",
+    "app": "Ahrefs",
+    "one_line": "SEO data platform for backlinks, keywords, and site explorer.",
+    "auth": "API token",
+    "access": "Gated/paid enterprise-ish API",
+    "surface": "REST API broad for SEO data",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Paid API subscription and limits",
+    "evidence": "https://ahrefs.com/api"
+  },
+  {
+    "id": "54",
+    "category": "Data, SEO and Scraping",
+    "app": "MrScraper",
+    "one_line": "Web scraping API/service.",
+    "auth": "API key",
+    "access": "Self-serve account",
+    "surface": "REST API moderate",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Anti-abuse and extraction reliability",
+    "evidence": "https://docs.mrscraper.com/"
+  },
+  {
+    "id": "55",
+    "category": "Data, SEO and Scraping",
+    "app": "Apify",
+    "one_line": "Cloud platform for actors, scraping, and browser automation.",
+    "auth": "API token",
+    "access": "Self-serve free tier",
+    "surface": "Broad REST API and SDKs",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Actor-specific input/output schemas",
+    "evidence": "https://docs.apify.com/api/v2"
+  },
+  {
+    "id": "56",
+    "category": "Data, SEO and Scraping",
+    "app": "Firecrawl",
+    "one_line": "Web crawling/scraping API for LLM-ready extraction.",
+    "auth": "API key",
+    "access": "Self-serve free/paid API",
+    "surface": "Broad REST API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Extraction quality varies by site",
+    "evidence": "https://docs.firecrawl.dev/api-reference/introduction"
+  },
+  {
+    "id": "57",
+    "category": "Data, SEO and Scraping",
+    "app": "Bright Data",
+    "one_line": "Proxy, scraping, and web data platform.",
+    "auth": "API key; bearer token",
+    "access": "Self-serve account, some products compliance reviewed",
+    "surface": "Broad REST APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "KYC/compliance for proxy and scraping use",
+    "evidence": "https://docs.brightdata.com/api-reference/introduction"
+  },
+  {
+    "id": "58",
+    "category": "Data, SEO and Scraping",
+    "app": "Sherlock",
+    "one_line": "Open-source OSINT tool for checking usernames across sites.",
+    "auth": "No hosted auth; CLI",
+    "access": "GitHub self-serve",
+    "surface": "CLI/library, not SaaS API",
+    "mcp": "Community MCP potential",
+    "verdict": "Buildable",
+    "blocker": "Toolkit wraps CLI rather than remote app API",
+    "evidence": "https://github.com/sherlock-project/sherlock"
+  },
+  {
+    "id": "59",
+    "category": "Data, SEO and Scraping",
+    "app": "Waterfall.io",
+    "one_line": "Contact/company intelligence and enrichment platform.",
+    "auth": "API key likely",
+    "access": "Gated/contact sales",
+    "surface": "API docs not broadly public",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Access/docs appear sales-gated",
+    "evidence": "https://www.waterfall.io/"
+  },
+  {
+    "id": "60",
+    "category": "Data, SEO and Scraping",
+    "app": "Clay",
+    "one_line": "Data enrichment and outbound workflow platform.",
+    "auth": "API key; webhooks",
+    "access": "Self-serve product, API details account-gated",
+    "surface": "HTTP API/webhooks narrower",
+    "mcp": "Community MCPs",
+    "verdict": "Partially buildable",
+    "blocker": "API docs and keys tied to account/plan",
+    "evidence": "https://docs.clay.com/"
+  },
+  {
+    "id": "61",
+    "category": "Developer, Infra and Data platforms",
+    "app": "GitHub",
+    "one_line": "Developer platform for repos, issues, pull requests, actions, and users.",
+    "auth": "OAuth2; GitHub App tokens; PATs",
+    "access": "Self-serve developer apps",
+    "surface": "Broad REST and GraphQL APIs",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Installation permissions and org approval",
+    "evidence": "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api"
+  },
+  {
+    "id": "62",
+    "category": "Developer, Infra and Data platforms",
+    "app": "Vercel",
+    "one_line": "Frontend cloud platform for deployments, projects, domains, and teams.",
+    "auth": "OAuth2; bearer tokens",
+    "access": "Self-serve account/team",
+    "surface": "Broad REST API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Team scopes and deployment side effects",
+    "evidence": "https://vercel.com/docs/rest-api"
+  },
+  {
+    "id": "63",
+    "category": "Developer, Infra and Data platforms",
+    "app": "Netlify",
+    "one_line": "Web hosting platform for sites, deploys, forms, and functions.",
+    "auth": "OAuth2; personal access token",
+    "access": "Self-serve account",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Site/team permission modeling",
+    "evidence": "https://docs.netlify.com/api/get-started/"
+  },
+  {
+    "id": "64",
+    "category": "Developer, Infra and Data platforms",
+    "app": "Cloudflare",
+    "one_line": "Internet infrastructure for DNS, CDN, Workers, security, and storage.",
+    "auth": "API token; API key",
+    "access": "Self-serve account",
+    "surface": "Broad REST APIs",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Dangerous write scopes need careful guardrails",
+    "evidence": "https://developers.cloudflare.com/api/"
+  },
+  {
+    "id": "65",
+    "category": "Developer, Infra and Data platforms",
+    "app": "Supabase",
+    "one_line": "Postgres backend platform with auth, storage, edge functions, and database APIs.",
+    "auth": "API keys; JWT; Postgres auth",
+    "access": "Self-serve free tier",
+    "surface": "Broad platform APIs and direct Postgres",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Project-level secrets and database safety",
+    "evidence": "https://supabase.com/docs/guides/api"
+  },
+  {
+    "id": "66",
+    "category": "Developer, Infra and Data platforms",
+    "app": "Neo4j",
+    "one_line": "Graph database platform and Aura cloud service.",
+    "auth": "Basic auth; bearer tokens; API keys for Aura",
+    "access": "Self-serve Aura trial and local",
+    "surface": "REST admin APIs plus Bolt/GraphQL options",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Database query safety and schema discovery",
+    "evidence": "https://neo4j.com/docs/http-api/current/"
+  },
+  {
+    "id": "67",
+    "category": "Developer, Infra and Data platforms",
+    "app": "Snowflake",
+    "one_line": "Cloud data warehouse and data platform.",
+    "auth": "Key-pair JWT; OAuth; username/password; PATs",
+    "access": "Self-serve trial, enterprise admin for prod",
+    "surface": "SQL API, REST APIs, drivers",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Account/admin network policies and warehouse cost",
+    "evidence": "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating"
+  },
+  {
+    "id": "68",
+    "category": "Developer, Infra and Data platforms",
+    "app": "MongoDB Atlas",
+    "one_line": "Managed MongoDB platform for clusters, projects, users, and data APIs.",
+    "auth": "API keys; OAuth/service accounts",
+    "access": "Self-serve free tier",
+    "surface": "Broad Admin API and Data API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Project-level permissions and data safety",
+    "evidence": "https://www.mongodb.com/docs/atlas/api/"
+  },
+  {
+    "id": "69",
+    "category": "Developer, Infra and Data platforms",
+    "app": "Datadog",
+    "one_line": "Observability platform for metrics, logs, traces, monitors, and incidents.",
+    "auth": "API key plus application key",
+    "access": "Self-serve trial/account",
+    "surface": "Broad REST APIs",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Write actions can affect alerts/incidents",
+    "evidence": "https://docs.datadoghq.com/api/latest/authentication/"
+  },
+  {
+    "id": "70",
+    "category": "Developer, Infra and Data platforms",
+    "app": "Sentry",
+    "one_line": "Error monitoring and performance platform.",
+    "auth": "Auth token; OAuth2",
+    "access": "Self-serve account",
+    "surface": "Broad REST API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Org/project scopes and issue mutation safety",
+    "evidence": "https://docs.sentry.io/api/auth/"
+  },
+  {
+    "id": "71",
+    "category": "Productivity and Project Management",
+    "app": "Notion",
+    "one_line": "Workspace docs, databases, pages, users, and comments.",
+    "auth": "OAuth2; internal integration token",
+    "access": "Self-serve integrations",
+    "surface": "Broad REST API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Per-page sharing required for internal integrations",
+    "evidence": "https://developers.notion.com/docs/authorization"
+  },
+  {
+    "id": "72",
+    "category": "Productivity and Project Management",
+    "app": "Airtable",
+    "one_line": "Database/spreadsheet collaboration platform.",
+    "auth": "OAuth2; personal access tokens",
+    "access": "Self-serve developer hub",
+    "surface": "Broad Web API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Base-level permissions and schema variance",
+    "evidence": "https://airtable.com/developers/web/api/authentication"
+  },
+  {
+    "id": "73",
+    "category": "Productivity and Project Management",
+    "app": "Linear",
+    "one_line": "Issue tracking and product planning tool.",
+    "auth": "OAuth2; API key",
+    "access": "Self-serve developer settings",
+    "surface": "Broad GraphQL API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "GraphQL schema and workspace permissions",
+    "evidence": "https://developers.linear.app/docs/graphql/working-with-the-graphql-api"
+  },
+  {
+    "id": "74",
+    "category": "Productivity and Project Management",
+    "app": "Jira",
+    "one_line": "Atlassian issue/project management platform.",
+    "auth": "OAuth2; API token; Forge app auth",
+    "access": "Self-serve dev, org/admin approval often needed",
+    "surface": "Broad REST APIs",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Cloud/server differences and admin app approval",
+    "evidence": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/"
+  },
+  {
+    "id": "75",
+    "category": "Productivity and Project Management",
+    "app": "Asana",
+    "one_line": "Work management for tasks, projects, teams, goals, and portfolios.",
+    "auth": "OAuth2; personal access token",
+    "access": "Self-serve developer app",
+    "surface": "Broad REST API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Workspace permissions and app approval",
+    "evidence": "https://developers.asana.com/docs/authentication"
+  },
+  {
+    "id": "76",
+    "category": "Productivity and Project Management",
+    "app": "Monday.com",
+    "one_line": "Work OS for boards, items, automations, and workflows.",
+    "auth": "OAuth2; API token",
+    "access": "Self-serve developer/apps",
+    "surface": "Broad GraphQL API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "GraphQL complexity/rate budgets",
+    "evidence": "https://developer.monday.com/api-reference/docs/authentication"
+  },
+  {
+    "id": "77",
+    "category": "Productivity and Project Management",
+    "app": "ClickUp",
+    "one_line": "Project management and docs platform.",
+    "auth": "OAuth2; personal token",
+    "access": "Self-serve developer app",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Workspace/team hierarchy complexity",
+    "evidence": "https://clickup.com/api"
+  },
+  {
+    "id": "78",
+    "category": "Productivity and Project Management",
+    "app": "Coda",
+    "one_line": "Docs platform with tables, packs, and automation.",
+    "auth": "API token; OAuth for Packs",
+    "access": "Self-serve account",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Document/table schema discovery",
+    "evidence": "https://coda.io/developers/apis/v1"
+  },
+  {
+    "id": "79",
+    "category": "Productivity and Project Management",
+    "app": "Smartsheet",
+    "one_line": "Work management and spreadsheet-like project platform.",
+    "auth": "OAuth2; access token",
+    "access": "Self-serve developer account",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Enterprise admin controls and rate limits",
+    "evidence": "https://smartsheet.redoc.ly/"
+  },
+  {
+    "id": "80",
+    "category": "Productivity and Project Management",
+    "app": "Harvest",
+    "one_line": "Time tracking and invoicing platform.",
+    "auth": "OAuth2; personal access token",
+    "access": "Self-serve developer app",
+    "surface": "Broad REST API",
+    "mcp": "None found",
+    "verdict": "Buildable",
+    "blocker": "Account ID header and workspace permissions",
+    "evidence": "https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/"
+  },
+  {
+    "id": "81",
+    "category": "Finance and Fintech",
+    "app": "Stripe",
+    "one_line": "Payments and financial infrastructure for charges, customers, invoices, and accounts.",
+    "auth": "API key; OAuth for Connect",
+    "access": "Self-serve test mode, live activation needed",
+    "surface": "Broad REST API",
+    "mcp": "Official/community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Payment compliance and live account activation",
+    "evidence": "https://docs.stripe.com/api/authentication"
+  },
+  {
+    "id": "82",
+    "category": "Finance and Fintech",
+    "app": "Plaid",
+    "one_line": "Financial data connectivity for bank accounts, transactions, identity, and payments.",
+    "auth": "API keys; link tokens",
+    "access": "Self-serve sandbox, production access reviewed",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Production review and regulated data handling",
+    "evidence": "https://plaid.com/docs/api/"
+  },
+  {
+    "id": "83",
+    "category": "Finance and Fintech",
+    "app": "Binance",
+    "one_line": "Crypto exchange APIs for market data, trading, wallets, and accounts.",
+    "auth": "API key/secret; HMAC",
+    "access": "Self-serve account/API keys",
+    "surface": "Broad REST and WebSocket APIs",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Trading safety, regional restrictions, KYC",
+    "evidence": "https://developers.binance.com/docs/binance-spot-api-docs"
+  },
+  {
+    "id": "84",
+    "category": "Finance and Fintech",
+    "app": "Paygent Connect",
+    "one_line": "Payment gateway/merchant services stack, described as NMI-powered.",
+    "auth": "API key/token likely",
+    "access": "Gated/contact merchant provider",
+    "surface": "Public docs unclear",
+    "mcp": "Public MCP not found",
+    "verdict": "Not yet",
+    "blocker": "No stable public developer docs found",
+    "evidence": "https://www.paygent.com/"
+  },
+  {
+    "id": "85",
+    "category": "Finance and Fintech",
+    "app": "iPayX",
+    "one_line": "AI/payments product with developer docs.",
+    "auth": "API key likely",
+    "access": "Gated/unclear",
+    "surface": "Docs site exists, surface unclear",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Need account/docs validation",
+    "evidence": "https://ipayx.ai/docs"
+  },
+  {
+    "id": "86",
+    "category": "Finance and Fintech",
+    "app": "QuickBooks",
+    "one_line": "Intuit accounting platform for companies, invoices, customers, and reports.",
+    "auth": "OAuth2",
+    "access": "Self-serve sandbox/dev app, production review possible",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Accounting data permissions and app review",
+    "evidence": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization"
+  },
+  {
+    "id": "87",
+    "category": "Finance and Fintech",
+    "app": "Xero",
+    "one_line": "Accounting platform for invoices, contacts, bank transactions, and reports.",
+    "auth": "OAuth2",
+    "access": "Self-serve developer app",
+    "surface": "Broad REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Tenant connections and accounting permissions",
+    "evidence": "https://developer.xero.com/documentation/guides/oauth2/overview/"
+  },
+  {
+    "id": "88",
+    "category": "Finance and Fintech",
+    "app": "Brex",
+    "one_line": "Corporate card, spend management, and banking platform.",
+    "auth": "OAuth2; API token",
+    "access": "Gated/customer/admin access",
+    "surface": "REST APIs",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Customer/admin access and finance controls",
+    "evidence": "https://developer.brex.com/"
+  },
+  {
+    "id": "89",
+    "category": "Finance and Fintech",
+    "app": "Ramp",
+    "one_line": "Corporate card and spend management platform.",
+    "auth": "OAuth2",
+    "access": "Gated/customer/admin access",
+    "surface": "Broad REST API",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Partner/customer access and spend controls",
+    "evidence": "https://docs.ramp.com/developer-api/v1/overview/introduction"
+  },
+  {
+    "id": "90",
+    "category": "Finance and Fintech",
+    "app": "PitchBook",
+    "one_line": "Private markets data and research platform.",
+    "auth": "API token/license",
+    "access": "Gated/contract only",
+    "surface": "Data/API products",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Commercial data license and sales access",
+    "evidence": "https://pitchbook.com/data"
+  },
+  {
+    "id": "91",
+    "category": "AI, Research and Media-native",
+    "app": "NotebookLM",
+    "one_line": "Google AI note/research product; enterprise capability points to Gemini/Workspace APIs.",
+    "auth": "Google OAuth/service account for related APIs",
+    "access": "Gated/no standalone public NotebookLM API",
+    "surface": "No standalone public NotebookLM developer API found",
+    "mcp": "Public MCP not found",
+    "verdict": "Not yet",
+    "blocker": "No direct public API; use Gemini/Drive alternatives",
+    "evidence": "https://cloud.google.com/gemini"
+  },
+  {
+    "id": "92",
+    "category": "AI, Research and Media-native",
+    "app": "Otter AI",
+    "one_line": "Meeting transcription and notes product.",
+    "auth": "MCP/OAuth depending connector",
+    "access": "Gated for API; MCP docs available",
+    "surface": "API not broadly public; MCP server noted",
+    "mcp": "Existing MCP noted",
+    "verdict": "Partially buildable",
+    "blocker": "Public API surface limited; MCP may be connector path",
+    "evidence": "https://help.otter.ai/"
+  },
+  {
+    "id": "93",
+    "category": "AI, Research and Media-native",
+    "app": "Fathom",
+    "one_line": "AI meeting recorder and summary tool.",
+    "auth": "OAuth/API access unclear",
+    "access": "Gated/unclear",
+    "surface": "Limited public API docs",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Developer docs/API access unclear",
+    "evidence": "https://fathom.video/"
+  },
+  {
+    "id": "94",
+    "category": "AI, Research and Media-native",
+    "app": "Consensus",
+    "one_line": "AI academic search/research product.",
+    "auth": "OAuth requested per assignment; public API unclear",
+    "access": "Gated/unclear",
+    "surface": "Public API not clearly documented",
+    "mcp": "Public MCP not found",
+    "verdict": "Not yet",
+    "blocker": "OAuth/API access requested but not public",
+    "evidence": "https://consensus.app/"
+  },
+  {
+    "id": "95",
+    "category": "AI, Research and Media-native",
+    "app": "Reducto",
+    "one_line": "Document parsing API for complex PDFs and unstructured files.",
+    "auth": "API key",
+    "access": "Self-serve/contact depending tier",
+    "surface": "REST API",
+    "mcp": "Community MCPs",
+    "verdict": "Buildable",
+    "blocker": "Paid usage and document privacy",
+    "evidence": "https://docs.reducto.ai/"
+  },
+  {
+    "id": "96",
+    "category": "AI, Research and Media-native",
+    "app": "Devin",
+    "one_line": "AI software engineer product with API/MCP integrations.",
+    "auth": "API key/token; MCP",
+    "access": "Self-serve/customer account likely",
+    "surface": "API and MCP docs",
+    "mcp": "Official MCP",
+    "verdict": "Buildable",
+    "blocker": "Account availability and action safety",
+    "evidence": "https://docs.devin.ai/"
+  },
+  {
+    "id": "97",
+    "category": "AI, Research and Media-native",
+    "app": "higgsfield",
+    "one_line": "AI video/content suite with CLI hint.",
+    "auth": "CLI auth unclear",
+    "access": "Gated/unclear",
+    "surface": "CLI/product surface, API docs unclear",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "No broad public API verified",
+    "evidence": "https://higgsfield.ai/cli"
+  },
+  {
+    "id": "98",
+    "category": "AI, Research and Media-native",
+    "app": "Mermaid CLI",
+    "one_line": "Command-line renderer for Mermaid diagrams.",
+    "auth": "No remote auth; local CLI",
+    "access": "Open source self-serve",
+    "surface": "CLI, npm package",
+    "mcp": "Community MCP potential",
+    "verdict": "Buildable",
+    "blocker": "Wrap CLI, not app API",
+    "evidence": "https://github.com/mermaid-js/mermaid-cli"
+  },
+  {
+    "id": "99",
+    "category": "AI, Research and Media-native",
+    "app": "YouTube Transcript",
+    "one_line": "Transcript extraction API/service.",
+    "auth": "API key",
+    "access": "Self-serve paid/free API",
+    "surface": "REST API narrow",
+    "mcp": "Community MCP potential",
+    "verdict": "Buildable",
+    "blocker": "Narrow surface and YouTube policy dependence",
+    "evidence": "https://www.transcriptapi.com/docs"
+  },
+  {
+    "id": "100",
+    "category": "AI, Research and Media-native",
+    "app": "Grain",
+    "one_line": "Meeting recording, notes, clips, and conversation intelligence.",
+    "auth": "OAuth/API token unclear",
+    "access": "Gated/customer access",
+    "surface": "API docs not broadly obvious",
+    "mcp": "Public MCP not found",
+    "verdict": "Partially buildable",
+    "blocker": "Public developer access unclear",
+    "evidence": "https://grain.com/"
+  }
+];
+  </script>
+</body>
+</html>
