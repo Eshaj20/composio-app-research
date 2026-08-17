@@ -178,7 +178,7 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
         confidence_reason = str(evidence.get("confidence_reason", "Official evidence URL captured for this row."))
         table_rows.append(
             f"""
-            <tr data-category="{html.escape(r['category'])}" data-verdict="{html.escape(r['verdict'])}">
+            <tr data-category="{html.escape(r['category'])}" data-verdict="{html.escape(r['verdict'])}" data-confidence="{html.escape(confidence)}">
               <td>{r['id']}</td>
               <td><strong>{html.escape(r['app'])}</strong><span>{html.escape(r['category'])}</span></td>
               <td>{html.escape(r['one_line'])}</td>
@@ -214,17 +214,23 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
         ][:12]
         for item in review_items:
             notes = ", ".join(str(n) for n in item.get("notes", [])) or str(item.get("fetch_error") or "Needs review")
+            snippet_text = str(item.get("snippet", "")).strip()
+            if not snippet_text:
+                snippet_text = f"Evidence URL: {item.get('evidence_url', '')}; fetch/status note: {item.get('fetch_error') or item.get('status', 'needs review')}"
             agent_review_rows.append(
                 f"""
                 <tr>
                   <td><strong>{html.escape(str(item.get('app', '')))}</strong></td>
                   <td>{pill(str(item.get('status', 'review')))}</td>
                   <td>{html.escape(notes)}</td>
-                  <td>{html.escape(str(item.get('snippet', ''))[:240])}</td>
+                  <td>{html.escape(snippet_text[:260])}</td>
                 </tr>
                 """
             )
 
+    confidence_options = sorted(
+        set(str(evidence_by_app.get(r["app"], {}).get("confidence", "Curated-docs reviewed")) for r in rows)
+    )
     rows_json = json.dumps(rows, indent=2)
     stats_json = json.dumps(stats, indent=2)
 
@@ -391,6 +397,10 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
           <option value="">All categories</option>
           {''.join(f'<option>{html.escape(c)}</option>' for c in sorted(set(r['category'] for r in rows)))}
         </select>
+        <select id="confidence" aria-label="Filter confidence">
+          <option value="">All confidence labels</option>
+          {''.join(f'<option>{html.escape(c)}</option>' for c in confidence_options)}
+        </select>
       </div>
       <div class="table-wrap">
         <table id="apps">
@@ -424,6 +434,7 @@ npm run build</pre>
     const q = document.querySelector("#q");
     const verdict = document.querySelector("#verdict");
     const category = document.querySelector("#category");
+    const confidence = document.querySelector("#confidence");
     function applyFilters() {{
       const term = q.value.trim().toLowerCase();
       for (const row of rows) {{
@@ -431,12 +442,14 @@ npm run build</pre>
         const okTerm = !term || text.includes(term);
         const okVerdict = !verdict.value || row.dataset.verdict === verdict.value;
         const okCategory = !category.value || row.dataset.category === category.value;
-        row.style.display = okTerm && okVerdict && okCategory ? "" : "none";
+        const okConfidence = !confidence.value || row.dataset.confidence === confidence.value;
+        row.style.display = okTerm && okVerdict && okCategory && okConfidence ? "" : "none";
       }}
     }}
     q.addEventListener("input", applyFilters);
     verdict.addEventListener("change", applyFilters);
     category.addEventListener("change", applyFilters);
+    confidence.addEventListener("change", applyFilters);
     window.__researchRows = {rows_json};
   </script>
 </body>

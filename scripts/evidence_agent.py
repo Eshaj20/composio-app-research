@@ -235,6 +235,17 @@ def build_check(row: dict[str, str]) -> dict[str, object]:
     ]
     status, notes = evidence_status(row, signal_text, error, status_code)
     confidence, confidence_reason = confidence_label(row, status, error)
+    evidence_snippet = snippet(text, all_terms or [row["app"]]).strip()
+    if len(evidence_snippet) < 40:
+        fallback_parts = [
+            f"Evidence URL: {row['evidence']}",
+            f"Auth finding: {row['auth']}",
+            f"API surface finding: {row['surface']}",
+            f"Buildability blocker: {row['blocker']}",
+        ]
+        if error:
+            fallback_parts.append(f"Fetch note: {error}")
+        evidence_snippet = " | ".join(fallback_parts)
     return {
         "id": row["id"],
         "app": row["app"],
@@ -248,7 +259,7 @@ def build_check(row: dict[str, str]) -> dict[str, object]:
         "auth_signals": auth_signals,
         "surface_signals": surface_signals,
         "access_signals": access_signals,
-        "snippet": snippet(text, all_terms or [row["app"]]),
+        "snippet": evidence_snippet,
         "elapsed_ms": round((time.time() - started) * 1000),
     }
 

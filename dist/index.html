@@ -241,42 +241,42 @@
                   <td><strong>LiveAgent</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>LiveAgent API</td>
+                  <td>Evidence URL: https://support.liveagent.com/docs/api/v3/ | Auth finding: API key | API surface finding: Broad REST API | Buildability blocker: Older docs and account-specific endpoints</td>
                 </tr>
                 
                 <tr>
                   <td><strong>Gladly</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Main Home - Gladly Developer Gladly Developer Developer Gladly.com Toggle Menu Home Developer API REST API Chat Web SDK Chat iOS SDK Chat Android SDK Help Center Tutorials Help and Support A platform with people at the heart of it Looking t</td>
+                  <td>Main Home - Gladly Developer Gladly Developer Developer Gladly.com Toggle Menu Home Developer API REST API Chat Web SDK Chat iOS SDK Chat Android SDK Help Center Tutorials Help and Support A platform with people at the heart of it Looking to extend Gladly, use</td>
                 </tr>
                 
                 <tr>
                   <td><strong>Lark (Larksuite)</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal, missing_surface_signal, missing_access_signal</td>
-                  <td>开发文档 - Lark开放平台</td>
+                  <td>Evidence URL: https://open.larksuite.com/document/ | Auth finding: OAuth2; app access tokens | API surface finding: Broad Open Platform APIs | Buildability blocker: Region/product naming and tenant approval</td>
                 </tr>
                 
                 <tr>
                   <td><strong>Pumble</strong></td>
                   <td><span class="pill blocked_or_missing">blocked_or_missing</span></td>
                   <td>HTTP 404</td>
-                  <td>and Style Messages Sharing Files Search &amp; Navigation Calls and Meetings Profile Account Management Profile Settings &amp; Preferences Personal Notifications Administration Workspace Settings Manage Team Members Billing Page Not Found The page y</td>
+                  <td>and Style Messages Sharing Files Search &amp; Navigation Calls and Meetings Profile Account Management Profile Settings &amp; Preferences Personal Notifications Administration Workspace Settings Manage Team Members Billing Page Not Found The page you’re requesting see</td>
                 </tr>
                 
                 <tr>
                   <td><strong>GoHighLevel</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal, missing_surface_signal, missing_access_signal</td>
-                  <td></td>
+                  <td>Evidence URL: https://highlevel.stoplight.io/docs/integrations/ | Auth finding: OAuth2; API key/private integration tokens | API surface finding: Broad REST API | Buildability blocker: Agency/location model and marketplace review</td>
                 </tr>
                 
                 <tr>
                   <td><strong>Threads (Meta)</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>in the App Dashboard. ### [Reference](https://developers.facebook.com/documentation/threads/reference) The Threads API endpoints and their parameters. ### Guides Learn how to make posts, retrieve media, and troubleshoot issues. * [Single Th</td>
+                  <td>in the App Dashboard. ### [Reference](https://developers.facebook.com/documentation/threads/reference) The Threads API endpoints and their parameters. ### Guides Learn how to make posts, retrieve media, and troubleshoot issues. * [Single Thread Posts](https://</td>
                 </tr>
                 
                 <tr>
@@ -290,21 +290,21 @@
                   <td><strong>Ecwid</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>Build with Ecwid apps | Ecwid Documentation ⌘ Ctrl k Ask Contact API support More Build apps Site Themes REST API Reference Storefronts (JS API) Webhook automations Discounts Guides Changelog AI Assistant Good morning I&#x27;m here to help you w</td>
+                  <td>Build with Ecwid apps | Ecwid Documentation ⌘ Ctrl k Ask Contact API support More Build apps Site Themes REST API Reference Storefronts (JS API) Webhook automations Discounts Guides Changelog AI Assistant Good morning I&#x27;m here to help you with the docs. What i</td>
                 </tr>
                 
                 <tr>
                   <td><strong>Gumroad</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>API</td>
+                  <td>Evidence URL: https://gumroad.com/api | Auth finding: OAuth2 | API surface finding: REST API moderate | Buildability blocker: API surface smaller and product-specific</td>
                 </tr>
                 
                 <tr>
                   <td><strong>Clay</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td>ructured data from any website, instantly and code-free. View docs topic View docs topic ​ Transform Clean, format, and restructure data to fit your workflow perfectly. View docs topic View docs topic ​ Enrich Add missing details using powe</td>
+                  <td>ructured data from any website, instantly and code-free. View docs topic View docs topic ​ Transform Clean, format, and restructure data to fit your workflow perfectly. View docs topic View docs topic ​ Enrich Add missing details using powerful enrichment sour</td>
                 </tr>
                 
                 <tr>
@@ -318,7 +318,7 @@
                   <td><strong>Binance</strong></td>
                   <td><span class="pill needs_human_review">needs_human_review</span></td>
                   <td>missing_auth_signal</td>
-                  <td></td>
+                  <td>Evidence URL: https://developers.binance.com/en/docs/products/spot/rest-api | Auth finding: API key/secret; HMAC | API surface finding: Broad REST and WebSocket APIs | Buildability blocker: Trading safety, regional restrictions, KYC</td>
                 </tr>
                 </tbody>
         </table>
@@ -417,6 +417,10 @@
           <option value="">All categories</option>
           <option>AI, Research and Media-native</option><option>CRM and Sales</option><option>Communications and Messaging</option><option>Data, SEO and Scraping</option><option>Developer, Infra and Data platforms</option><option>Ecommerce</option><option>Finance and Fintech</option><option>Marketing, Ads, Email and Social</option><option>Productivity and Project Management</option><option>Support and Helpdesk</option>
         </select>
+        <select id="confidence" aria-label="Filter confidence">
+          <option value="">All confidence labels</option>
+          <option>Agent-supported</option><option>Curated-docs reviewed</option><option>Human-reviewed</option><option>Needs follow-up</option>
+        </select>
       </div>
       <div class="table-wrap">
         <table id="apps">
@@ -424,7 +428,7 @@
             <tr><th>#</th><th>App</th><th>What it does</th><th>Auth</th><th>Access</th><th>API surface / MCP</th><th>Verdict / blocker</th><th>Confidence</th><th>Proof</th></tr>
           </thead>
           <tbody>
-            <tr data-category="CRM and Sales" data-verdict="Buildable">
+            <tr data-category="CRM and Sales" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>1</td>
               <td><strong>Salesforce</strong><span>CRM and Sales</span></td>
               <td>Enterprise CRM with sales, service, and platform objects.</td>
@@ -436,7 +440,7 @@
               <td><a href="https://developer.salesforce.com/docs/platform/connect-rest-api/guide/quickstart.html" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="CRM and Sales" data-verdict="Buildable">
+            <tr data-category="CRM and Sales" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>2</td>
               <td><strong>HubSpot</strong><span>CRM and Sales</span></td>
               <td>CRM and marketing platform for contacts, companies, deals, and engagement data.</td>
@@ -448,7 +452,7 @@
               <td><a href="https://developers.hubspot.com/docs/apps/legacy-apps/authentication/intro-to-auth" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="CRM and Sales" data-verdict="Buildable">
+            <tr data-category="CRM and Sales" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>3</td>
               <td><strong>Pipedrive</strong><span>CRM and Sales</span></td>
               <td>Sales CRM for deals, activities, people, and pipelines.</td>
@@ -460,7 +464,7 @@
               <td><a href="https://developers.pipedrive.com/docs/api/v1" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="CRM and Sales" data-verdict="Buildable">
+            <tr data-category="CRM and Sales" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>4</td>
               <td><strong>Attio</strong><span>CRM and Sales</span></td>
               <td>Modern CRM/workspace for flexible records and relationship data.</td>
@@ -472,7 +476,7 @@
               <td><a href="https://docs.attio.com/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="CRM and Sales" data-verdict="Buildable">
+            <tr data-category="CRM and Sales" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>5</td>
               <td><strong>Twenty</strong><span>CRM and Sales</span></td>
               <td>Open-source CRM with configurable companies, people, and opportunities.</td>
@@ -484,7 +488,7 @@
               <td><a href="https://twenty.com/developers" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="CRM and Sales" data-verdict="Buildable">
+            <tr data-category="CRM and Sales" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>6</td>
               <td><strong>Podio</strong><span>CRM and Sales</span></td>
               <td>Citrix work management/CRM-style app platform.</td>
@@ -496,7 +500,7 @@
               <td><a href="https://developers.podio.com/doc" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="CRM and Sales" data-verdict="Buildable">
+            <tr data-category="CRM and Sales" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>7</td>
               <td><strong>Zoho CRM</strong><span>CRM and Sales</span></td>
               <td>CRM for leads, contacts, deals, campaigns, and workflows.</td>
@@ -508,7 +512,7 @@
               <td><a href="https://www.zoho.com/crm/developer/docs/api/v8/oauth-overview.html" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="CRM and Sales" data-verdict="Buildable">
+            <tr data-category="CRM and Sales" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>8</td>
               <td><strong>Close</strong><span>CRM and Sales</span></td>
               <td>Sales CRM focused on calls, email, leads, and opportunities.</td>
@@ -520,7 +524,7 @@
               <td><a href="https://developer.close.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="CRM and Sales" data-verdict="Buildable">
+            <tr data-category="CRM and Sales" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>9</td>
               <td><strong>Copper</strong><span>CRM and Sales</span></td>
               <td>Google Workspace-native CRM for contacts, leads, and opportunities.</td>
@@ -532,7 +536,7 @@
               <td><a href="https://developer.copper.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="CRM and Sales" data-verdict="Partially buildable">
+            <tr data-category="CRM and Sales" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>10</td>
               <td><strong>DealCloud</strong><span>CRM and Sales</span></td>
               <td>Deal management CRM for financial services.</td>
@@ -544,7 +548,7 @@
               <td><a href="https://api.docs.dealcloud.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>11</td>
               <td><strong>Zendesk</strong><span>Support and Helpdesk</span></td>
               <td>Support platform for tickets, users, help center, chat, and messaging.</td>
@@ -556,7 +560,7 @@
               <td><a href="https://developer.zendesk.com/api-reference/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>12</td>
               <td><strong>Intercom</strong><span>Support and Helpdesk</span></td>
               <td>Customer messaging and support platform.</td>
@@ -568,7 +572,7 @@
               <td><a href="https://developers.intercom.com/docs/build-an-integration/learn-more/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>13</td>
               <td><strong>Freshdesk</strong><span>Support and Helpdesk</span></td>
               <td>Helpdesk ticketing, contacts, companies, and knowledge base.</td>
@@ -580,7 +584,7 @@
               <td><a href="https://developers.freshdesk.com/api/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>14</td>
               <td><strong>Front</strong><span>Support and Helpdesk</span></td>
               <td>Shared inbox and customer operations platform.</td>
@@ -592,7 +596,7 @@
               <td><a href="https://dev.frontapp.com/reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Partially buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>15</td>
               <td><strong>Pylon</strong><span>Support and Helpdesk</span></td>
               <td>B2B support platform for Slack/Teams/email customer channels.</td>
@@ -604,7 +608,7 @@
               <td><a href="https://docs.usepylon.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>16</td>
               <td><strong>LiveAgent</strong><span>Support and Helpdesk</span></td>
               <td>Helpdesk/live chat software for tickets, chats, calls, and customers.</td>
@@ -616,7 +620,7 @@
               <td><a href="https://support.liveagent.com/docs/api/v3/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>17</td>
               <td><strong>Plain</strong><span>Support and Helpdesk</span></td>
               <td>API-first customer support platform.</td>
@@ -628,7 +632,7 @@
               <td><a href="https://www.plain.com/docs/api-reference/graphql" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>18</td>
               <td><strong>Help Scout</strong><span>Support and Helpdesk</span></td>
               <td>Helpdesk mailbox, docs, customers, and conversations.</td>
@@ -640,7 +644,7 @@
               <td><a href="https://developer.helpscout.com/mailbox-api/overview/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>19</td>
               <td><strong>Gorgias</strong><span>Support and Helpdesk</span></td>
               <td>Ecommerce helpdesk for tickets, customers, and orders.</td>
@@ -652,7 +656,7 @@
               <td><a href="https://developers.gorgias.com/reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Support and Helpdesk" data-verdict="Partially buildable">
+            <tr data-category="Support and Helpdesk" data-verdict="Partially buildable" data-confidence="Needs follow-up">
               <td>20</td>
               <td><strong>Gladly</strong><span>Support and Helpdesk</span></td>
               <td>Customer service platform for conversations and people profiles.</td>
@@ -664,7 +668,7 @@
               <td><a href="https://developer.gladly.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+            <tr data-category="Communications and Messaging" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>21</td>
               <td><strong>Slack</strong><span>Communications and Messaging</span></td>
               <td>Team messaging platform with channels, users, files, and workflow APIs.</td>
@@ -676,7 +680,7 @@
               <td><a href="https://api.slack.com/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+            <tr data-category="Communications and Messaging" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>22</td>
               <td><strong>Twilio</strong><span>Communications and Messaging</span></td>
               <td>Communications APIs for SMS, voice, WhatsApp, email, and verification.</td>
@@ -688,7 +692,7 @@
               <td><a href="https://www.twilio.com/docs/iam/api-keys" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+            <tr data-category="Communications and Messaging" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>23</td>
               <td><strong>Zoho Cliq</strong><span>Communications and Messaging</span></td>
               <td>Team chat and collaboration platform.</td>
@@ -700,7 +704,7 @@
               <td><a href="https://www.zoho.com/cliq/help/restapi/v2/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+            <tr data-category="Communications and Messaging" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>24</td>
               <td><strong>Lark (Larksuite)</strong><span>Communications and Messaging</span></td>
               <td>Collaboration suite with messaging, docs, calendar, and approval APIs.</td>
@@ -712,7 +716,7 @@
               <td><a href="https://open.larksuite.com/document/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Not yet">
+            <tr data-category="Communications and Messaging" data-verdict="Not yet" data-confidence="Human-reviewed">
               <td>25</td>
               <td><strong>Pumble</strong><span>Communications and Messaging</span></td>
               <td>Team chat app from CAKE.com.</td>
@@ -724,7 +728,7 @@
               <td><a href="https://pumble.com/help/integrations/webhooks/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+            <tr data-category="Communications and Messaging" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>26</td>
               <td><strong>Discord</strong><span>Communications and Messaging</span></td>
               <td>Community chat, voice, and bot platform.</td>
@@ -736,7 +740,7 @@
               <td><a href="https://discord.com/developers/docs/intro" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+            <tr data-category="Communications and Messaging" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>27</td>
               <td><strong>Telegram</strong><span>Communications and Messaging</span></td>
               <td>Messaging platform with bot and client APIs.</td>
@@ -748,7 +752,7 @@
               <td><a href="https://core.telegram.org/bots/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+            <tr data-category="Communications and Messaging" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>28</td>
               <td><strong>WhatsApp Business</strong><span>Communications and Messaging</span></td>
               <td>Meta WhatsApp messaging for business conversations.</td>
@@ -760,7 +764,7 @@
               <td><a href="https://developers.facebook.com/docs/whatsapp/cloud-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+            <tr data-category="Communications and Messaging" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>29</td>
               <td><strong>Aircall</strong><span>Communications and Messaging</span></td>
               <td>Cloud phone system for calls, numbers, users, and analytics.</td>
@@ -772,7 +776,7 @@
               <td><a href="https://developer.aircall.io/api-references/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Communications and Messaging" data-verdict="Buildable">
+            <tr data-category="Communications and Messaging" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>30</td>
               <td><strong>Vonage</strong><span>Communications and Messaging</span></td>
               <td>Communications APIs for SMS, voice, verify, video, and number insights.</td>
@@ -784,7 +788,7 @@
               <td><a href="https://developer.vonage.com/en/getting-started/concepts/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>31</td>
               <td><strong>Google Ads</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Google advertising platform for campaign management and reporting.</td>
@@ -796,7 +800,7 @@
               <td><a href="https://developers.google.com/google-ads/api/docs/api-policy/developer-token" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>32</td>
               <td><strong>Meta Ads</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Meta marketing APIs for ads, audiences, campaigns, and insights.</td>
@@ -808,7 +812,7 @@
               <td><a href="https://developers.facebook.com/docs/marketing-apis/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Partially buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>33</td>
               <td><strong>LinkedIn Ads</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>LinkedIn marketing APIs for ad accounts, campaigns, creatives, and analytics.</td>
@@ -820,7 +824,7 @@
               <td><a href="https://learn.microsoft.com/en-us/linkedin/marketing/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>34</td>
               <td><strong>GoHighLevel</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Agency CRM/marketing automation platform.</td>
@@ -832,7 +836,7 @@
               <td><a href="https://highlevel.stoplight.io/docs/integrations/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>35</td>
               <td><strong>Mailchimp</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Email marketing and audience automation platform.</td>
@@ -844,7 +848,7 @@
               <td><a href="https://mailchimp.com/developer/marketing/docs/fundamentals/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>36</td>
               <td><strong>Klaviyo</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Marketing automation for ecommerce email/SMS and profiles/events.</td>
@@ -856,7 +860,7 @@
               <td><a href="https://developers.klaviyo.com/en/docs/authenticate_" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>37</td>
               <td><strong>systeme.io</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Funnel, email marketing, course, and automation builder.</td>
@@ -868,7 +872,7 @@
               <td><a href="https://developer.systeme.io/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>38</td>
               <td><strong>Pinterest</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Pinterest content and ads platform.</td>
@@ -880,7 +884,7 @@
               <td><a href="https://developers.pinterest.com/docs/getting-started/set-up-authentication-and-authorization/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>39</td>
               <td><strong>Threads (Meta)</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Meta social publishing and insights API for Threads.</td>
@@ -892,7 +896,7 @@
               <td><a href="https://developers.facebook.com/docs/threads/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable">
+            <tr data-category="Marketing, Ads, Email and Social" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>40</td>
               <td><strong>SendGrid</strong><span>Marketing, Ads, Email and Social</span></td>
               <td>Transactional and marketing email API.</td>
@@ -904,7 +908,7 @@
               <td><a href="https://docs.sendgrid.com/api-reference/how-to-use-the-sendgrid-v3-api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Buildable">
+            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>41</td>
               <td><strong>Shopify</strong><span>Ecommerce</span></td>
               <td>Commerce platform for stores, products, orders, customers, and admin workflows.</td>
@@ -916,7 +920,7 @@
               <td><a href="https://shopify.dev/docs/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Buildable">
+            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>42</td>
               <td><strong>WooCommerce</strong><span>Ecommerce</span></td>
               <td>WordPress ecommerce plugin for stores and orders.</td>
@@ -928,7 +932,7 @@
               <td><a href="https://woocommerce.github.io/woocommerce-rest-api-docs/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Buildable">
+            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>43</td>
               <td><strong>BigCommerce</strong><span>Ecommerce</span></td>
               <td>SaaS ecommerce platform for catalogs, carts, orders, and storefronts.</td>
@@ -940,7 +944,7 @@
               <td><a href="https://developer.bigcommerce.com/docs/start/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Partially buildable">
+            <tr data-category="Ecommerce" data-verdict="Partially buildable" data-confidence="Needs follow-up">
               <td>44</td>
               <td><strong>Salesforce Commerce Cloud</strong><span>Ecommerce</span></td>
               <td>Enterprise commerce platform for storefront/order/customer APIs.</td>
@@ -952,7 +956,7 @@
               <td><a href="https://developer.salesforce.com/docs/commerce" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Buildable">
+            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>45</td>
               <td><strong>Magento (Adobe Commerce)</strong><span>Ecommerce</span></td>
               <td>Adobe ecommerce platform for catalogs, carts, orders, and customers.</td>
@@ -964,7 +968,7 @@
               <td><a href="https://developer.adobe.com/commerce/webapi/get-started/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Buildable">
+            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>46</td>
               <td><strong>Squarespace</strong><span>Ecommerce</span></td>
               <td>Website/ecommerce platform for orders, products, inventory, and profiles.</td>
@@ -976,7 +980,7 @@
               <td><a href="https://developers.squarespace.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Buildable">
+            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>47</td>
               <td><strong>Ecwid</strong><span>Ecommerce</span></td>
               <td>Lightweight ecommerce store platform.</td>
@@ -988,7 +992,7 @@
               <td><a href="https://api-docs.ecwid.com/reference/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Buildable">
+            <tr data-category="Ecommerce" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>48</td>
               <td><strong>Gumroad</strong><span>Ecommerce</span></td>
               <td>Creator commerce platform for products, sales, and subscribers.</td>
@@ -1000,7 +1004,7 @@
               <td><a href="https://gumroad.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Partially buildable">
+            <tr data-category="Ecommerce" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>49</td>
               <td><strong>Amazon Selling Partner</strong><span>Ecommerce</span></td>
               <td>Seller/vendor commerce APIs for listings, orders, reports, and fulfillment.</td>
@@ -1012,7 +1016,7 @@
               <td><a href="https://developer-docs.amazon.com/sp-api/docs" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Ecommerce" data-verdict="Not yet">
+            <tr data-category="Ecommerce" data-verdict="Not yet" data-confidence="Agent-supported">
               <td>50</td>
               <td><strong>fanbasis</strong><span>Ecommerce</span></td>
               <td>Creator monetization and fan engagement marketplace.</td>
@@ -1024,7 +1028,7 @@
               <td><a href="https://www.fanbasis.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>51</td>
               <td><strong>DataForSEO</strong><span>Data, SEO and Scraping</span></td>
               <td>SEO and SERP data APIs for rankings, keywords, backlinks, and ads.</td>
@@ -1036,7 +1040,7 @@
               <td><a href="https://docs.dataforseo.com/v3/auth/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>52</td>
               <td><strong>SE Ranking</strong><span>Data, SEO and Scraping</span></td>
               <td>SEO platform for rankings, keywords, audits, and backlinks.</td>
@@ -1048,7 +1052,7 @@
               <td><a href="https://seranking.com/api.html" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Partially buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>53</td>
               <td><strong>Ahrefs</strong><span>Data, SEO and Scraping</span></td>
               <td>SEO data platform for backlinks, keywords, and site explorer.</td>
@@ -1060,7 +1064,7 @@
               <td><a href="https://ahrefs.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>54</td>
               <td><strong>MrScraper</strong><span>Data, SEO and Scraping</span></td>
               <td>Web scraping API/service.</td>
@@ -1072,7 +1076,7 @@
               <td><a href="https://docs.mrscraper.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>55</td>
               <td><strong>Apify</strong><span>Data, SEO and Scraping</span></td>
               <td>Cloud platform for actors, scraping, and browser automation.</td>
@@ -1084,7 +1088,7 @@
               <td><a href="https://docs.apify.com/api/v2" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>56</td>
               <td><strong>Firecrawl</strong><span>Data, SEO and Scraping</span></td>
               <td>Web crawling/scraping API for LLM-ready extraction.</td>
@@ -1096,7 +1100,7 @@
               <td><a href="https://docs.firecrawl.dev/api-reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>57</td>
               <td><strong>Bright Data</strong><span>Data, SEO and Scraping</span></td>
               <td>Proxy, scraping, and web data platform.</td>
@@ -1108,7 +1112,7 @@
               <td><a href="https://docs.brightdata.com/api-reference/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>58</td>
               <td><strong>Sherlock</strong><span>Data, SEO and Scraping</span></td>
               <td>Open-source OSINT tool for checking usernames across sites.</td>
@@ -1120,7 +1124,7 @@
               <td><a href="https://github.com/sherlock-project/sherlock" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Partially buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>59</td>
               <td><strong>Waterfall.io</strong><span>Data, SEO and Scraping</span></td>
               <td>Contact/company intelligence and enrichment platform.</td>
@@ -1132,7 +1136,7 @@
               <td><a href="https://www.waterfall.io/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Data, SEO and Scraping" data-verdict="Partially buildable">
+            <tr data-category="Data, SEO and Scraping" data-verdict="Partially buildable" data-confidence="Needs follow-up">
               <td>60</td>
               <td><strong>Clay</strong><span>Data, SEO and Scraping</span></td>
               <td>Data enrichment and outbound workflow platform.</td>
@@ -1144,7 +1148,7 @@
               <td><a href="https://docs.clay.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>61</td>
               <td><strong>GitHub</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Developer platform for repos, issues, pull requests, actions, and users.</td>
@@ -1156,7 +1160,7 @@
               <td><a href="https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>62</td>
               <td><strong>Vercel</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Frontend cloud platform for deployments, projects, domains, and teams.</td>
@@ -1168,7 +1172,7 @@
               <td><a href="https://vercel.com/docs/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>63</td>
               <td><strong>Netlify</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Web hosting platform for sites, deploys, forms, and functions.</td>
@@ -1180,7 +1184,7 @@
               <td><a href="https://docs.netlify.com/api/get-started/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>64</td>
               <td><strong>Cloudflare</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Internet infrastructure for DNS, CDN, Workers, security, and storage.</td>
@@ -1192,7 +1196,7 @@
               <td><a href="https://developers.cloudflare.com/api/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>65</td>
               <td><strong>Supabase</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Postgres backend platform with auth, storage, edge functions, and database APIs.</td>
@@ -1204,7 +1208,7 @@
               <td><a href="https://supabase.com/docs/guides/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>66</td>
               <td><strong>Neo4j</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Graph database platform and Aura cloud service.</td>
@@ -1216,7 +1220,7 @@
               <td><a href="https://neo4j.com/docs/http-api/current/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>67</td>
               <td><strong>Snowflake</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Cloud data warehouse and data platform.</td>
@@ -1228,7 +1232,7 @@
               <td><a href="https://docs.snowflake.com/en/developer-guide/sql-api/authenticating" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>68</td>
               <td><strong>MongoDB Atlas</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Managed MongoDB platform for clusters, projects, users, and data APIs.</td>
@@ -1240,7 +1244,7 @@
               <td><a href="https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>69</td>
               <td><strong>Datadog</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Observability platform for metrics, logs, traces, monitors, and incidents.</td>
@@ -1252,7 +1256,7 @@
               <td><a href="https://docs.datadoghq.com/api/latest/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable">
+            <tr data-category="Developer, Infra and Data platforms" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>70</td>
               <td><strong>Sentry</strong><span>Developer, Infra and Data platforms</span></td>
               <td>Error monitoring and performance platform.</td>
@@ -1264,7 +1268,7 @@
               <td><a href="https://docs.sentry.io/api/auth/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>71</td>
               <td><strong>Notion</strong><span>Productivity and Project Management</span></td>
               <td>Workspace docs, databases, pages, users, and comments.</td>
@@ -1276,7 +1280,7 @@
               <td><a href="https://developers.notion.com/docs/authorization" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>72</td>
               <td><strong>Airtable</strong><span>Productivity and Project Management</span></td>
               <td>Database/spreadsheet collaboration platform.</td>
@@ -1288,7 +1292,7 @@
               <td><a href="https://airtable.com/developers/web/api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>73</td>
               <td><strong>Linear</strong><span>Productivity and Project Management</span></td>
               <td>Issue tracking and product planning tool.</td>
@@ -1300,7 +1304,7 @@
               <td><a href="https://developers.linear.app/docs/graphql/working-with-the-graphql-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>74</td>
               <td><strong>Jira</strong><span>Productivity and Project Management</span></td>
               <td>Atlassian issue/project management platform.</td>
@@ -1312,7 +1316,7 @@
               <td><a href="https://developer.atlassian.com/cloud/jira/platform/security-for-connect-apps/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>75</td>
               <td><strong>Asana</strong><span>Productivity and Project Management</span></td>
               <td>Work management for tasks, projects, teams, goals, and portfolios.</td>
@@ -1324,7 +1328,7 @@
               <td><a href="https://developers.asana.com/docs/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>76</td>
               <td><strong>Monday.com</strong><span>Productivity and Project Management</span></td>
               <td>Work OS for boards, items, automations, and workflows.</td>
@@ -1336,7 +1340,7 @@
               <td><a href="https://developer.monday.com/api-reference/docs/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>77</td>
               <td><strong>ClickUp</strong><span>Productivity and Project Management</span></td>
               <td>Project management and docs platform.</td>
@@ -1348,7 +1352,7 @@
               <td><a href="https://clickup.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>78</td>
               <td><strong>Coda</strong><span>Productivity and Project Management</span></td>
               <td>Docs platform with tables, packs, and automation.</td>
@@ -1360,7 +1364,7 @@
               <td><a href="https://coda.io/developers/apis/v1" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>79</td>
               <td><strong>Smartsheet</strong><span>Productivity and Project Management</span></td>
               <td>Work management and spreadsheet-like project platform.</td>
@@ -1372,7 +1376,7 @@
               <td><a href="https://developers.smartsheet.com/api/smartsheet/guides/basics/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Productivity and Project Management" data-verdict="Buildable">
+            <tr data-category="Productivity and Project Management" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>80</td>
               <td><strong>Harvest</strong><span>Productivity and Project Management</span></td>
               <td>Time tracking and invoicing platform.</td>
@@ -1384,7 +1388,7 @@
               <td><a href="https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>81</td>
               <td><strong>Stripe</strong><span>Finance and Fintech</span></td>
               <td>Payments and financial infrastructure for charges, customers, invoices, and accounts.</td>
@@ -1396,7 +1400,7 @@
               <td><a href="https://docs.stripe.com/api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>82</td>
               <td><strong>Plaid</strong><span>Finance and Fintech</span></td>
               <td>Financial data connectivity for bank accounts, transactions, identity, and payments.</td>
@@ -1408,7 +1412,7 @@
               <td><a href="https://plaid.com/docs/api/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Buildable" data-confidence="Curated-docs reviewed">
               <td>83</td>
               <td><strong>Binance</strong><span>Finance and Fintech</span></td>
               <td>Crypto exchange APIs for market data, trading, wallets, and accounts.</td>
@@ -1420,7 +1424,7 @@
               <td><a href="https://developers.binance.com/en/docs/products/spot/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>84</td>
               <td><strong>Paygent Connect</strong><span>Finance and Fintech</span></td>
               <td>NMI-powered merchant payment gateway/connectivity path for payment processing.</td>
@@ -1432,7 +1436,7 @@
               <td><a href="https://www.nmi.com/developers/sdks-apis/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable" data-confidence="Needs follow-up">
               <td>85</td>
               <td><strong>iPayX</strong><span>Finance and Fintech</span></td>
               <td>AI/payments product with developer docs.</td>
@@ -1444,7 +1448,7 @@
               <td><a href="https://ipayx.ai/docs" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>86</td>
               <td><strong>QuickBooks</strong><span>Finance and Fintech</span></td>
               <td>Intuit accounting platform for companies, invoices, customers, and reports.</td>
@@ -1456,7 +1460,7 @@
               <td><a href="https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>87</td>
               <td><strong>Xero</strong><span>Finance and Fintech</span></td>
               <td>Accounting platform for invoices, contacts, bank transactions, and reports.</td>
@@ -1468,7 +1472,7 @@
               <td><a href="https://developer.xero.com/documentation/guides/oauth2/overview/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>88</td>
               <td><strong>Brex</strong><span>Finance and Fintech</span></td>
               <td>Corporate card, spend management, and banking platform.</td>
@@ -1480,7 +1484,7 @@
               <td><a href="https://developer.brex.com/guides/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>89</td>
               <td><strong>Ramp</strong><span>Finance and Fintech</span></td>
               <td>Corporate card and spend management platform.</td>
@@ -1492,7 +1496,7 @@
               <td><a href="https://docs.ramp.com/developer-api/v1/authorization/scopes" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="Finance and Fintech" data-verdict="Partially buildable">
+            <tr data-category="Finance and Fintech" data-verdict="Partially buildable" data-confidence="Needs follow-up">
               <td>90</td>
               <td><strong>PitchBook</strong><span>Finance and Fintech</span></td>
               <td>Private markets data and research platform.</td>
@@ -1504,7 +1508,7 @@
               <td><a href="https://pitchbook.com/data" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Not yet">
+            <tr data-category="AI, Research and Media-native" data-verdict="Not yet" data-confidence="Agent-supported">
               <td>91</td>
               <td><strong>NotebookLM</strong><span>AI, Research and Media-native</span></td>
               <td>Google AI note/research product; enterprise capability points to Gemini/Workspace APIs.</td>
@@ -1516,7 +1520,7 @@
               <td><a href="https://cloud.google.com/gemini" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable">
+            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable" data-confidence="Needs follow-up">
               <td>92</td>
               <td><strong>Otter AI</strong><span>AI, Research and Media-native</span></td>
               <td>Meeting transcription and notes product.</td>
@@ -1528,7 +1532,7 @@
               <td><a href="https://help.otter.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable">
+            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>93</td>
               <td><strong>Fathom</strong><span>AI, Research and Media-native</span></td>
               <td>AI meeting recorder and summary tool.</td>
@@ -1540,7 +1544,7 @@
               <td><a href="https://fathom.video/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Not yet">
+            <tr data-category="AI, Research and Media-native" data-verdict="Not yet" data-confidence="Needs follow-up">
               <td>94</td>
               <td><strong>Consensus</strong><span>AI, Research and Media-native</span></td>
               <td>AI academic search/research product.</td>
@@ -1552,7 +1556,7 @@
               <td><a href="https://consensus.app/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Buildable">
+            <tr data-category="AI, Research and Media-native" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>95</td>
               <td><strong>Reducto</strong><span>AI, Research and Media-native</span></td>
               <td>Document parsing API for complex PDFs and unstructured files.</td>
@@ -1564,7 +1568,7 @@
               <td><a href="https://docs.reducto.ai/agent-guide" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Buildable">
+            <tr data-category="AI, Research and Media-native" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>96</td>
               <td><strong>Devin</strong><span>AI, Research and Media-native</span></td>
               <td>AI software engineer product with API/MCP integrations.</td>
@@ -1576,7 +1580,7 @@
               <td><a href="https://docs.devin.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable">
+            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>97</td>
               <td><strong>higgsfield</strong><span>AI, Research and Media-native</span></td>
               <td>AI video/content suite with CLI hint.</td>
@@ -1588,7 +1592,7 @@
               <td><a href="https://higgsfield.ai/cli" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Buildable">
+            <tr data-category="AI, Research and Media-native" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>98</td>
               <td><strong>Mermaid CLI</strong><span>AI, Research and Media-native</span></td>
               <td>Command-line renderer for Mermaid diagrams.</td>
@@ -1600,7 +1604,7 @@
               <td><a href="https://github.com/mermaid-js/mermaid-cli" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Buildable">
+            <tr data-category="AI, Research and Media-native" data-verdict="Buildable" data-confidence="Agent-supported">
               <td>99</td>
               <td><strong>YouTube Transcript</strong><span>AI, Research and Media-native</span></td>
               <td>Transcript extraction API/service.</td>
@@ -1612,7 +1616,7 @@
               <td><a href="https://www.transcriptapi.com/docs" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
-            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable">
+            <tr data-category="AI, Research and Media-native" data-verdict="Partially buildable" data-confidence="Agent-supported">
               <td>100</td>
               <td><strong>Grain</strong><span>AI, Research and Media-native</span></td>
               <td>Meeting recording, notes, clips, and conversation intelligence.</td>
@@ -1799,6 +1803,7 @@ npm run build</pre>
     const q = document.querySelector("#q");
     const verdict = document.querySelector("#verdict");
     const category = document.querySelector("#category");
+    const confidence = document.querySelector("#confidence");
     function applyFilters() {
       const term = q.value.trim().toLowerCase();
       for (const row of rows) {
@@ -1806,12 +1811,14 @@ npm run build</pre>
         const okTerm = !term || text.includes(term);
         const okVerdict = !verdict.value || row.dataset.verdict === verdict.value;
         const okCategory = !category.value || row.dataset.category === category.value;
-        row.style.display = okTerm && okVerdict && okCategory ? "" : "none";
+        const okConfidence = !confidence.value || row.dataset.confidence === confidence.value;
+        row.style.display = okTerm && okVerdict && okCategory && okConfidence ? "" : "none";
       }
     }
     q.addEventListener("input", applyFilters);
     verdict.addEventListener("change", applyFilters);
     category.addEventListener("change", applyFilters);
+    confidence.addEventListener("change", applyFilters);
     window.__researchRows = [
   {
     "id": "1",
