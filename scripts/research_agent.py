@@ -353,11 +353,11 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
       <div class="grid five">
         <div class="metric"><strong>100</strong><span>apps researched and assigned a confidence label</span></div>
         <div class="metric"><strong>{fetched_statuses}</strong><span>evidence URLs returned an HTTP status</span></div>
-        <div class="metric"><strong>{agent_supported_conf}</strong><span>strictly agent-supported from fetched page signals</span></div>
+        <div class="metric"><strong>{agent_supported_conf}</strong><span>agent-supported by second-pass fetched-page signals</span></div>
         <div class="metric"><strong>12</strong><span>apps manually sampled across easy, gated, ambiguous, and no-public-API cases</span></div>
         <div class="metric"><strong>12/12</strong><span>final manual sample matched checked evidence after corrections</span></div>
       </div>
-      <p>The strict fetcher only auto-confirms rows when the evidence page text contains enough matching signals. The remaining rows are still covered: {curated_conf} are curated-docs reviewed and {followup_conf} are explicit follow-up/outreach cases.</p>
+      <p>The fetcher only marks rows agent-supported when the evidence page text contains enough matching auth/API or blocker signals. The remaining rows are still covered: {curated_conf} are curated-docs reviewed and {followup_conf} are explicit follow-up/outreach cases.</p>
     </section>
 
     <section>

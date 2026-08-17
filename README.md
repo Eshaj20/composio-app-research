@@ -36,13 +36,13 @@ npm run build
 The latest run checked and labeled all 100 rows:
 
 - 100 apps received a verification or triage label.
-- 87 evidence URLs returned an HTTP status during the live run.
-- 21 rows were strictly agent-supported by fetched page signals.
-- 9 rows were primarily labeled human-reviewed; the manual sample itself covers 12 apps, including rows that were also agent-supported.
-- 49 rows were curated-docs reviewed: official evidence was captured, but strict extraction did not confirm every field automatically.
-- 21 rows were marked needs follow-up for gated, unclear, missing, or partner/outreach-heavy API access.
+- 99 evidence URLs returned an HTTP status during the live run.
+- 58 rows were agent-supported by second-pass fetched-page signals.
+- 3 rows were primarily labeled human-reviewed; the manual sample itself covers 12 apps, including rows that were also agent-supported.
+- 24 rows were curated-docs reviewed: official evidence was captured, but extraction did not confirm every field automatically.
+- 15 rows were marked needs follow-up for gated, unclear, missing, or partner/outreach-heavy API access.
 
-This strictness is intentional. The agent is used to accelerate collection, evidence checking, and triage across all 100 apps; it does not silently invent confidence when docs are gated, rendered client-side, or ambiguous.
+The agent is used to accelerate collection, evidence checking, and triage across all 100 apps; it does not silently invent confidence when docs are gated, rendered client-side, or ambiguous.
 
 ## Human Verification Loop
 

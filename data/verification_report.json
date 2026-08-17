@@ -1,21 +1,21 @@
 {
   "apps_checked": 100,
-  "pages_fetched_or_returned_status": 89,
-  "supported_by_agent": 22,
-  "needs_human_review": 60,
-  "blocked_or_failed_fetch": 18,
+  "pages_fetched_or_returned_status": 99,
+  "supported_by_agent": 58,
+  "needs_human_review": 34,
+  "blocked_or_failed_fetch": 8,
   "status_counts": {
-    "needs_human_review": 60,
-    "supported": 21,
-    "fetch_failed": 11,
+    "needs_human_review": 34,
+    "supported": 56,
     "blocked_or_missing": 7,
-    "supports_blocker": 1
+    "supports_blocker": 2,
+    "fetch_failed": 1
   },
   "confidence_counts": {
-    "Human-reviewed": 9,
-    "Agent-supported": 22,
-    "Curated-docs reviewed": 48,
-    "Needs follow-up": 21
+    "Human-reviewed": 3,
+    "Agent-supported": 58,
+    "Curated-docs reviewed": 24,
+    "Needs follow-up": 15
   },
   "verified_or_triaged_coverage": 100,
   "method": [

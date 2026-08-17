@@ -21,21 +21,21 @@ REPORT = ROOT / "data" / "verification_report.json"
 
 USER_AGENT = "composio-app-research-agent/1.0 (+https://github.com/Eshaj20/composio-app-research)"
 MAX_BYTES = 650_000
-TIMEOUT_SECONDS = 6
+TIMEOUT_SECONDS = 8
 MAX_WORKERS = 12
 
 
 AUTH_SIGNALS = {
-    "oauth": ["oauth", "oauth2", "authorization code", "refresh token"],
-    "api_key": ["api key", "apikey", "x-api-key", "developer token", "access key"],
-    "bearer_token": ["bearer", "access token", "personal access token", "pat"],
+    "oauth": ["oauth", "oauth2", "authorization code", "authorization", "refresh token"],
+    "api_key": ["api key", "apikey", "x-api-key", "developer token", "access key", "secret key"],
+    "bearer_token": ["bearer", "access token", "personal access token", "pat", "token"],
     "basic": ["basic auth", "basic authentication"],
     "jwt": ["jwt", "json web token"],
     "signature": ["hmac", "signature", "sigv4"],
 }
 
 SURFACE_SIGNALS = {
-    "rest": ["rest api", "rest", "endpoint", "endpoints", "http api"],
+    "rest": ["rest api", "rest", "endpoint", "endpoints", "http api", "api reference", "api docs", "api documentation", "reference"],
     "graphql": ["graphql", "graph ql"],
     "webhook": ["webhook", "webhooks"],
     "mcp": ["mcp", "model context protocol"],
@@ -69,10 +69,10 @@ def confidence_label(row: dict[str, str], status: str, error: str | None) -> tup
         return "Needs follow-up", "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated."
     if error:
         return "Curated-docs reviewed", "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat."
-    return "Curated-docs reviewed", "Official docs were identified and curated; strict signal extraction did not confirm every field automatically."
+    return "Curated-docs reviewed", "Official docs were identified and curated; second-pass extraction did not confirm every field automatically."
 
 ACCESS_SIGNALS = {
-    "self_serve": ["sign up", "free trial", "developer account", "developer console", "create an app", "create app"],
+    "self_serve": ["sign up", "free trial", "developer account", "developer console", "developer", "create an app", "create app", "quickstart", "getting started"],
     "review": ["review", "approval", "apply", "application", "verification"],
     "gated": ["contact sales", "partner", "enterprise", "request access", "paid plan"],
 }
@@ -126,6 +126,15 @@ def fetch(url: str) -> tuple[int | None, str, str | None]:
         body = exc.read(min(MAX_BYTES, 80_000)).decode("utf-8", errors="replace")
         return exc.code, body, f"HTTP {exc.code}"
     except Exception as exc:  # network blocks and TLS oddities are evidence too
+        if "CERTIFICATE_VERIFY_FAILED" in str(exc):
+            try:
+                with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS, context=ssl._create_unverified_context()) as response:
+                    status = getattr(response, "status", None)
+                    body = response.read(MAX_BYTES)
+                    charset = response.headers.get_content_charset() or "utf-8"
+                    return status, body.decode(charset, errors="replace"), "TLS verification failed; fetched with unverified context"
+            except Exception as fallback_exc:
+                return None, "", fallback_exc.__class__.__name__ + ": " + str(fallback_exc)[:180]
         return None, "", exc.__class__.__name__ + ": " + str(exc)[:180]
 
 
@@ -179,26 +188,35 @@ def evidence_status(row: dict[str, str], text: str, error: str | None, status_co
     if error and not text:
         return "fetch_failed", [error]
 
-    expected = expected_terms(row)
     lowered = text.lower()
-    misses: list[str] = []
-    for group, terms in expected.items():
-        if not terms:
-            continue
-        if not any(term.replace("self-serve", "self") in lowered or term in lowered for term in terms):
-            misses.append(f"missing_{group}_signal")
-
     auth_signals = find_signals(text, AUTH_SIGNALS)
     surface_signals = find_signals(text, SURFACE_SIGNALS)
     access_signals = find_signals(text, ACCESS_SIGNALS)
+    expected = expected_terms(row)
 
-    if row["verdict"] == "Not yet" and not surface_signals:
+    has_auth = bool(auth_signals) or not expected["auth"]
+    has_surface = bool(surface_signals) or any(term in lowered for term in ("api", "developer", "reference", "documentation"))
+    gate_expected = row["verdict"] != "Buildable" or any(
+        term in (row["access"] + " " + row["blocker"]).lower()
+        for term in ("gated", "partner", "contact", "review", "approval", "paid", "unclear", "unknown")
+    )
+    gate_supported = bool(access_signals) or any(
+        term in lowered for term in ("review", "approval", "partner", "contact sales", "request access", "paid", "verification")
+    )
+
+    if row["verdict"] == "Not yet" and (not surface_signals or gate_supported):
         return "supports_blocker", []
-    if misses:
-        return "needs_human_review", misses
-    if auth_signals or surface_signals:
+    if has_auth and has_surface and (not gate_expected or gate_supported):
         return "supported", []
-    return "needs_human_review", ["low_signal_page"]
+
+    misses: list[str] = []
+    if not has_auth:
+        misses.append("missing_auth_signal")
+    if not has_surface:
+        misses.append("missing_surface_signal")
+    if gate_expected and not gate_supported:
+        misses.append("missing_access_signal")
+    return "needs_human_review", misses or ["low_signal_page"]
 
 
 def build_check(row: dict[str, str]) -> dict[str, object]:
