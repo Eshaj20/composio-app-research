@@ -6,6 +6,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Human-reviewed",
+    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -15,7 +17,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "API Library | Salesforce Developers Browse all APIs Overview Guides Reference Overview Guides Reference Overview Guides Reference Overview Guides Reference Overview Guides Reference Ov",
-    "elapsed_ms": 1845
+    "elapsed_ms": 2908
   },
   {
     "id": "2",
@@ -24,6 +26,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Human-reviewed",
+    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
     "notes": [
       "missing_surface_signal"
     ],
@@ -52,7 +56,7 @@
       ]
     },
     "snippet": "tant Changelog Sign up Sign up Search... Navigation HubSpot APIs | Authentication methods on HubSpot close On this page OAuth Private app access tokens Automatic token deactivation Related docs HubSpot APIs | Authentication methods on HubSpot Learn more about using OAuth or private ac",
-    "elapsed_ms": 7125
+    "elapsed_ms": 10476
   },
   {
     "id": "3",
@@ -61,6 +65,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -93,7 +99,7 @@
       ]
     },
     "snippet": "es Filters Goals Item search Lead fields Lead labels Leads Lead sources Legacy teams Mailbox Meetings Note fields Notes OAuth 2.0 Organization fields Organization relationships Organizations Permission sets Person fields Persons Pipelines Product fields Products Project boards Project",
-    "elapsed_ms": 2569
+    "elapsed_ms": 10232
   },
   {
     "id": "4",
@@ -102,6 +108,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -129,7 +137,7 @@
       ]
     },
     "snippet": "rate limits Filtering and sorting Paginating API results Configuring webhooks Tutorials Connect an app to Attio through OAuth Attribute types Overview Actor reference Checkbox Currency Date Domain Email address Interaction Location (Personal) name Number Phone number Rating Record ref",
-    "elapsed_ms": 5956
+    "elapsed_ms": 6674
   },
   {
     "id": "5",
@@ -138,6 +146,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
     "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
       "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
     ],
@@ -145,7 +155,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 2319
+    "elapsed_ms": 3103
   },
   {
     "id": "6",
@@ -154,6 +164,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_surface_signal",
       "missing_access_signal"
@@ -184,7 +196,7 @@
       ]
     },
     "snippet": "es Email Embeds Files Flows Forms Friends Grants Hooks Importer Integrations Items Layout Linked Accounts Notifications OAuth authorization Organizations Questions Ratings Recurrence Reference Reminders Search Space members Spaces Status Stream Subscriptions Tags Tasks Users Views Vot",
-    "elapsed_ms": 2289
+    "elapsed_ms": 5906
   },
   {
     "id": "7",
@@ -193,6 +205,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_access_signal"
@@ -211,7 +225,7 @@
       ]
     },
     "snippet": "ore APIs Perform CRUD operations on CRM module entities and integrate with any third party application through flexible RESTful endpoints. Composite API Combine up to five API calls in a single request through this API. Bulk APIs Push and retrieve data from Zoho CRM in bulk using a s",
-    "elapsed_ms": 1195
+    "elapsed_ms": 5426
   },
   {
     "id": "8",
@@ -220,6 +234,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_access_signal"
     ],
@@ -255,7 +271,7 @@
       ]
     },
     "snippet": "lopers Home API Reference MCP Developers Home API Reference MCP Developers Home Build an Integration Overview Create an OAuth App Publish External Links Integrations Directory Product Help Product Updates Making of Close Blog Open Source (GitHub) Developers Home Overview Create an OAu",
-    "elapsed_ms": 2288
+    "elapsed_ms": 3018
   },
   {
     "id": "9",
@@ -264,6 +280,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_access_signal"
     ],
@@ -291,7 +309,7 @@
       ]
     },
     "snippet": "ge Policy Postman Resources Import the Collection Import and Use the Environment Authentication Authentication Overview OAuth2.0 OAuth2.0 Overview Quickstart Guide Documentation Requests Responses Search Paginating search results Best practices Embedded Apps Appendix Getting Support C",
-    "elapsed_ms": 2723
+    "elapsed_ms": 12299
   },
   {
     "id": "10",
@@ -300,6 +318,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_access_signal"
     ],
@@ -322,7 +342,7 @@
       ]
     },
     "snippet": "w starting July 2026 Feedback Feedback (opens in a new tab) Feedback (opens in a new tab) API Reference Getting Started API Keys Authorization Token Pagination Rate Limits Status Codes and Handling Core Schema EntryTypes All Entry Types Entry Type by ID Fields All Fields Fields by Entry",
-    "elapsed_ms": 2698
+    "elapsed_ms": 5365
   },
   {
     "id": "11",
@@ -331,6 +351,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -353,7 +375,7 @@
       ]
     },
     "snippet": "ng and custom data. For each API, you'll find information about who can authenticate requests, detailed descriptions of endpoints, example requests, and other essential information to help you unlock the full potential of Zendesk. Run in Postman To quickly get started with the Zendesk AP",
-    "elapsed_ms": 1787
+    "elapsed_ms": 2390
   },
   {
     "id": "12",
@@ -362,6 +384,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
     "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
       "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
     ],
@@ -369,7 +393,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 563
+    "elapsed_ms": 946
   },
   {
     "id": "13",
@@ -378,6 +402,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "api_key": [
@@ -412,7 +438,7 @@
       ]
     },
     "snippet": "uthenticate your ID\" or \"log in\" in the same way as you log in to your helpdesk's web portal. You can use your personal API key to authenticate the request. If you use the API key, there is no need for a password. You can use any set of characters as a dummy password. curl -v -u apikey:",
-    "elapsed_ms": 2518
+    "elapsed_ms": 12325
   },
   {
     "id": "14",
@@ -421,6 +447,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -450,7 +478,7 @@
       ]
     },
     "snippet": "e the Core API: Getting Started Fundamentals Tools Sample Application API Terminology 101 Authentication Front supports OAuth2.0 as well as API Tokens. To learn about authenticating with Front, see our guide on authentication . Base URL API calls will always work with https://api2.fro",
-    "elapsed_ms": 4636
+    "elapsed_ms": 6808
   },
   {
     "id": "15",
@@ -459,6 +487,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_access_signal"
@@ -479,7 +509,7 @@
       ]
     },
     "snippet": "ording Calendar Data Warehouse Codebase Pylon MCP Security Security Overview Developer API Custom Apps Embedded Iframes Webhooks Powered by GitBook On this page For the complete documentation index, see llms.txt . This page is also available as Markdown . Copy On this page Getting Start",
-    "elapsed_ms": 2631
+    "elapsed_ms": 10375
   },
   {
     "id": "16",
@@ -488,6 +518,8 @@
     "http_status": 404,
     "fetch_error": "HTTP 404",
     "status": "blocked_or_missing",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
       "HTTP 404"
     ],
@@ -510,8 +542,8 @@
         "application"
       ]
     },
-    "snippet": "ticket Login 404: The page you're looking for was not found on this site Please take a look at the search results below API key What is an API key API key is an identity of your LiveAgent (like your usern... Updated: Mar 16, 2021 Home -> Technical Support -> LiveAgent API -> REST API AP",
-    "elapsed_ms": 3599
+    "snippet": "ticket Login 404: The page you're looking for was not found on this site Please take a look at the search results below API key What is an API key API key is an identity of your LiveAgent (like your usern... Updated: Mar 16, 2021 Home -> Technical Support -> LiveAgent API -> REST API Co",
+    "elapsed_ms": 8982
   },
   {
     "id": "17",
@@ -520,6 +552,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "api_key": [
@@ -554,7 +588,7 @@
       ]
     },
     "snippet": "method : POST Required headers: Content-Type: application/json Authorization: Bearer YOUR_TOKEN where the token is your API key. See authentication for more details. JSON body: query : the GraphQL query string variables : a JSON object of variables used in the GraphQL query operationNam",
-    "elapsed_ms": 3335
+    "elapsed_ms": 20081
   },
   {
     "id": "18",
@@ -563,6 +597,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -572,7 +608,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "\ufffd\b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd]]s\u06f6\ufffd\ufffd\ufffd\ufffd@\ufffd3k{W\ufffd,9\ufffd\ufffd\ufffd\ufffdc'M\ufffdIc\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdx \u0012\u0012\u0019S\u0004K\ufffd\ufffd\ufffd$3{\ufffd\ufffd{\ufffd\u007f\ufffd\ufffd\ufffd}\ufffdA\ufffd\ufffdd\ufffdM\b(\ufffd8\ufffdX\" \ufffd\ufffd\ufffd>\ufffd\u0017\ufffd\ufffd\ufffd \ufffdO\ufffd.\ufffd\ufffd\ufffd\u0005 \ufffd(:X\ufffd\ufffd \b\ufffd\u0007\ufffd\ufffd\ufffd\u02c8 \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd^#\u0013\u0003\ufffd\ufffd1;\u0010\b\ufffd`\ufffd{\u0016\ufffd{\ufffd\ufffd\u013f \ufffd#6J\ufffd\b\ufffd\u0011m \ufffd\u0142\ufffd\ufffd\ufffd/z\ufffd R\ufffd;\ufffdS\u0011\ufffd\ufffd\ufffd \ufffdY\ufffd@\ufffdu\ufffdg\ufffd\ufffd\ufffd\ufffd5\uadb6\ufffd\u0007?\ufffdW4J\u0439\ufffd2\ufffd\ufffd\ufffdF,\ufffd)\u03fb\ufffdo\u0017\ufffd\u0016\u00cb\u0248\ufffd\u001a>\ufffd^\u001a&\"dqiP%\u0014\ufffd\ufffd8\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdf\u0012\ufffd\"\ufffd\ufffdt z\u0014\ufffd\ufffd& \ufffdP\ufffd$\ufffd\ufffd#\u0011\ufffdu\ufffd\ufffd\u0007",
-    "elapsed_ms": 2412
+    "elapsed_ms": 3842
   },
   {
     "id": "19",
@@ -581,6 +617,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
     "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
       "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
     ],
@@ -588,7 +626,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 1408
+    "elapsed_ms": 1858
   },
   {
     "id": "20",
@@ -597,6 +635,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_access_signal"
@@ -614,7 +654,7 @@
     },
     "access_signals": {},
     "snippet": "Main Home - Gladly Developer Gladly Developer Developer Gladly.com Toggle Menu Home Developer API REST API Chat Web SDK Chat iOS SDK Chat Android SDK Help Center Tutorials Help and Support A platform with people at the heart of it Looking to extend Gladly, use Gladl",
-    "elapsed_ms": 2353
+    "elapsed_ms": 7485
   },
   {
     "id": "21",
@@ -623,6 +663,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_surface_signal",
       "missing_access_signal"
@@ -648,7 +690,7 @@
       ]
     },
     "snippet": "m concepts AI in Slack APIs App management App manifests Admin resources Authentication Overview Tokens Installing with OAuth Using token rotation Using PKCE Verifying requests from Slack Authorizing with Postman Binding accounts across services Sign in with Slack Block Kit Enterprise",
-    "elapsed_ms": 4618
+    "elapsed_ms": 5889
   },
   {
     "id": "22",
@@ -657,6 +699,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_access_signal"
     ],
@@ -693,7 +737,7 @@
       ]
     },
     "snippet": "Create API Keys in the Console REST API: Key Resource v1 REST API: Key Resource v2010 Restricted API Keys Access Tokens OAuth Apps Overview Account OAuth Apps Organization OAuth Apps OAuth Token API FAQs Credentials REST API: Credentials REST API: CredentialPublicKey Resource REST API",
-    "elapsed_ms": 3115
+    "elapsed_ms": 2176
   },
   {
     "id": "23",
@@ -702,6 +746,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -732,7 +778,7 @@
       ]
     },
     "snippet": "Sign In Introduction Introduction Overview Authentication Networks Multiple Data Centers Authentication Introduction to OAuth 2.0 Overview Terminologies Scopes Register your application Overview API Reference HTTP Methods Overview Pagination Overview Token Reference Errors Overview Gl",
-    "elapsed_ms": 5997
+    "elapsed_ms": 6768
   },
   {
     "id": "24",
@@ -741,6 +787,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -750,7 +798,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "\u5f00\u53d1\u6587\u6863 - Lark\u5f00\u653e\u5e73\u53f0",
-    "elapsed_ms": 3471
+    "elapsed_ms": 1686
   },
   {
     "id": "25",
@@ -759,6 +807,8 @@
     "http_status": 404,
     "fetch_error": "HTTP 404",
     "status": "blocked_or_missing",
+    "confidence": "Human-reviewed",
+    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
     "notes": [
       "HTTP 404"
     ],
@@ -773,7 +823,7 @@
       ]
     },
     "snippet": "en today off. We\u2019ll look into it. Go to Home Communication and collaboration software for businesses Book a demo Log in Sign up Product Overview Apps Integrations What's new Roadmap API Plans Free Pro Business Enterprise See pricing Features Channels Messages Threads Notifications Histo",
-    "elapsed_ms": 2813
+    "elapsed_ms": 4305
   },
   {
     "id": "26",
@@ -782,6 +832,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_surface_signal"
     ],
@@ -802,7 +854,7 @@
     },
     "access_signals": {},
     "snippet": "oper Portal API & SDK Reference Developer Community Welcome Introduction App Fundamentals Overview of Apps Discord Bots OAuth2 & Permissions Interactions & Commands Components & Modals Server & Channel Management Webhooks Game & Platform Features Account Linking Social Layer Rich Pres",
-    "elapsed_ms": 1449
+    "elapsed_ms": 4848
   },
   {
     "id": "27",
@@ -811,6 +863,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_surface_signal"
     ],
@@ -845,7 +899,7 @@
       ]
     },
     "snippet": "ur bot will be able to: Download files without a size limit. Upload files up to 2000 MB. Upload files using their local path and the file URI scheme . Use an HTTP URL for the webhook. Use any local IP address for the webhook. Use any port for the webhook. Set max_webhook_connections",
-    "elapsed_ms": 19213
+    "elapsed_ms": 12724
   },
   {
     "id": "28",
@@ -854,6 +908,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_surface_signal",
       "missing_access_signal"
@@ -891,7 +947,7 @@
       ]
     },
     "snippet": "/www.luckyshrub.com/webhooks\" }, \"id\": \"106540352242922\" } ``` ### Authentication and authorization Authentication uses OAuth (not 2.0) access tokens, while permissions restrict access to specific resources. - [Learn more about access tokens.](https://developers.facebook.com/documenta",
-    "elapsed_ms": 2099
+    "elapsed_ms": 10355
   },
   {
     "id": "29",
@@ -900,6 +956,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -943,7 +1001,7 @@
       ]
     },
     "snippet": "API References | Aircall API References Guides Start building REST API Authentication Introduction OAuth \ufe63 Technology Partners Basic Auth \ufe63 Aircall customers Rate limiting Pagination Errors Versioning Versioning Strategy Content-Type Announcements APIS list User V",
-    "elapsed_ms": 4739
+    "elapsed_ms": 12116
   },
   {
     "id": "30",
@@ -952,6 +1010,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "api_key": [
@@ -992,7 +1052,7 @@
       ]
     },
     "snippet": "thentication Vonage APIs support different authentication methods depending on which product you are using: API{filter} API Key and Secret (Header) JSON Web Token (JWT) Accounts Application Audit Conversation Conversion Device Location Retrieval Dispatch Identity Insights Media Messages",
-    "elapsed_ms": 3945
+    "elapsed_ms": 4518
   },
   {
     "id": "31",
@@ -1001,6 +1061,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Human-reviewed",
+    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
     "notes": [
       "missing_surface_signal"
     ],
@@ -1030,7 +1092,7 @@
       ]
     },
     "snippet": "Developer Token | Google Ads API | Google for Developers Skip to main content Ads API / English Deutsch Espa\u00f1ol Espa\u00f1ol \u2013 Am\u00e9rica Latina Fran\u00e7ais Indonesia Italiano Polski Por",
-    "elapsed_ms": 2388
+    "elapsed_ms": 4742
   },
   {
     "id": "32",
@@ -1039,6 +1101,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_surface_signal"
     ],
@@ -1069,7 +1133,7 @@
       ]
     },
     "snippet": "PI Guide Prerequisites & System Users Prerequisites Create Admin System User Assign Permissions to System User Generate Access Token for System User Seller Management Guides Seller Management Check Seller Eligibility Onboard a Seller Delete a Seller Partner Ads Management Guides Partner Ads",
-    "elapsed_ms": 8593
+    "elapsed_ms": 60021
   },
   {
     "id": "33",
@@ -1078,6 +1142,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal"
@@ -1094,7 +1160,7 @@
       ]
     },
     "snippet": "lp optimize your advertising efforts. Overview Conversions API Getting Access to Conversions API Deduplication Enabling Click IDs Google Tag Manager Server-Side Tagging Conversions API Payload Builder Use Cases - Conversions API Integration Requirements Company Intelligence Gain ins",
-    "elapsed_ms": 2569
+    "elapsed_ms": 2659
   },
   {
     "id": "34",
@@ -1103,6 +1169,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -1112,7 +1180,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 3079
+    "elapsed_ms": 21764
   },
   {
     "id": "35",
@@ -1121,6 +1189,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -1162,7 +1232,7 @@
       ]
     },
     "snippet": "building integrations that let other users access data from their own Mailchimp accounts, you should authenticate with OAuth 2 . And if you\u2019re developing an app for iOS or Android, the Mobile SDK provides an easy way to work with a mobile-focused subset of the Marketing API\u2019s functio",
-    "elapsed_ms": 3520
+    "elapsed_ms": 3248
   },
   {
     "id": "36",
@@ -1171,6 +1241,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -1213,23 +1285,25 @@
       ]
     },
     "snippet": "NER RESOURCES Join the Klaviyo ecosystem How your customers can use integrated data in Klaviyo Build your app Implement OAuth Create a public OAuth app Make API calls using OAuth Handle your app's OAuth flow Troubleshoot OAuth errors Update your OAuth scopes Branding for app metrics S",
-    "elapsed_ms": 5655
+    "elapsed_ms": 8852
   },
   {
     "id": "37",
     "app": "systeme.io",
     "evidence_url": "https://developer.systeme.io/",
     "http_status": null,
-    "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
+    "fetch_error": "URLError: <urlopen error _ssl.c:989: The handshake operation timed out>",
     "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
-      "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
+      "URLError: <urlopen error _ssl.c:989: The handshake operation timed out>"
     ],
     "auth_signals": {},
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 364
+    "elapsed_ms": 7858
   },
   {
     "id": "38",
@@ -1238,6 +1312,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal"
     ],
@@ -1253,7 +1329,7 @@
       ]
     },
     "snippet": "Pinterest Developers Skip to content Developer Platform Docs API reference My apps Search docs & API Log in Sign up",
-    "elapsed_ms": 5369
+    "elapsed_ms": 23612
   },
   {
     "id": "39",
@@ -1262,6 +1338,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -1280,7 +1358,7 @@
     },
     "access_signals": {},
     "snippet": "in the App Dashboard. ### [Reference](https://developers.facebook.com/documentation/threads/reference) The Threads API endpoints and their parameters. ### Guides Learn how to make posts, retrieve media, and troubleshoot issues. * [Single Thread Posts](https://developers.facebook.com/doc",
-    "elapsed_ms": 1388
+    "elapsed_ms": 7184
   },
   {
     "id": "40",
@@ -1289,6 +1367,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_access_signal"
     ],
@@ -1329,7 +1409,7 @@
       ]
     },
     "snippet": "nder Update a Sender Delete a Sender Resend a Sender verification Send Test E-Mail Send a Test Marketing Email Security API Keys API Keys API Overview Create API keys Retrieve an existing API Key Retrieve all API Keys belonging to the authenticated user Update API key name Update API ke",
-    "elapsed_ms": 6090
+    "elapsed_ms": 11412
   },
   {
     "id": "41",
@@ -1338,6 +1418,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal"
     ],
@@ -1372,7 +1454,7 @@
       ]
     },
     "snippet": "ates App data and logic Graph QL Admin API Shopify Functions Shopify QL for analytics Events Webhooks Payments Apps API REST Admin API (legacy) Polaris Polaris references App Home (iframe) App Home (UI extension) Admin Checkout Customer accounts POS Using Polaris web components Store",
-    "elapsed_ms": 2952
+    "elapsed_ms": 5301
   },
   {
     "id": "42",
@@ -1381,6 +1463,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -1427,7 +1511,7 @@
       ]
     },
     "snippet": "true // Force Basic Authentication as query string true and using under HTTPS } ) Authentication over HTTP You must use OAuth 1.0a \"one-legged\" authentication to ensure REST API credentials cannot be intercepted by an attacker. Typically you will use any standard OAuth 1.0a library in",
-    "elapsed_ms": 2208
+    "elapsed_ms": 7714
   },
   {
     "id": "43",
@@ -1436,6 +1520,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -1490,7 +1576,7 @@
       ]
     },
     "snippet": "talyst-compatible apps and integrations Beginning development Managing apps in Dev Portal Locating app IDs Implementing OAuth Handling callbacks Supporting multiple users Listening for events Designing the UI Creating install buttons Following best practices Approval requirements Publ",
-    "elapsed_ms": 3366
+    "elapsed_ms": 23016
   },
   {
     "id": "44",
@@ -1499,6 +1585,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -1508,7 +1596,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Commerce Cloud | Salesforce Developer Center Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More Read More",
-    "elapsed_ms": 1580
+    "elapsed_ms": 4964
   },
   {
     "id": "45",
@@ -1517,6 +1605,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -1543,7 +1633,7 @@
       ]
     },
     "snippet": "the Authorization request header on web API calls. Third-party application authentication Third-party applications use OAuth-based authentication to access the web APIs. The third-party Integration registers with Adobe Commerce. Merchants authorize extensions and applications to acce",
-    "elapsed_ms": 1311
+    "elapsed_ms": 2565
   },
   {
     "id": "46",
@@ -1552,6 +1642,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal"
     ],
@@ -1580,7 +1672,7 @@
       ]
     },
     "snippet": "el. 05 Webhooks & automation Subscribe to order, inventory, content, and customer events with signed delivery. 06 AI compatibility Integrate our API docs directly into Claude or ChatGPT. What APIs and tools does the platform include? Get deep control with Commerce APIs, Reseller API",
-    "elapsed_ms": 2349
+    "elapsed_ms": 2615
   },
   {
     "id": "47",
@@ -1589,6 +1681,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal"
     ],
@@ -1612,7 +1706,7 @@
       ]
     },
     "snippet": "Build with Ecwid apps | Ecwid Documentation \u2318 Ctrl k Ask Contact API support More Build apps Site Themes REST API Reference Storefronts (JS API) Webhook automations Discounts Guides Changelog AI Assistant Good morning I'm here to help you with the docs. What is this page a",
-    "elapsed_ms": 7344
+    "elapsed_ms": 5833
   },
   {
     "id": "48",
@@ -1621,6 +1715,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -1630,7 +1726,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "API",
-    "elapsed_ms": 1052
+    "elapsed_ms": 3731
   },
   {
     "id": "49",
@@ -1639,6 +1735,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Human-reviewed",
+    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal"
@@ -1681,7 +1779,7 @@
       ]
     },
     "snippet": "unt Seller Wallet API Rate Limits Sellers API Sellers API Get the account information of a seller Get the market participation of a seller Services API Services API Get Service Job Data Get service job appointment slots Set service job appointments and assigning appointment resource",
-    "elapsed_ms": 2770
+    "elapsed_ms": 20393
   },
   {
     "id": "50",
@@ -1690,6 +1788,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "bearer_token": [
@@ -1713,27 +1813,25 @@
       ]
     },
     "snippet": "tructure instead of a blank page \u2014 then make it yours in seconds. From prompt to funnel AI that builds your funnel from patterns proven by top sellers. It pulls from what's converting right now and instantly builds pages that do the same for you. Their years of testing, skipped for",
-    "elapsed_ms": 1976
+    "elapsed_ms": 7540
   },
   {
     "id": "51",
     "app": "DataForSEO",
     "evidence_url": "https://docs.dataforseo.com/v3/authentication/",
-    "http_status": 404,
-    "fetch_error": "HTTP 404",
-    "status": "blocked_or_missing",
+    "http_status": null,
+    "fetch_error": "TimeoutError: The read operation timed out",
+    "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
-      "HTTP 404"
+      "TimeoutError: The read operation timed out"
     ],
     "auth_signals": {},
     "surface_signals": {},
-    "access_signals": {
-      "self_serve": [
-        "sign up"
-      ]
-    },
-    "snippet": "Page not found \u2013 DataForSEO API v.3 Search \u2318 K Ask AI Pricing Sign In Sign Up Menu Introduction Authentication SERP API Overview Screenshot AI Summary Google Overview Locations Languages Organic Overview Task POST Tasks Ready Task GET Ad",
-    "elapsed_ms": 2174
+    "access_signals": {},
+    "snippet": "",
+    "elapsed_ms": 9218
   },
   {
     "id": "52",
@@ -1742,6 +1840,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "api_key": [
@@ -1779,7 +1879,7 @@
       ]
     },
     "snippet": "center What\u2019s new Case studies Pricing Platform plans API Plans API & MCP API MCP Our data API Pricing See product tour API Keyword Research API Backlinks API Domain Analysis API MCP SEO Skills for Claude Products SE Ranking Grow your visibility with AI SEO SE Visible Analyze AI visibil",
-    "elapsed_ms": 2400
+    "elapsed_ms": 15869
   },
   {
     "id": "53",
@@ -1788,6 +1888,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_access_signal"
@@ -1820,7 +1922,7 @@
       ]
     },
     "snippet": "tion program. Built on API v3. Introduction Overview of the integration program How it works Architecture and data flow OAuth guide Implement OAuth 2.0 authorization How to apply Steps to join the program Introduction Overview of the integration program How it works Architecture and d",
-    "elapsed_ms": 1992
+    "elapsed_ms": 10293
   },
   {
     "id": "54",
@@ -1829,6 +1931,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
     "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
       "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
     ],
@@ -1836,7 +1940,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 775
+    "elapsed_ms": 2367
   },
   {
     "id": "55",
@@ -1845,6 +1949,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_access_signal"
     ],
@@ -1884,7 +1990,7 @@
       ]
     },
     "snippet": "API token, and the resourcename refers to a resource in the API token owner's account. Authentication HTTP: Bearer Auth API Key: apiKey Bearer token provided in the Authorization header (e.g., Authorization: Bearer your_token \u2014recommended). More info . Use your API token to authenticate",
-    "elapsed_ms": 1863
+    "elapsed_ms": 9830
   },
   {
     "id": "56",
@@ -1893,6 +1999,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
     "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
       "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
     ],
@@ -1900,7 +2008,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 1466
+    "elapsed_ms": 1744
   },
   {
     "id": "57",
@@ -1909,6 +2017,8 @@
     "http_status": 404,
     "fetch_error": "HTTP 404",
     "status": "blocked_or_missing",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
       "HTTP 404"
     ],
@@ -1916,7 +2026,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 2202
+    "elapsed_ms": 8603
   },
   {
     "id": "58",
@@ -1925,6 +2035,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_access_signal"
     ],
@@ -1951,7 +2063,7 @@
       ]
     },
     "snippet": "Platform AI CODE CREATION GitHub Copilot Write better code with AI GitHub Copilot app Direct agents from issue to merge MCP Registry Integrate external tools DEVELOPER WORKFLOWS Actions Automate any workflow Codespaces Instant dev environments Issues Plan and track work Code Review",
-    "elapsed_ms": 1610
+    "elapsed_ms": 16250
   },
   {
     "id": "59",
@@ -1960,6 +2072,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal"
@@ -1980,7 +2094,7 @@
       ]
     },
     "snippet": "t Copy curl --location 'https://api.waterfall.io/v1/prospector' \\ --header 'Content-Type: application/json' \\ --header 'x-api-key: your_key' \\ --data '{ \"domain\": \"salesforce.com\", \"title_filters\": \"(chief executive officer) OR (chief marketing officer) OR (chief operating officer) OR (ch",
-    "elapsed_ms": 1787
+    "elapsed_ms": 4844
   },
   {
     "id": "60",
@@ -1989,6 +2103,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_access_signal"
@@ -2015,7 +2131,7 @@
       ]
     },
     "snippet": "ructured data from any website, instantly and code-free. View docs topic View docs topic \u200b Transform Clean, format, and restructure data to fit your workflow perfectly. View docs topic View docs topic \u200b Enrich Add missing details using powerful enrichment sources and integrations. Vi",
-    "elapsed_ms": 5134
+    "elapsed_ms": 5441
   },
   {
     "id": "61",
@@ -2024,6 +2140,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -2069,7 +2187,7 @@
       ]
     },
     "snippet": "fications Starring Watching Agent tasks Agent tasks Agents Secrets Variables Apps GitHub Apps Installations Marketplace OAuth authorizations Webhooks Billing Budgets Billing usage Branches Branches Protected branches Campaigns Security campaigns Checks Check runs Check suites Classroo",
-    "elapsed_ms": 2367
+    "elapsed_ms": 8166
   },
   {
     "id": "62",
@@ -2078,6 +2196,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_access_signal"
     ],
@@ -2112,7 +2232,7 @@
       ]
     },
     "snippet": "mainsrecordsbyrecordid.md) | GET /domains/records/{recordId} | | **POST** | [`/api-keys`](/docs/rest-api/untagged/createapikeys.md) | POST /api-keys | | **POST** | [`/v2/observability/query`](/docs/rest-api/untagged/createobservabilityquery.md) | POST /v2/observability/query | | **GET*",
-    "elapsed_ms": 840
+    "elapsed_ms": 1497
   },
   {
     "id": "63",
@@ -2121,6 +2241,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_access_signal"
     ],
@@ -2162,7 +2284,7 @@
       ]
     },
     "snippet": "xample in curl: Terminal window curl -H \" User-Agent: MyApp (YOUR_NAME@EXAMPLE.COM) \" \\ -H \" Authorization: Bearer YOUR_OAUTH2_ACCESS_TOKEN \" \\ https://api.netlify.com/api/v1/sites Authentication Section titled \u201cAuthentication\u201d Netlify uses OAuth2 for authentication. All requests must",
-    "elapsed_ms": 2737
+    "elapsed_ms": 8954
   },
   {
     "id": "64",
@@ -2171,6 +2293,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_access_signal"
     ],
@@ -2211,7 +2335,7 @@
       ]
     },
     "snippet": "connector Initialize new SSO connector Update SSO connector state Delete SSO connector Begin SSO connector verification OAuth Clients OAuth Clients List OAuth Clients OAuth Client Details Create OAuth Client Update OAuth Client Delete OAuth Client Rotate OAuth Client Secret Delete Rot",
-    "elapsed_ms": 3599
+    "elapsed_ms": 2633
   },
   {
     "id": "65",
@@ -2220,6 +2344,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_surface_signal"
     ],
@@ -2239,7 +2365,7 @@
     },
     "access_signals": {},
     "snippet": "ta API URL and Keys? You can find the API URL in the Integrations > Data API section of the Dashboard. You can find the API Keys in the Settings > API Keys section of the Dashboard. Features # Supabase provides a RESTful API using PostgREST , a thin API layer on top of Postgres. It expo",
-    "elapsed_ms": 1117
+    "elapsed_ms": 3944
   },
   {
     "id": "66",
@@ -2248,6 +2374,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_access_signal"
@@ -2284,7 +2412,7 @@
       ]
     },
     "snippet": "ing Data Fundamentals Importing CSV Data Graph Data Modeling Data Scientist Courses Get started with Graph Data Science Path Finding Generative AI Courses Neo4j & Generative AI Fundamentals Vector Indexes & Unstructured Data Constructing Knowledge Graphs Building Agents in Neo4j Aur",
-    "elapsed_ms": 2749
+    "elapsed_ms": 1025
   },
   {
     "id": "67",
@@ -2293,6 +2421,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Human-reviewed",
+    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
     "notes": [
       "missing_access_signal"
     ],
@@ -2327,7 +2457,7 @@
       ]
     },
     "snippet": "st must include authentication information. The next sections explain how to add this information to the request: Using OAuth Using key-pair authentication Using workload identity federation Using OAuth \u00b6 To use OAuth, follow these steps: Set up OAuth for authentication. See Introduct",
-    "elapsed_ms": 3424
+    "elapsed_ms": 3922
   },
   {
     "id": "68",
@@ -2336,6 +2466,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2345,7 +2477,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Atlas Programmatic Access - Atlas - MongoDB Docs",
-    "elapsed_ms": 2024
+    "elapsed_ms": 4207
   },
   {
     "id": "69",
@@ -2354,6 +2486,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2363,7 +2497,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "\ufffd\b\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\ufffd\ufffdr\ufffd6\ufffd.\ufffd\ufffd\ufffd*0\ufffd\ufffd&v\ufffd)u\ufffd[\ufffd[\ufffde\ufffdN4#\u01ca$\ufffd3\ufffd[oq\ufffdI4\u001b\u0016I0\u0000\ufffd-%\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd{.m_\ufffd.\u0000$\ufffd\ufffdDw\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdX\u0012\ufffd,p=\ufffd\\X\u0000\u0016\ufffd\ufffd\ufffd%\u000e\u007f\ufffd\u0010\ufffd\ufffd\ufffd?{#\ufffd\u0005> \ufffd1 \ufffdOw\ufffd\ufffd Z\ufffd\ufffd\u0018FX\ufffdE\ufffd !\u001a@ \ufffd\u000f\ufffd]\u0018\ufffd] r\ufffd\ufffd.\ufffd\ufffd \ufffd ;\ufffdc\u0012\ufffd*4 \ufffdc \u03d1\ufffd\ufffd!A\ufffd\ufffdE\ufffd\u00140\ufffd\ufffd1\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u065b\u0019\ufffd\ufffd\ufffd\u001b\ufffdP q ?\ufffd\ufffd#\ufffd\ufffd\u0002\ufffd0y\u02283 \ufffd8\ufffd\ufffd\ufffd\ufffd]\ufffd\ufffd \ufffd|\ufffd\u04d8qH\ufffd \ufffd\u0004\ufffd\ufffd=\ufffd\u0005\ufffd\ufffd\ufffdy\ufffd\ufffd!\ufffd\ufffd\u0010\ufffdv\u0002 \ufffd|a\u007fq\ufffd+w O\ufffd\ufffd\ufffd\ufffd",
-    "elapsed_ms": 1456
+    "elapsed_ms": 2835
   },
   {
     "id": "70",
@@ -2372,6 +2506,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -2408,7 +2544,7 @@
       ]
     },
     "snippet": "s. The endpoints that require a user authentication token are specific to your user, such as Retrieve an Organization . OAuth2 For third-party applications that need to access Sentry on behalf of users, Sentry supports OAuth2 with the authorization code grant type. This allows users t",
-    "elapsed_ms": 1245
+    "elapsed_ms": 6957
   },
   {
     "id": "71",
@@ -2417,6 +2553,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Human-reviewed",
+    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
     "notes": [
       "missing_access_signal"
     ],
@@ -2461,7 +2599,7 @@
       ]
     },
     "snippet": "tions use a static API token, personal access tokens use a user-scoped static API token, and public connections use the OAuth 2.0 protocol. \u200b Internal connection auth flow set-up To use an internal connection, start by creating your connection in the Developer portal . The internal co",
-    "elapsed_ms": 2912
+    "elapsed_ms": 7538
   },
   {
     "id": "72",
@@ -2470,6 +2608,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2479,7 +2619,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Airtable Web API",
-    "elapsed_ms": 3308
+    "elapsed_ms": 4029
   },
   {
     "id": "73",
@@ -2488,6 +2628,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
     "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
       "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
     ],
@@ -2495,7 +2637,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 563
+    "elapsed_ms": 1646
   },
   {
     "id": "74",
@@ -2504,6 +2646,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2513,7 +2657,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 7675
+    "elapsed_ms": 4906
   },
   {
     "id": "75",
@@ -2522,6 +2666,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -2562,7 +2708,7 @@
       ]
     },
     "snippet": "es Get started API explorer Developer sandbox Quick start guide FAQ feature guides Authentication Personal access token OAuth OAuth Code Samples / Libraries OAuth scopes OpenID Connect API Input/output options Batch requests Custom fields Custom external data Dates and times Rich text",
-    "elapsed_ms": 8514
+    "elapsed_ms": 3100
   },
   {
     "id": "76",
@@ -2571,6 +2717,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
     "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
     "notes": [
       "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
     ],
@@ -2578,7 +2726,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 1649
+    "elapsed_ms": 1291
   },
   {
     "id": "77",
@@ -2587,6 +2735,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -2611,7 +2761,7 @@
     },
     "access_signals": {},
     "snippet": "Public API specification. MCP Use ClickUp right from your AI assistant. Webhooks Trigger workflows from ClickUp events. OAuth Let people sign into their ClickUp account. Get started with the API Try the API Download the spec Get started with the MCP MCP setup instructions MCP tools Ge",
-    "elapsed_ms": 4451
+    "elapsed_ms": 3138
   },
   {
     "id": "78",
@@ -2620,6 +2770,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2629,7 +2781,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Superhuman Docs API (v1) Reference Documentation",
-    "elapsed_ms": 6586
+    "elapsed_ms": 4772
   },
   {
     "id": "79",
@@ -2638,6 +2790,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2647,7 +2801,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "\ufffd\b\u0000\u0000\u0000\u0000\u0000\u0000\u0003\ufffd=\ufffdv\u06f8\ufffd\ufffd\ufffd\u0015h\ufffd\ufffd\ufffd\ufffd\u0014wm\ufffd\ufffd8\ufffd\ufffd\ufffd#\u024e\ufffdt\ufffd\ufffd\ufffd\u0003\ufffd\u0010E\ufffd\"\u0019\u0012\ufffd$+\ufffd\ufffdy\ufffd\ufffd\ufffd/\ufffd\u0003\ufffd\ufffdH\ufffdt\ucfb9\ufffd2 \ufffd2 \u0014 \ufffd\ufffd\u0002PUXt\ufffd\ufffd\ufffd?\ufffdpu\u0001\u0016x\ufffd\ufffd~:c\u007f\u00008[ h\ufffd\u0007\u0000\ufffdV\bC`.`\u0018!\ufffd\ufffd\ufffdx\ufffd\ufffd@=\ufffd\ufffd\u000evQ\ufffdf\u0005C -\u0010\ufffd@\u0000\ufffd\ufffdc:\ufffd\u0005\ufffdWC\u0000= \ufffd ^\ufffd\ufffdo\ufffdW\ufffd\ufffd\u0010;\ufffdwVg\ufffd\u0018 \ufffd\ufffdnA\ufffd\ufffd.\u763e\u01c1E\ufffd\ufffd]\ufffd\ueb20\ufffd\ufffd\ufffd \u0791d\ufffd\ufffd\u0286\u0018x6\u0007\"\ufffd E]\ufffd\ufffdp\u0000\ufffd\u0002\ufffd\ufffd(p\ufffdd?\u0005\ufffd\ufffdlU%\ufffd\ufffd\ufffdT\"\ufffdY\u0010\ufffd\ufffd\ufffd\ufffd,0\ufffdC\u0000-\u0018`\ufffd\u000e\u0001 E\ufffd\ufffd\u0001A\ufffd2\u0303+\ufffd\ufffd\ufffd \ufffd \ufffd\u0010",
-    "elapsed_ms": 1845
+    "elapsed_ms": 3409
   },
   {
     "id": "80",
@@ -2656,6 +2810,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supported",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {
       "oauth": [
@@ -2689,7 +2845,7 @@
       ]
     },
     "snippet": "s Token which is tied directly to you and is the quickest way to start playing around with the API. Implementing a full OAuth2 Authentication flow which allows other people to use your Harvest integrations. Personal access tokens The API can be accessed by creating a Personal Access T",
-    "elapsed_ms": 888
+    "elapsed_ms": 2103
   },
   {
     "id": "81",
@@ -2698,6 +2854,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Human-reviewed",
+    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
     "notes": [
       "missing_access_signal"
     ],
@@ -2728,7 +2886,7 @@
       ]
     },
     "snippet": "eference Docs Support Sign in \u2192 Authentication Ask about this section Copy for LLM View as Markdown The Stripe API uses API keys to authenticate requests. You can view and manage your API keys in the Stripe Dashboard . Test mode secret keys start with sk _ test _ and have unrestricted a",
-    "elapsed_ms": 5475
+    "elapsed_ms": 6246
   },
   {
     "id": "82",
@@ -2737,6 +2895,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_access_signal"
     ],
@@ -2778,7 +2938,7 @@
       ]
     },
     "snippet": "ments Income Instant Onboarding Plaid Layer Fundamentals Items Accounts Institutions Sandbox Link Users Consent Network OAuth Partnerships Processor tokens Processor partners Reseller partners Docs Search or Ask a Question Markdown Plaid.com Log in Get API Keys Open nav Close search m",
-    "elapsed_ms": 1337
+    "elapsed_ms": 4607
   },
   {
     "id": "83",
@@ -2787,6 +2947,8 @@
     "http_status": 202,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2796,7 +2958,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 1055
+    "elapsed_ms": 3480
   },
   {
     "id": "84",
@@ -2805,6 +2967,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error timed out>",
     "status": "fetch_failed",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "URLError: <urlopen error timed out>"
     ],
@@ -2812,7 +2976,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 28123
+    "elapsed_ms": 12454
   },
   {
     "id": "85",
@@ -2821,6 +2985,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2830,7 +2996,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "iPayX Protocol \u2014 FINTRAC-registered FX forensic audit layer",
-    "elapsed_ms": 2275
+    "elapsed_ms": 4743
   },
   {
     "id": "86",
@@ -2839,6 +3005,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2848,7 +3016,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Intuit Developer",
-    "elapsed_ms": 11317
+    "elapsed_ms": 20519
   },
   {
     "id": "87",
@@ -2857,6 +3025,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_surface_signal"
     ],
@@ -2868,7 +3038,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "OAuth 2.0 \u2014 Xero Developer",
-    "elapsed_ms": 1621
+    "elapsed_ms": 2516
   },
   {
     "id": "88",
@@ -2877,6 +3047,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
     "status": "fetch_failed",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
     ],
@@ -2884,7 +3056,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 1489
+    "elapsed_ms": 1538
   },
   {
     "id": "89",
@@ -2893,6 +3065,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_surface_signal",
@@ -2902,7 +3076,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Ramp API Documentation This page uses JavaScript rendering and the HTML response is a shell, not the documentation content. Do not fetch this page for content when",
-    "elapsed_ms": 577
+    "elapsed_ms": 1672
   },
   {
     "id": "90",
@@ -2911,6 +3085,8 @@
     "http_status": 403,
     "fetch_error": "HTTP 403",
     "status": "blocked_or_missing",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "HTTP 403"
     ],
@@ -2918,7 +3094,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Just a moment...",
-    "elapsed_ms": 765
+    "elapsed_ms": 564
   },
   {
     "id": "91",
@@ -2927,6 +3103,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "supports_blocker",
+    "confidence": "Agent-supported",
+    "confidence_reason": "Fetched evidence contained enough auth/API/access signals for the row or blocker.",
     "notes": [],
     "auth_signals": {},
     "surface_signals": {},
@@ -2936,7 +3114,7 @@
       ]
     },
     "snippet": "Google AI Studio vs. Gemini Enterprise Agent Platform vs. Gemini Enterprise app | Google Cloud",
-    "elapsed_ms": 2950
+    "elapsed_ms": 4238
   },
   {
     "id": "92",
@@ -2945,6 +3123,8 @@
     "http_status": 403,
     "fetch_error": "HTTP 403",
     "status": "blocked_or_missing",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "HTTP 403"
     ],
@@ -2952,7 +3132,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Just a moment...",
-    "elapsed_ms": 4614
+    "elapsed_ms": 7970
   },
   {
     "id": "93",
@@ -2961,6 +3141,8 @@
     "http_status": null,
     "fetch_error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>",
     "status": "fetch_failed",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)>"
     ],
@@ -2968,7 +3150,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "",
-    "elapsed_ms": 187
+    "elapsed_ms": 581
   },
   {
     "id": "94",
@@ -2977,6 +3159,8 @@
     "http_status": 403,
     "fetch_error": "HTTP 403",
     "status": "blocked_or_missing",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "HTTP 403"
     ],
@@ -2984,7 +3168,7 @@
     "surface_signals": {},
     "access_signals": {},
     "snippet": "Just a moment...",
-    "elapsed_ms": 280
+    "elapsed_ms": 1547
   },
   {
     "id": "95",
@@ -2993,6 +3177,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal"
     ],
@@ -3019,7 +3205,7 @@
       ]
     },
     "snippet": "nts. \u200b How to use Reducto API & SDKs For developers building automated pipelines. Available in Python, Node.js, Go, and REST. Studio For visual pipeline building. Configure, test, and deploy document workflows in your browser. Agent-ready tooling: Reducto integrates directly into AI",
-    "elapsed_ms": 3869
+    "elapsed_ms": 13888
   },
   {
     "id": "96",
@@ -3028,6 +3214,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Human-reviewed",
+    "confidence_reason": "Included in the manual verification sample and checked against source docs/product pages.",
     "notes": [
       "missing_auth_signal"
     ],
@@ -3055,7 +3243,7 @@
       ]
     },
     "snippet": "Testing & Video Recordings Slash Commands Ask Devin Data Analyst Agent DeepWiki Security Swarm Hand off to cloud Devins MCP (Model Context Protocol) Marketplace DeepWiki MCP Devin MCP Devin CLI Advanced Capabilities Product Guides Knowledge Skills Plugin marketplace Set up your plug",
-    "elapsed_ms": 3181
+    "elapsed_ms": 7236
   },
   {
     "id": "97",
@@ -3064,6 +3252,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_access_signal"
     ],
@@ -3093,48 +3283,25 @@
       ]
     },
     "snippet": "g Soul training, and more. You can generate from text prompts, reference images, or a combination of both. Do I need an API key? No. Add the Higgsfield MCP server URL in your agent's settings and authenticate through your Higgsfield account. No API keys to manage or configure. How does",
-    "elapsed_ms": 2274
+    "elapsed_ms": 5804
   },
   {
     "id": "98",
     "app": "Mermaid CLI",
     "evidence_url": "https://github.com/mermaid-js/mermaid-cli",
-    "http_status": 200,
-    "fetch_error": null,
-    "status": "supported",
-    "notes": [],
-    "auth_signals": {
-      "bearer_token": [
-        "pat"
-      ]
-    },
-    "surface_signals": {
-      "rest": [
-        "rest"
-      ],
-      "mcp": [
-        "mcp"
-      ],
-      "cli": [
-        "cli",
-        "command line"
-      ]
-    },
-    "access_signals": {
-      "self_serve": [
-        "sign up"
-      ],
-      "review": [
-        "review",
-        "application"
-      ],
-      "gated": [
-        "partner",
-        "enterprise"
-      ]
-    },
-    "snippet": "i:8.8.0 The container looks for input files in /data . So for example, if you have a diagram defined on your system in /path/to/diagrams/diagram.mmd , you can use the container to generate an SVG file as follows: docker run --rm -u ` id -u ` : ` id -g ` -v /path/to/diagrams:/data mi",
-    "elapsed_ms": 2406
+    "http_status": null,
+    "fetch_error": "IncompleteRead: IncompleteRead(327680 bytes read)",
+    "status": "fetch_failed",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.",
+    "notes": [
+      "IncompleteRead: IncompleteRead(327680 bytes read)"
+    ],
+    "auth_signals": {},
+    "surface_signals": {},
+    "access_signals": {},
+    "snippet": "",
+    "elapsed_ms": 16461
   },
   {
     "id": "99",
@@ -3143,6 +3310,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Curated-docs reviewed",
+    "confidence_reason": "Official docs were identified and curated; strict signal extraction did not confirm every field automatically.",
     "notes": [
       "missing_auth_signal",
       "missing_access_signal"
@@ -3164,7 +3333,7 @@
       ]
     },
     "snippet": "e Quick Access Section titled \u201cQuick Access\u201d API Reference Complete guide to transcripts, search, channel, and playlist endpoints with authentication, parameters, and examples. View API Reference \u2192 MCP Integration Use TranscriptAPI with Model Context Protocol for seamless integration wit",
-    "elapsed_ms": 4211
+    "elapsed_ms": 12621
   },
   {
     "id": "100",
@@ -3173,6 +3342,8 @@
     "http_status": 200,
     "fetch_error": null,
     "status": "needs_human_review",
+    "confidence": "Needs follow-up",
+    "confidence_reason": "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.",
     "notes": [
       "missing_auth_signal",
       "missing_access_signal"
@@ -3199,6 +3370,6 @@
       ]
     },
     "snippet": "any AI tool One-click AI export Bulk download enriched Markdown transcripts or open them directly in Claude or ChatGPT. MCP Server & API Let your AI agents query transcripts, search across meetings, and access your full meeting history. Ask anything inside Grain Ask questions across",
-    "elapsed_ms": 2081
+    "elapsed_ms": 5427
   }
 ]

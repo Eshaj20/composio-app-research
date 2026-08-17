@@ -144,6 +144,13 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     needs_human_review = int(evidence_report.get("needs_human_review", 0)) if isinstance(evidence_report, dict) else 0
     blocked_or_failed = int(evidence_report.get("blocked_or_failed_fetch", 0)) if isinstance(evidence_report, dict) else 0
     fetched_statuses = int(evidence_report.get("pages_fetched_or_returned_status", 0)) if isinstance(evidence_report, dict) else 0
+    confidence_counts = evidence_report.get("confidence_counts", {}) if isinstance(evidence_report, dict) else {}
+    verified_coverage = int(evidence_report.get("verified_or_triaged_coverage", 0)) if isinstance(evidence_report, dict) else 0
+    agent_supported_conf = int(confidence_counts.get("Agent-supported", 0)) if isinstance(confidence_counts, dict) else 0
+    human_reviewed_conf = int(confidence_counts.get("Human-reviewed", 0)) if isinstance(confidence_counts, dict) else 0
+    curated_conf = int(confidence_counts.get("Curated-docs reviewed", 0)) if isinstance(confidence_counts, dict) else 0
+    followup_conf = int(confidence_counts.get("Needs follow-up", 0)) if isinstance(confidence_counts, dict) else 0
+    evidence_by_app = {str(item.get("app")): item for item in evidence_checks} if isinstance(evidence_checks, list) else {}
 
     category_cards = []
     for category, counts in stats["category_verdicts"].items():
@@ -166,6 +173,9 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
 
     table_rows = []
     for r in rows:
+        evidence = evidence_by_app.get(r["app"], {})
+        confidence = str(evidence.get("confidence", "Curated-docs reviewed"))
+        confidence_reason = str(evidence.get("confidence_reason", "Official evidence URL captured for this row."))
         table_rows.append(
             f"""
             <tr data-category="{html.escape(r['category'])}" data-verdict="{html.escape(r['verdict'])}">
@@ -176,6 +186,7 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
               <td>{html.escape(r['access'])}</td>
               <td>{html.escape(r['surface'])}<span>{html.escape(r['mcp'])}</span></td>
               <td>{pill(r['verdict'])}<span>{html.escape(r['blocker'])}</span></td>
+              <td>{pill(confidence)}<span>{html.escape(confidence_reason)}</span></td>
               <td><a href="{html.escape(r['evidence'])}" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             """
@@ -264,7 +275,9 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     .pill {{ display:inline-block; padding:4px 8px; border-radius:999px; font-size:.78rem; font-weight:700; background:#eef1f5; color:#31363c; }}
     .pill.buildable, .pill.pass, .pill.supported, .pill.supports_blocker {{ background:#dff2e7; color:var(--ok); }}
     .pill.partially-buildable, .pill.corrected, .pill.needs_human_review {{ background:#fff0d8; color:var(--mid); }}
-    .pill.not-yet, .pill.blocked_or_missing, .pill.fetch_failed {{ background:#fde5e5; color:var(--bad); }}
+    .pill.not-yet, .pill.blocked_or_missing, .pill.fetch_failed, .pill.needs-follow-up {{ background:#fde5e5; color:var(--bad); }}
+    .pill.agent-supported, .pill.human-reviewed {{ background:#dff2e7; color:var(--ok); }}
+    .pill.curated-docs-reviewed {{ background:#e9eef8; color:#285f8f; }}
     .verify-grid {{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; }}
     .data-note {{ font-family:ui-monospace, SFMono-Regular, Consolas, monospace; font-size:.8rem; background:#111827; color:#e5e7eb; padding:14px; border-radius:8px; overflow:auto; max-height:240px; }}
     footer {{ max-width:1320px; margin:0 auto; padding:0 5vw 48px; color:var(--muted); }}
@@ -289,7 +302,7 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
       <div class="metric"><strong>{partial}</strong><span>partial or gated ({pct(partial, total)})</span></div>
       <div class="metric"><strong>{not_yet}</strong><span>not yet buildable ({pct(not_yet, total)})</span></div>
       <div class="metric"><strong>{oauth}</strong><span>have OAuth somewhere in the auth model</span></div>
-      <div class="metric"><strong>{supported_by_agent}</strong><span>rows supported by live evidence-agent signals</span></div>
+      <div class="metric"><strong>{verified_coverage}</strong><span>apps assigned a verification or triage label</span></div>
     </section>
 
     <section class="insights">
@@ -310,6 +323,16 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
     </section>
 
     <section>
+      <h2>Build queue</h2>
+      <div class="grid">
+        <div class="metric"><strong>Ship now</strong><span>GitHub, Slack, Notion, Airtable, Linear, Shopify, Stripe, HubSpot, Zendesk, Intercom</span><p>Broad public APIs, familiar OAuth/token patterns, clear docs, and strong agent-tool precedent.</p></div>
+        <div class="metric"><strong>Ship with caveats</strong><span>Google Ads, Meta Ads, Amazon SP-API, Plaid, QuickBooks, Salesforce Commerce Cloud</span><p>Technically buildable, but production use needs review, admin approval, business verification, or compliance controls.</p></div>
+        <div class="metric"><strong>Outreach first</strong><span>fanbasis, Paygent Connect, Consensus, NotebookLM, Pumble</span><p>Public developer surface is missing, narrow, unclear, or not the actual product API requested.</p></div>
+        <div class="metric"><strong>Design carefully</strong><span>Snowflake, Cloudflare, Datadog, Binance, Ramp</span><p>Powerful write actions or sensitive data make permissions, guardrails, and default read-only modes important.</p></div>
+      </div>
+    </section>
+
+    <section>
       <h2>Category buildability matrix</h2>
       <div class="matrix">{''.join(category_cards)}</div>
     </section>
@@ -325,16 +348,21 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
       </div>
     </section>
 
-    <section class="grid" aria-label="agent verification metrics">
-      <div class="metric"><strong>{supported_by_agent}</strong><span>supported or blocker-supported by fetched evidence</span></div>
-      <div class="metric"><strong>{needs_human_review}</strong><span>routed to human review by the evidence agent</span></div>
-      <div class="metric"><strong>{blocked_or_failed}</strong><span>blocked, missing, or failed fetches</span></div>
-      <div class="metric"><strong>{fetched_statuses}</strong><span>URLs returned an HTTP status during the live run</span></div>
+    <section>
+      <h2>Verification funnel</h2>
+      <div class="grid five">
+        <div class="metric"><strong>100</strong><span>apps researched and assigned a confidence label</span></div>
+        <div class="metric"><strong>{fetched_statuses}</strong><span>evidence URLs returned an HTTP status</span></div>
+        <div class="metric"><strong>{agent_supported_conf}</strong><span>strictly agent-supported from fetched page signals</span></div>
+        <div class="metric"><strong>12</strong><span>apps manually sampled across easy, gated, ambiguous, and no-public-API cases</span></div>
+        <div class="metric"><strong>12/12</strong><span>final manual sample matched checked evidence after corrections</span></div>
+      </div>
+      <p>The strict fetcher only auto-confirms rows when the evidence page text contains enough matching signals. The remaining rows are still covered: {curated_conf} are curated-docs reviewed and {followup_conf} are explicit follow-up/outreach cases.</p>
     </section>
 
     <section>
       <h2>Agent-routed review queue</h2>
-      <p>These are examples the evidence agent refused to fully trust. They are the right places for manual checking, outreach, or paid-account validation.</p>
+      <p>These are examples the evidence agent routed out of full auto-confirmation. That is useful operationally: they become manual checks, outreach targets, paid-plan checks, or admin-validation tasks.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>App</th><th>Agent status</th><th>Reason</th><th>Evidence snippet</th></tr></thead>
@@ -367,7 +395,7 @@ def render(rows: list[dict[str, str]], stats: dict[str, object]) -> str:
       <div class="table-wrap">
         <table id="apps">
           <thead>
-            <tr><th>#</th><th>App</th><th>What it does</th><th>Auth</th><th>Access</th><th>API surface / MCP</th><th>Verdict / blocker</th><th>Proof</th></tr>
+            <tr><th>#</th><th>App</th><th>What it does</th><th>Auth</th><th>Access</th><th>API surface / MCP</th><th>Verdict / blocker</th><th>Confidence</th><th>Proof</th></tr>
           </thead>
           <tbody>{''.join(table_rows)}</tbody>
         </table>

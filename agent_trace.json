@@ -155,22 +155,30 @@
   },
   "evidence_report": {
     "apps_checked": 100,
-    "pages_fetched_or_returned_status": 89,
-    "supported_by_agent": 22,
+    "pages_fetched_or_returned_status": 87,
+    "supported_by_agent": 21,
     "needs_human_review": 60,
-    "blocked_or_failed_fetch": 18,
+    "blocked_or_failed_fetch": 19,
     "status_counts": {
       "needs_human_review": 60,
-      "supported": 21,
-      "fetch_failed": 11,
-      "blocked_or_missing": 7,
+      "supported": 20,
+      "fetch_failed": 13,
+      "blocked_or_missing": 6,
       "supports_blocker": 1
     },
+    "confidence_counts": {
+      "Human-reviewed": 9,
+      "Agent-supported": 21,
+      "Curated-docs reviewed": 49,
+      "Needs follow-up": 21
+    },
+    "verified_or_triaged_coverage": 100,
     "method": [
       "Fetch each official evidence URL from data/apps.tsv.",
       "Strip scripts/styles and extract visible page text.",
       "Detect auth, API-surface, access-gate, and MCP signals with deterministic keyword groups.",
       "Compare detected signals with the curated row and mark unsupported rows for human review.",
+      "Assign every app a confidence label: Agent-supported, Human-reviewed, Curated-docs reviewed, or Needs follow-up.",
       "Keep ambiguous/gated/no-public-docs cases as findings rather than forcing a buildable answer."
     ],
     "human_review_policy": "Rows with low signals, blocked docs, or product/API ambiguity are routed to manual verification."

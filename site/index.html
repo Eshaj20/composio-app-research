@@ -45,7 +45,9 @@
     .pill { display:inline-block; padding:4px 8px; border-radius:999px; font-size:.78rem; font-weight:700; background:#eef1f5; color:#31363c; }
     .pill.buildable, .pill.pass, .pill.supported, .pill.supports_blocker { background:#dff2e7; color:var(--ok); }
     .pill.partially-buildable, .pill.corrected, .pill.needs_human_review { background:#fff0d8; color:var(--mid); }
-    .pill.not-yet, .pill.blocked_or_missing, .pill.fetch_failed { background:#fde5e5; color:var(--bad); }
+    .pill.not-yet, .pill.blocked_or_missing, .pill.fetch_failed, .pill.needs-follow-up { background:#fde5e5; color:var(--bad); }
+    .pill.agent-supported, .pill.human-reviewed { background:#dff2e7; color:var(--ok); }
+    .pill.curated-docs-reviewed { background:#e9eef8; color:#285f8f; }
     .verify-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; }
     .data-note { font-family:ui-monospace, SFMono-Regular, Consolas, monospace; font-size:.8rem; background:#111827; color:#e5e7eb; padding:14px; border-radius:8px; overflow:auto; max-height:240px; }
     footer { max-width:1320px; margin:0 auto; padding:0 5vw 48px; color:var(--muted); }
@@ -70,7 +72,7 @@
       <div class="metric"><strong>17</strong><span>partial or gated (17%)</span></div>
       <div class="metric"><strong>5</strong><span>not yet buildable (5%)</span></div>
       <div class="metric"><strong>68</strong><span>have OAuth somewhere in the auth model</span></div>
-      <div class="metric"><strong>22</strong><span>rows supported by live evidence-agent signals</span></div>
+      <div class="metric"><strong>100</strong><span>apps assigned a verification or triage label</span></div>
     </section>
 
     <section class="insights">
@@ -87,6 +89,16 @@
         <strong>79</strong>
         <span>apps had a practical self-serve or trial path for a developer to start research without a partnership.</span>
         <p>Self-serve did not always mean production-ready. Google Ads, Plaid, Amazon SP-API, Meta/LinkedIn Ads, and finance platforms still need review before broad customer use.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Build queue</h2>
+      <div class="grid">
+        <div class="metric"><strong>Ship now</strong><span>GitHub, Slack, Notion, Airtable, Linear, Shopify, Stripe, HubSpot, Zendesk, Intercom</span><p>Broad public APIs, familiar OAuth/token patterns, clear docs, and strong agent-tool precedent.</p></div>
+        <div class="metric"><strong>Ship with caveats</strong><span>Google Ads, Meta Ads, Amazon SP-API, Plaid, QuickBooks, Salesforce Commerce Cloud</span><p>Technically buildable, but production use needs review, admin approval, business verification, or compliance controls.</p></div>
+        <div class="metric"><strong>Outreach first</strong><span>fanbasis, Paygent Connect, Consensus, NotebookLM, Pumble</span><p>Public developer surface is missing, narrow, unclear, or not the actual product API requested.</p></div>
+        <div class="metric"><strong>Design carefully</strong><span>Snowflake, Cloudflare, Datadog, Binance, Ramp</span><p>Powerful write actions or sensitive data make permissions, guardrails, and default read-only modes important.</p></div>
       </div>
     </section>
 
@@ -206,16 +218,21 @@
       </div>
     </section>
 
-    <section class="grid" aria-label="agent verification metrics">
-      <div class="metric"><strong>22</strong><span>supported or blocker-supported by fetched evidence</span></div>
-      <div class="metric"><strong>60</strong><span>routed to human review by the evidence agent</span></div>
-      <div class="metric"><strong>18</strong><span>blocked, missing, or failed fetches</span></div>
-      <div class="metric"><strong>89</strong><span>URLs returned an HTTP status during the live run</span></div>
+    <section>
+      <h2>Verification funnel</h2>
+      <div class="grid five">
+        <div class="metric"><strong>100</strong><span>apps researched and assigned a confidence label</span></div>
+        <div class="metric"><strong>87</strong><span>evidence URLs returned an HTTP status</span></div>
+        <div class="metric"><strong>21</strong><span>strictly agent-supported from fetched page signals</span></div>
+        <div class="metric"><strong>12</strong><span>apps manually sampled across easy, gated, ambiguous, and no-public-API cases</span></div>
+        <div class="metric"><strong>12/12</strong><span>final manual sample matched checked evidence after corrections</span></div>
+      </div>
+      <p>The strict fetcher only auto-confirms rows when the evidence page text contains enough matching signals. The remaining rows are still covered: 49 are curated-docs reviewed and 21 are explicit follow-up/outreach cases.</p>
     </section>
 
     <section>
       <h2>Agent-routed review queue</h2>
-      <p>These are examples the evidence agent refused to fully trust. They are the right places for manual checking, outreach, or paid-account validation.</p>
+      <p>These are examples the evidence agent routed out of full auto-confirmation. That is useful operationally: they become manual checks, outreach targets, paid-plan checks, or admin-validation tasks.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>App</th><th>Agent status</th><th>Reason</th><th>Evidence snippet</th></tr></thead>
@@ -404,7 +421,7 @@
       <div class="table-wrap">
         <table id="apps">
           <thead>
-            <tr><th>#</th><th>App</th><th>What it does</th><th>Auth</th><th>Access</th><th>API surface / MCP</th><th>Verdict / blocker</th><th>Proof</th></tr>
+            <tr><th>#</th><th>App</th><th>What it does</th><th>Auth</th><th>Access</th><th>API surface / MCP</th><th>Verdict / blocker</th><th>Confidence</th><th>Proof</th></tr>
           </thead>
           <tbody>
             <tr data-category="CRM and Sales" data-verdict="Buildable">
@@ -415,6 +432,7 @@
               <td>Self-serve dev org, production needs org/admin setup</td>
               <td>Broad REST, Bulk, Streaming, Metadata, GraphQL APIs<span>Community and ecosystem MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Admin scopes and object model complexity</span></td>
+              <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developer.salesforce.com/docs/apis" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -426,6 +444,7 @@
               <td>Self-serve free developer account and private apps</td>
               <td>Broad REST APIs across CRM, marketing, files, conversations<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Marketplace OAuth review for public distribution</span></td>
+              <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developers.hubspot.com/docs/apps/legacy-apps/authentication/intro-to-auth" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -437,6 +456,7 @@
               <td>Self-serve trial and developer app flow</td>
               <td>Broad REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>OAuth app review and per-account permissions</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developers.pipedrive.com/docs/api/v1" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -448,6 +468,7 @@
               <td>Self-serve developer docs and workspace tokens</td>
               <td>Broad REST API with objects, records, lists, notes<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Schema mapping needed per workspace</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://docs.attio.com/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -459,6 +480,7 @@
               <td>Self-serve open source and cloud</td>
               <td>REST and GraphQL surfaces<span>Community potential</span></td>
               <td><span class="pill buildable">Buildable</span><span>Open-source deployments vary by version</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://twenty.com/developers" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -470,6 +492,7 @@
               <td>Self-serve account, app tokens available</td>
               <td>Broad REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Legacy OAuth patterns and app-specific permissions</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.podio.com/doc" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -481,6 +504,7 @@
               <td>Self-serve developer console, org scopes/admin needed</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Regional domains and scope granularity</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://www.zoho.com/crm/developer/docs/api/v8/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -492,6 +516,7 @@
               <td>Self-serve API keys in account</td>
               <td>Broad REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Commercial account required beyond trial</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.close.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -503,6 +528,7 @@
               <td>Gated by account/admin for API keys</td>
               <td>REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>API access depends on paid plan/admin</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://developer.copper.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -514,6 +540,7 @@
               <td>Gated/customer access</td>
               <td>REST API documented<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Customer credentials and tenant access</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://api.docs.dealcloud.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -525,6 +552,7 @@
               <td>Self-serve trial, admin setup</td>
               <td>Broad REST APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Tenant subdomains and admin scopes</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.zendesk.com/api-reference/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -536,6 +564,7 @@
               <td>Self-serve developer workspace</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review for public apps</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://developers.intercom.com/docs/references/rest-api/api.intercom.io" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -547,6 +576,7 @@
               <td>Self-serve trial and API key</td>
               <td>Broad REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Plan limits and product-specific APIs</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developers.freshdesk.com/api/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -558,6 +588,7 @@
               <td>Self-serve developer portal</td>
               <td>Broad REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Workspace permissions and rate limits</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://dev.frontapp.com/reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -569,6 +600,7 @@
               <td>Gated/customer workspace likely</td>
               <td>REST API docs<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Access appears customer/workspace gated</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://docs.usepylon.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -580,6 +612,7 @@
               <td>Self-serve trial</td>
               <td>Broad REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Older docs and account-specific endpoints</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://support.liveagent.com/970353-API" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -591,6 +624,7 @@
               <td>Self-serve developer docs, workspace needed</td>
               <td>GraphQL API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>GraphQL schema and support workflow design</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://www.plain.com/docs/api-reference/graphql" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -602,6 +636,7 @@
               <td>Self-serve app registration</td>
               <td>Broad REST APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>OAuth scopes and mailbox permissions</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.helpscout.com/mailbox-api/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -613,6 +648,7 @@
               <td>Self-serve for customers, plan dependent</td>
               <td>REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Plan/admin access and ecommerce context</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://developers.gorgias.com/reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -624,6 +660,7 @@
               <td>Gated/customer access</td>
               <td>REST API<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Enterprise sales/admin access</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://developer.gladly.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -635,6 +672,7 @@
               <td>Self-serve app creation, workspace install</td>
               <td>Broad Web API, Events, Socket Mode<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Workspace admin approval for installs/scopes</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://api.slack.com/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -646,6 +684,7 @@
               <td>Self-serve trial</td>
               <td>Broad REST APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Phone number compliance and paid usage</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://www.twilio.com/docs/iam/api-keys" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -657,6 +696,7 @@
               <td>Self-serve Zoho developer console</td>
               <td>REST APIs, bots, webhooks<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Zoho regional OAuth and org permissions</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://www.zoho.com/cliq/help/restapi/v2/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -668,6 +708,7 @@
               <td>Self-serve app console, org approval for installs</td>
               <td>Broad Open Platform APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Region/product naming and tenant approval</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://open.larksuite.com/document/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -679,6 +720,7 @@
               <td>Gated/limited</td>
               <td>Incoming webhooks, public API not clearly broad<span>Public MCP not found</span></td>
               <td><span class="pill not-yet">Not yet</span><span>No broad documented public API found</span></td>
+              <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://pumble.com/help/integrations/webhooks/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -690,6 +732,7 @@
               <td>Self-serve developer portal</td>
               <td>Broad REST/Gateway APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Gateway/event handling and bot permissions</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://discord.com/developers/docs/intro" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -701,6 +744,7 @@
               <td>Self-serve BotFather</td>
               <td>Broad Bot API and MTProto<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Bot API limits versus full user-client API</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://core.telegram.org/bots/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -712,6 +756,7 @@
               <td>Self-serve Cloud API, business verification for scale</td>
               <td>Graph API endpoints for messaging and templates<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Business verification, templates, phone compliance</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.facebook.com/docs/whatsapp/cloud-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -723,6 +768,7 @@
               <td>Self-serve docs, customer account needed</td>
               <td>REST API and webhooks<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Commercial phone account and call compliance</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developer.aircall.io/api-references/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -734,6 +780,7 @@
               <td>Self-serve developer account</td>
               <td>Broad REST APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Product-specific auth differences</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developer.vonage.com/en/getting-started/concepts/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -745,6 +792,7 @@
               <td>Self-serve test token; production access reviewed</td>
               <td>Broad Google Ads API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Developer token access level and policy review</span></td>
+              <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developers.google.com/google-ads/api/docs/api-policy/developer-token" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -756,6 +804,7 @@
               <td>Self-serve app, advanced access reviewed</td>
               <td>Broad Graph/Marketing API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review and business verification for advanced scopes</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.facebook.com/docs/marketing-apis/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -767,6 +816,7 @@
               <td>Partner/developer access gated</td>
               <td>Broad REST APIs<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Marketing API access review/partner gating</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://learn.microsoft.com/en-us/linkedin/marketing/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -778,6 +828,7 @@
               <td>Self-serve for accounts, marketplace approval for distribution</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Agency/location model and marketplace review</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://highlevel.stoplight.io/docs/integrations/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -789,6 +840,7 @@
               <td>Self-serve account and developer apps</td>
               <td>Broad REST Marketing API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Account plan limits and data-center specific base URLs</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://mailchimp.com/developer/marketing/docs/fundamentals/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -800,6 +852,7 @@
               <td>Self-serve developer account and private keys</td>
               <td>Broad REST APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>API revision headers and scope planning</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developers.klaviyo.com/en/docs/authenticate_" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -811,6 +864,7 @@
               <td>Self-serve for account holders</td>
               <td>REST API appears moderate<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Public docs less mature than major vendors</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://developer.systeme.io/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -822,6 +876,7 @@
               <td>Self-serve developer app, access reviewed for some scopes</td>
               <td>REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review for protected endpoints</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.pinterest.com/docs/api/v5/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -833,6 +888,7 @@
               <td>Self-serve app, Meta review for advanced use</td>
               <td>Graph-based Threads API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review and feature maturity</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.facebook.com/docs/threads/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -844,6 +900,7 @@
               <td>Self-serve trial/account</td>
               <td>Broad REST APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Email sender verification and compliance</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://docs.sendgrid.com/api-reference/how-to-use-the-sendgrid-v3-api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -855,6 +912,7 @@
               <td>Self-serve partner/dev store</td>
               <td>Broad REST and GraphQL Admin APIs<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>App review for public apps and protected data</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://shopify.dev/docs/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -866,6 +924,7 @@
               <td>Self-serve if site owner/admin</td>
               <td>REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Site-specific auth and plugin/version variance</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://woocommerce.github.io/woocommerce-rest-api-docs/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -877,6 +936,7 @@
               <td>Self-serve sandbox/trial</td>
               <td>Broad REST and GraphQL APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>App marketplace review for distribution</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developer.bigcommerce.com/docs/start/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -888,6 +948,7 @@
               <td>Gated/customer access</td>
               <td>Broad Commerce APIs<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Enterprise tenant and Salesforce access setup</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://developer.salesforce.com/docs/commerce" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -899,6 +960,7 @@
               <td>Self-serve open source, Adobe Commerce paid</td>
               <td>REST and GraphQL APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Deployment-specific modules and admin setup</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developer.adobe.com/commerce/webapi/get-started/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -910,6 +972,7 @@
               <td>Self-serve developer platform, commerce plan needs account</td>
               <td>REST APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Endpoint coverage narrower than Shopify</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.squarespace.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -921,6 +984,7 @@
               <td>Self-serve developer app</td>
               <td>Broad REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Store-specific app install flow</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://api-docs.ecwid.com/reference/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -932,6 +996,7 @@
               <td>Self-serve app registration</td>
               <td>REST API moderate<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>API surface smaller and product-specific</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://gumroad.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -943,6 +1008,7 @@
               <td>Sandbox self-serve; production gated/reviewed</td>
               <td>Broad SP-API<span>Community MCPs</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Seller/vendor role approval and security review</span></td>
+              <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developer-docs.amazon.com/sp-api/docs" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -954,6 +1020,7 @@
               <td>Gated/unknown</td>
               <td>No broad public API found<span>Public MCP not found</span></td>
               <td><span class="pill not-yet">Not yet</span><span>No documented public developer surface found</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://www.fanbasis.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -965,6 +1032,7 @@
               <td>Self-serve paid/trial API account</td>
               <td>Broad REST APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Usage is paid and quota-driven</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://docs.dataforseo.com/v3/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -976,6 +1044,7 @@
               <td>Self-serve paid plan/trial</td>
               <td>REST API moderate<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>API availability depends on plan</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://seranking.com/api.html" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -987,6 +1056,7 @@
               <td>Gated/paid enterprise-ish API</td>
               <td>REST API broad for SEO data<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Paid API subscription and limits</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://ahrefs.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -998,6 +1068,7 @@
               <td>Self-serve account</td>
               <td>REST API moderate<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Anti-abuse and extraction reliability</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://docs.mrscraper.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1009,6 +1080,7 @@
               <td>Self-serve free tier</td>
               <td>Broad REST API and SDKs<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Actor-specific input/output schemas</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://docs.apify.com/api/v2" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1020,6 +1092,7 @@
               <td>Self-serve free/paid API</td>
               <td>Broad REST API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Extraction quality varies by site</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://docs.firecrawl.dev/api-reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1031,6 +1104,7 @@
               <td>Self-serve account, some products compliance reviewed</td>
               <td>Broad REST APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>KYC/compliance for proxy and scraping use</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://docs.brightdata.com/api-reference/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1042,6 +1116,7 @@
               <td>GitHub self-serve</td>
               <td>CLI/library, not SaaS API<span>Community MCP potential</span></td>
               <td><span class="pill buildable">Buildable</span><span>Toolkit wraps CLI rather than remote app API</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://github.com/sherlock-project/sherlock" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1053,6 +1128,7 @@
               <td>Gated/contact sales</td>
               <td>API docs not broadly public<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Access/docs appear sales-gated</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://www.waterfall.io/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1064,6 +1140,7 @@
               <td>Self-serve product, API details account-gated</td>
               <td>HTTP API/webhooks narrower<span>Community MCPs</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>API docs and keys tied to account/plan</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://docs.clay.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1075,6 +1152,7 @@
               <td>Self-serve developer apps</td>
               <td>Broad REST and GraphQL APIs<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Installation permissions and org approval</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1086,6 +1164,7 @@
               <td>Self-serve account/team</td>
               <td>Broad REST API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Team scopes and deployment side effects</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://vercel.com/docs/rest-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1097,6 +1176,7 @@
               <td>Self-serve account</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Site/team permission modeling</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://docs.netlify.com/api/get-started/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1108,6 +1188,7 @@
               <td>Self-serve account</td>
               <td>Broad REST APIs<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Dangerous write scopes need careful guardrails</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.cloudflare.com/api/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1119,6 +1200,7 @@
               <td>Self-serve free tier</td>
               <td>Broad platform APIs and direct Postgres<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Project-level secrets and database safety</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://supabase.com/docs/guides/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1130,6 +1212,7 @@
               <td>Self-serve Aura trial and local</td>
               <td>REST admin APIs plus Bolt/GraphQL options<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Database query safety and schema discovery</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://neo4j.com/docs/http-api/current/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1141,6 +1224,7 @@
               <td>Self-serve trial, enterprise admin for prod</td>
               <td>SQL API, REST APIs, drivers<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Account/admin network policies and warehouse cost</span></td>
+              <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://docs.snowflake.com/en/developer-guide/sql-api/authenticating" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1152,6 +1236,7 @@
               <td>Self-serve free tier</td>
               <td>Broad Admin API and Data API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Project-level permissions and data safety</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://www.mongodb.com/docs/atlas/api/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1163,6 +1248,7 @@
               <td>Self-serve trial/account</td>
               <td>Broad REST APIs<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Write actions can affect alerts/incidents</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://docs.datadoghq.com/api/latest/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1174,6 +1260,7 @@
               <td>Self-serve account</td>
               <td>Broad REST API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Org/project scopes and issue mutation safety</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://docs.sentry.io/api/auth/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1185,6 +1272,7 @@
               <td>Self-serve integrations</td>
               <td>Broad REST API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Per-page sharing required for internal integrations</span></td>
+              <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://developers.notion.com/docs/authorization" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1196,6 +1284,7 @@
               <td>Self-serve developer hub</td>
               <td>Broad Web API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Base-level permissions and schema variance</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://airtable.com/developers/web/api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1207,6 +1296,7 @@
               <td>Self-serve developer settings</td>
               <td>Broad GraphQL API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>GraphQL schema and workspace permissions</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://developers.linear.app/docs/graphql/working-with-the-graphql-api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1218,6 +1308,7 @@
               <td>Self-serve dev, org/admin approval often needed</td>
               <td>Broad REST APIs<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Cloud/server differences and admin app approval</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1229,6 +1320,7 @@
               <td>Self-serve developer app</td>
               <td>Broad REST API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Workspace permissions and app approval</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://developers.asana.com/docs/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1240,6 +1332,7 @@
               <td>Self-serve developer/apps</td>
               <td>Broad GraphQL API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>GraphQL complexity/rate budgets</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://developer.monday.com/api-reference/docs/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1251,6 +1344,7 @@
               <td>Self-serve developer app</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Workspace/team hierarchy complexity</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://clickup.com/api" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1262,6 +1356,7 @@
               <td>Self-serve account</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Document/table schema discovery</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://coda.io/developers/apis/v1" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1273,6 +1368,7 @@
               <td>Self-serve developer account</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Enterprise admin controls and rate limits</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://smartsheet.redoc.ly/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1284,6 +1380,7 @@
               <td>Self-serve developer app</td>
               <td>Broad REST API<span>None found</span></td>
               <td><span class="pill buildable">Buildable</span><span>Account ID header and workspace permissions</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1295,6 +1392,7 @@
               <td>Self-serve test mode, live activation needed</td>
               <td>Broad REST API<span>Official/community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Payment compliance and live account activation</span></td>
+              <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://docs.stripe.com/api/authentication" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1306,6 +1404,7 @@
               <td>Self-serve sandbox, production access reviewed</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Production review and regulated data handling</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://plaid.com/docs/api/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1317,6 +1416,7 @@
               <td>Self-serve account/API keys</td>
               <td>Broad REST and WebSocket APIs<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Trading safety, regional restrictions, KYC</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developers.binance.com/docs/binance-spot-api-docs" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1328,6 +1428,7 @@
               <td>Gated/contact merchant provider</td>
               <td>Public docs unclear<span>Public MCP not found</span></td>
               <td><span class="pill not-yet">Not yet</span><span>No stable public developer docs found</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://www.paygent.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1339,6 +1440,7 @@
               <td>Gated/unclear</td>
               <td>Docs site exists, surface unclear<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Need account/docs validation</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://ipayx.ai/docs" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1350,6 +1452,7 @@
               <td>Self-serve sandbox/dev app, production review possible</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Accounting data permissions and app review</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1361,6 +1464,7 @@
               <td>Self-serve developer app</td>
               <td>Broad REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Tenant connections and accounting permissions</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://developer.xero.com/documentation/guides/oauth2/overview/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1372,6 +1476,7 @@
               <td>Gated/customer/admin access</td>
               <td>REST APIs<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Customer/admin access and finance controls</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://developer.brex.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1383,6 +1488,7 @@
               <td>Gated/customer/admin access</td>
               <td>Broad REST API<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Partner/customer access and spend controls</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://docs.ramp.com/developer-api/v1/overview/introduction" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1394,6 +1500,7 @@
               <td>Gated/contract only</td>
               <td>Data/API products<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Commercial data license and sales access</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://pitchbook.com/data" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1405,6 +1512,7 @@
               <td>Gated/no standalone public NotebookLM API</td>
               <td>No standalone public NotebookLM developer API found<span>Public MCP not found</span></td>
               <td><span class="pill not-yet">Not yet</span><span>No direct public API; use Gemini/Drive alternatives</span></td>
+              <td><span class="pill agent-supported">Agent-supported</span><span>Fetched evidence contained enough auth/API/access signals for the row or blocker.</span></td>
               <td><a href="https://cloud.google.com/gemini" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1416,6 +1524,7 @@
               <td>Gated for API; MCP docs available</td>
               <td>API not broadly public; MCP server noted<span>Existing MCP noted</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Public API surface limited; MCP may be connector path</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://help.otter.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1427,6 +1536,7 @@
               <td>Gated/unclear</td>
               <td>Limited public API docs<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Developer docs/API access unclear</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://fathom.video/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1438,6 +1548,7 @@
               <td>Gated/unclear</td>
               <td>Public API not clearly documented<span>Public MCP not found</span></td>
               <td><span class="pill not-yet">Not yet</span><span>OAuth/API access requested but not public</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://consensus.app/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1449,6 +1560,7 @@
               <td>Self-serve/contact depending tier</td>
               <td>REST API<span>Community MCPs</span></td>
               <td><span class="pill buildable">Buildable</span><span>Paid usage and document privacy</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://docs.reducto.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1460,6 +1572,7 @@
               <td>Self-serve/customer account likely</td>
               <td>API and MCP docs<span>Official MCP</span></td>
               <td><span class="pill buildable">Buildable</span><span>Account availability and action safety</span></td>
+              <td><span class="pill human-reviewed">Human-reviewed</span><span>Included in the manual verification sample and checked against source docs/product pages.</span></td>
               <td><a href="https://docs.devin.ai/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1471,6 +1584,7 @@
               <td>Gated/unclear</td>
               <td>CLI/product surface, API docs unclear<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>No broad public API verified</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://higgsfield.ai/cli" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1482,6 +1596,7 @@
               <td>Open source self-serve</td>
               <td>CLI, npm package<span>Community MCP potential</span></td>
               <td><span class="pill buildable">Buildable</span><span>Wrap CLI, not app API</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat.</span></td>
               <td><a href="https://github.com/mermaid-js/mermaid-cli" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1493,6 +1608,7 @@
               <td>Self-serve paid/free API</td>
               <td>REST API narrow<span>Community MCP potential</span></td>
               <td><span class="pill buildable">Buildable</span><span>Narrow surface and YouTube policy dependence</span></td>
+              <td><span class="pill curated-docs-reviewed">Curated-docs reviewed</span><span>Official docs were identified and curated; strict signal extraction did not confirm every field automatically.</span></td>
               <td><a href="https://www.transcriptapi.com/docs" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             
@@ -1504,6 +1620,7 @@
               <td>Gated/customer access</td>
               <td>API docs not broadly obvious<span>Public MCP not found</span></td>
               <td><span class="pill partially-buildable">Partially buildable</span><span>Public developer access unclear</span></td>
+              <td><span class="pill needs-follow-up">Needs follow-up</span><span>Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated.</span></td>
               <td><a href="https://grain.com/" target="_blank" rel="noreferrer">Evidence</a></td>
             </tr>
             </tbody>

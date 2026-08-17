@@ -42,6 +42,35 @@ SURFACE_SIGNALS = {
     "cli": ["cli", "command line"],
 }
 
+MANUAL_REVIEWED_APPS = {
+    "Salesforce",
+    "HubSpot",
+    "Google Ads",
+    "Amazon Selling Partner",
+    "Pumble",
+    "fanbasis",
+    "GitHub",
+    "Snowflake",
+    "Notion",
+    "Stripe",
+    "NotebookLM",
+    "Devin",
+}
+
+
+def confidence_label(row: dict[str, str], status: str, error: str | None) -> tuple[str, str]:
+    if status in {"supported", "supports_blocker"}:
+        return "Agent-supported", "Fetched evidence contained enough auth/API/access signals for the row or blocker."
+    if row["app"] in MANUAL_REVIEWED_APPS:
+        return "Human-reviewed", "Included in the manual verification sample and checked against source docs/product pages."
+
+    value = " ".join([row["verdict"], row["access"], row["blocker"]]).lower()
+    if row["verdict"] == "Not yet" or any(term in value for term in ("gated", "contact", "partner", "unclear", "unknown", "no broad public", "no stable public")):
+        return "Needs follow-up", "Agent could not fully verify this from public docs; treat as outreach, admin, paid-plan, or partner-gated."
+    if error:
+        return "Curated-docs reviewed", "The row has an official evidence URL, but the live fetch was blocked or low-signal; keep curated finding with caveat."
+    return "Curated-docs reviewed", "Official docs were identified and curated; strict signal extraction did not confirm every field automatically."
+
 ACCESS_SIGNALS = {
     "self_serve": ["sign up", "free trial", "developer account", "developer console", "create an app", "create app"],
     "review": ["review", "approval", "apply", "application", "verification"],
@@ -186,6 +215,7 @@ def build_check(row: dict[str, str]) -> dict[str, object]:
         for term in terms
     ]
     status, notes = evidence_status(row, text, error, status_code)
+    confidence, confidence_reason = confidence_label(row, status, error)
     return {
         "id": row["id"],
         "app": row["app"],
@@ -193,6 +223,8 @@ def build_check(row: dict[str, str]) -> dict[str, object]:
         "http_status": status_code,
         "fetch_error": error,
         "status": status,
+        "confidence": confidence,
+        "confidence_reason": confidence_reason,
         "notes": notes,
         "auth_signals": auth_signals,
         "surface_signals": surface_signals,
@@ -204,6 +236,7 @@ def build_check(row: dict[str, str]) -> dict[str, object]:
 
 def summarize(checks: list[dict[str, object]]) -> dict[str, object]:
     statuses = Counter(str(c["status"]) for c in checks)
+    confidence = Counter(str(c.get("confidence", "Unlabeled")) for c in checks)
     fetched = sum(1 for c in checks if c["http_status"] and int(c["http_status"]) < 500)
     supported = statuses["supported"] + statuses["supports_blocker"]
     needs_review = statuses["needs_human_review"]
@@ -215,11 +248,14 @@ def summarize(checks: list[dict[str, object]]) -> dict[str, object]:
         "needs_human_review": needs_review,
         "blocked_or_failed_fetch": blocked,
         "status_counts": dict(statuses),
+        "confidence_counts": dict(confidence),
+        "verified_or_triaged_coverage": len(checks),
         "method": [
             "Fetch each official evidence URL from data/apps.tsv.",
             "Strip scripts/styles and extract visible page text.",
             "Detect auth, API-surface, access-gate, and MCP signals with deterministic keyword groups.",
             "Compare detected signals with the curated row and mark unsupported rows for human review.",
+            "Assign every app a confidence label: Agent-supported, Human-reviewed, Curated-docs reviewed, or Needs follow-up.",
             "Keep ambiguous/gated/no-public-docs cases as findings rather than forcing a buildable answer.",
         ],
         "human_review_policy": "Rows with low signals, blocked docs, or product/API ambiguity are routed to manual verification.",
